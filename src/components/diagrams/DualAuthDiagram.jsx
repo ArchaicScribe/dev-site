@@ -344,7 +344,7 @@ export default function DualAuthDiagram() {
         onClick={() => setShowDetail(prev => !prev)}
         style={{
           fontFamily: "'Share Tech Mono', monospace",
-          fontSize: '0.75rem',
+          fontSize: '0.82rem',
           color: showDetail ? '#8ff0ff' : '#6a8a9a',
           background: 'none',
           border: 'none',
@@ -375,7 +375,7 @@ export default function DualAuthDiagram() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <div style={{
               fontFamily: "'Share Tech Mono', monospace",
-              fontSize: '0.7rem',
+              fontSize: '0.8rem',
               color: '#8ff0ff',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
@@ -387,7 +387,7 @@ export default function DualAuthDiagram() {
               gridTemplateColumns: '180px 1fr',
               gap: '0.4rem 1rem',
               fontFamily: "'Share Tech Mono', monospace",
-              fontSize: '0.75rem',
+              fontSize: '0.82rem',
             }}>
               <div style={{ color: '#6a8a9a' }}>Entry Point</div>
               <div style={{ color: '#eef4f8' }}>Internal API Gateway</div>
@@ -404,7 +404,7 @@ export default function DualAuthDiagram() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <div style={{
               fontFamily: "'Share Tech Mono', monospace",
-              fontSize: '0.7rem',
+              fontSize: '0.8rem',
               color: '#8ff0ff',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
@@ -418,7 +418,7 @@ export default function DualAuthDiagram() {
                 gridTemplateColumns: '180px 1fr',
                 gap: '0.4rem 1rem',
                 fontFamily: "'Share Tech Mono', monospace",
-                fontSize: '0.75rem',
+                fontSize: '0.82rem',
                 flex: 1,
               }}>
                 <div style={{ color: '#6a8a9a' }}>DSL</div>
@@ -437,7 +437,7 @@ export default function DualAuthDiagram() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <div style={{
               fontFamily: "'Share Tech Mono', monospace",
-              fontSize: '0.7rem',
+              fontSize: '0.8rem',
               color: '#c8a96e',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
@@ -451,7 +451,7 @@ export default function DualAuthDiagram() {
                 gridTemplateColumns: '180px 1fr',
                 gap: '0.4rem 1rem',
                 fontFamily: "'Share Tech Mono', monospace",
-                fontSize: '0.75rem',
+                fontSize: '0.82rem',
                 flex: 1,
               }}>
                 <div style={{ color: '#6a8a9a' }}>Provider</div>
@@ -472,7 +472,7 @@ export default function DualAuthDiagram() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <div style={{
               fontFamily: "'Share Tech Mono', monospace",
-              fontSize: '0.7rem',
+              fontSize: '0.8rem',
               color: '#8ff0ff',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
@@ -486,7 +486,7 @@ export default function DualAuthDiagram() {
                 gridTemplateColumns: '180px 1fr',
                 gap: '0.4rem 1rem',
                 fontFamily: "'Share Tech Mono', monospace",
-                fontSize: '0.75rem',
+                fontSize: '0.82rem',
                 flex: 1,
               }}>
                 <div style={{ color: '#6a8a9a' }}>Strategy</div>
@@ -505,7 +505,7 @@ export default function DualAuthDiagram() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <div style={{
               fontFamily: "'Share Tech Mono', monospace",
-              fontSize: '0.7rem',
+              fontSize: '0.8rem',
               color: '#8ff0ff',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
@@ -521,7 +521,7 @@ export default function DualAuthDiagram() {
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                 <div style={{
                   fontFamily: "'Share Tech Mono', monospace",
-                  fontSize: '0.7rem',
+                  fontSize: '0.78rem',
                   padding: '2px 8px',
                   border: '1px solid rgba(143,240,255,0.3)',
                   color: '#8ff0ff',
@@ -533,13 +533,13 @@ export default function DualAuthDiagram() {
                 <div>
                   <div style={{
                     fontFamily: "'Exo 2', sans-serif",
-                    fontSize: '0.85rem',
+                    fontSize: '0.92rem',
                     color: '#eef4f8',
                     marginBottom: '0.2rem',
                   }}>No credentials present</div>
                   <div style={{
                     fontFamily: "'Share Tech Mono', monospace",
-                    fontSize: '0.72rem',
+                    fontSize: '0.8rem',
                     color: '#6a8a9a',
                     lineHeight: '1.6',
                   }}>Request reached the filter chain with no authentication material</div>
@@ -549,7 +549,7 @@ export default function DualAuthDiagram() {
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                 <div style={{
                   fontFamily: "'Share Tech Mono', monospace",
-                  fontSize: '0.7rem',
+                  fontSize: '0.78rem',
                   padding: '2px 8px',
                   border: '1px solid rgba(143,240,255,0.3)',
                   color: '#8ff0ff',
@@ -561,13 +561,13 @@ export default function DualAuthDiagram() {
                 <div>
                   <div style={{
                     fontFamily: "'Exo 2', sans-serif",
-                    fontSize: '0.85rem',
+                    fontSize: '0.92rem',
                     color: '#eef4f8',
                     marginBottom: '0.2rem',
                   }}>Token expired</div>
                   <div style={{
                     fontFamily: "'Share Tech Mono', monospace",
-                    fontSize: '0.72rem',
+                    fontSize: '0.8rem',
                     color: '#6a8a9a',
                     lineHeight: '1.6',
                   }}>Valid token structure but past expiration — distinct message from invalid token</div>
@@ -577,7 +577,7 @@ export default function DualAuthDiagram() {
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                 <div style={{
                   fontFamily: "'Share Tech Mono', monospace",
-                  fontSize: '0.7rem',
+                  fontSize: '0.78rem',
                   padding: '2px 8px',
                   border: '1px solid rgba(143,240,255,0.3)',
                   color: '#8ff0ff',
@@ -589,13 +589,13 @@ export default function DualAuthDiagram() {
                 <div>
                   <div style={{
                     fontFamily: "'Exo 2', sans-serif",
-                    fontSize: '0.85rem',
+                    fontSize: '0.92rem',
                     color: '#eef4f8',
                     marginBottom: '0.2rem',
                   }}>Token invalid</div>
                   <div style={{
                     fontFamily: "'Share Tech Mono', monospace",
-                    fontSize: '0.72rem',
+                    fontSize: '0.8rem',
                     color: '#6a8a9a',
                     lineHeight: '1.6',
                   }}>Signature verification failed or token malformed</div>
@@ -605,7 +605,7 @@ export default function DualAuthDiagram() {
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                 <div style={{
                   fontFamily: "'Share Tech Mono', monospace",
-                  fontSize: '0.7rem',
+                  fontSize: '0.78rem',
                   padding: '2px 8px',
                   border: '1px solid rgba(200,169,110,0.3)',
                   color: '#c8a96e',
@@ -617,13 +617,13 @@ export default function DualAuthDiagram() {
                 <div>
                   <div style={{
                     fontFamily: "'Exo 2', sans-serif",
-                    fontSize: '0.85rem',
+                    fontSize: '0.92rem',
                     color: '#eef4f8',
                     marginBottom: '0.2rem',
                   }}>Insufficient role</div>
                   <div style={{
                     fontFamily: "'Share Tech Mono', monospace",
-                    fontSize: '0.72rem',
+                    fontSize: '0.8rem',
                     color: '#6a8a9a',
                     lineHeight: '1.6',
                   }}>Successfully authenticated but lacking required directory-sourced authority</div>
@@ -636,7 +636,7 @@ export default function DualAuthDiagram() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <div style={{
               fontFamily: "'Share Tech Mono', monospace",
-              fontSize: '0.7rem',
+              fontSize: '0.8rem',
               color: '#8ff0ff',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
@@ -645,7 +645,7 @@ export default function DualAuthDiagram() {
             </div>
             <div style={{
               fontFamily: "'Exo 2', sans-serif",
-              fontSize: '0.875rem',
+              fontSize: '0.95rem',
               fontWeight: 300,
               color: '#b0c8d8',
               lineHeight: '1.8',

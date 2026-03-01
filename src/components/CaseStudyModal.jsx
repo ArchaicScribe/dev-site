@@ -1,9 +1,17 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, cloneElement } from 'react'
 
 const statusColors = { LIVE: '#4fc3dc', WIP: '#c8a96e', ARCHIVED: '#5a7a8a' }
 
-export function CaseStudyModal({ project, onClose }) {
+export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning }) {
     const { title, status, tags, fullCaseStudy, diagram } = project
+    const panelRef = useRef(null)
+
+    // Scroll to top on project change
+    useEffect(() => {
+        if (panelRef.current) {
+            panelRef.current.scrollTop = 0
+        }
+    }, [project])
 
     // Escape key handler
     useEffect(() => {
@@ -48,6 +56,8 @@ export function CaseStudyModal({ project, onClose }) {
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
+        opacity: isTransitioning ? 0 : 1,
+        transition: 'opacity 250ms ease',
     }
 
     const headerStyle = {
@@ -74,7 +84,7 @@ export function CaseStudyModal({ project, onClose }) {
 
     const labelStyle = {
         fontFamily: "'Share Tech Mono', monospace",
-        fontSize: '0.7rem',
+        fontSize: '0.8rem',
         color: '#6a8a9a',
         textTransform: 'uppercase',
         letterSpacing: '0.1em',
@@ -83,7 +93,7 @@ export function CaseStudyModal({ project, onClose }) {
 
     const contentStyle = {
         fontFamily: "'Exo 2', sans-serif",
-        fontSize: '0.95rem',
+        fontSize: '1rem',
         fontWeight: 300,
         color: 'var(--text-primary)',
         lineHeight: 1.75,
@@ -91,7 +101,7 @@ export function CaseStudyModal({ project, onClose }) {
 
     return (
         <div style={overlayStyle} onClick={onClose}>
-            <div style={panelStyle} onClick={(e) => e.stopPropagation()}>
+            <div ref={panelRef} style={panelStyle} onClick={(e) => e.stopPropagation()}>
                 {/* Header */}
                 <div style={headerStyle}>
                     <div>
@@ -180,7 +190,7 @@ export function CaseStudyModal({ project, onClose }) {
                         }}>
                             <div style={{
                                 fontFamily: "'Share Tech Mono', monospace",
-                                fontSize: '0.7rem',
+                                fontSize: '0.8rem',
                                 color: '#6a8a9a',
                                 textTransform: 'uppercase',
                                 letterSpacing: '0.1em',
@@ -188,7 +198,7 @@ export function CaseStudyModal({ project, onClose }) {
                             }}>
                                 ARCHITECTURE
                             </div>
-                            {diagram}
+                            {diagram ? cloneElement(diagram, { onNavigate }) : null}
                         </div>
                     )}
                 </div>

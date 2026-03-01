@@ -8,7 +8,17 @@ import { projects } from '../data/projects'
 export function Projects() {
   const prefersReducedMotion = useReducedMotion()
   const [activeProject, setActiveProject] = useState(null)
+  const [isTransitioning, setIsTransitioning] = useState(false)
   const sectionStyle = { padding: '8rem 2rem', backgroundColor: '#0a1219', position: 'relative' }
+
+  const navigateToProject = (projectTitle) => {
+    setIsTransitioning(true)
+    setTimeout(() => {
+      const target = projects.find(p => p.title === projectTitle)
+      if (target) setActiveProject(target)
+      setIsTransitioning(false)
+    }, 250)
+  }
 
   return (
     <section id="projects" style={sectionStyle} aria-labelledby="projects-heading">
@@ -30,6 +40,8 @@ export function Projects() {
         <CaseStudyModal
           project={activeProject}
           onClose={() => setActiveProject(null)}
+          onNavigate={navigateToProject}
+          isTransitioning={isTransitioning}
         />
       )}
     </section>

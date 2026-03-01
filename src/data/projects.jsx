@@ -1,4 +1,5 @@
 import DualAuthDiagram from '../components/diagrams/DualAuthDiagram'
+import SpringModernizationDiagram from '../components/diagrams/SpringModernizationDiagram'
 
 export const projects = [
   {
@@ -38,6 +39,7 @@ export const projects = [
       outcome:
         "Delivered a maintainable, observable service under strict uptime SLAs with zero production incidents during migration. Logging improvements cut mean time to diagnose production issues significantly.",
     },
+    diagram: <SpringModernizationDiagram />,
   },
   {
     title: "Dual-Auth REST API (OAuth2 + LDAP)",
