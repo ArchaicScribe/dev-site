@@ -26,11 +26,11 @@ export function About() {
             <p style={{ marginBottom: '2rem' }}>Senior Software Engineer with 5+ years modernizing long-lived enterprise Java and .NET applications into maintainable Spring Boot architectures and cloud-ready deployments.</p>
             <p style={{ marginBottom: '2rem' }}>Deep experience in production troubleshooting — concurrency issues, memory behavior, performance bottlenecks, and transactional correctness — with a strong focus on observability using SLF4J and Logback.</p>
             <p style={{ marginBottom: '2rem' }}>Specialized in secure API design: dual-authentication systems with OAuth2/JWT and LDAP/LDAPS via Spring Security, deployed on Docker and Kubernetes (Rancher) across AWS and Azure environments.</p>
-            <p style={{ marginBottom: '4rem', color: 'var(--text-muted)' }}>Based in Albuquerque, NM. Currently open to new opportunities.</p>
+            <p style={{ marginBottom: '4rem', color: 'var(--text-muted)' }}>Open to remote or Seattle relocation · Direct hire only · Not considering on-site NM roles</p>
             <div style={{ display: 'flex', gap: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(79, 195, 220, 0.2)' }}>
               <div style={statStyle}><span style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '1.75rem', fontWeight: 600, color: '#4fc3dc' }}>5+</span><span style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Years Experience</span></div>
-              <div style={statStyle}><span style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '1.75rem', fontWeight: 600, color: '#4fc3dc' }}>Enterprise</span><span style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Scale Systems</span></div>
-              <div style={statStyle}><span style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '1.75rem', fontWeight: 600, color: '#4fc3dc' }}>99.99%</span><span style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Uptime SLA</span></div>
+              <div style={statStyle}><span style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '1.75rem', fontWeight: 600, color: '#4fc3dc' }}>Fortune 50</span><span style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Client Scale</span></div>
+              <div style={statStyle}><span style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '1.75rem', fontWeight: 600, color: '#4fc3dc' }}>Q-Cleared</span><span style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>DOE Security</span></div>
             </div>
           </motion.div>
         </div>

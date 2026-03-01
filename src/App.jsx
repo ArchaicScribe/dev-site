@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Nav, Hero } from './components'
 import { useReducedMotion } from './hooks'
+import ForerunnerBackground from './components/ForerunnerBackground'
 
 // Lazy load below-the-fold sections for better performance
 const About = lazy(() => import('./components/About'))
@@ -35,6 +36,8 @@ export default function App() {
 
   return (
     <>
+      <ForerunnerBackground />
+
       {/* Skip link for accessibility */}
       <a href="#main-content" className="skip-link">
         Skip to main content
