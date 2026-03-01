@@ -54,7 +54,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                     x={16}
                     y={20}
                     fontFamily="'Share Tech Mono', monospace"
-                    fontSize={9}
+                    fontSize={10}
                     fill={C.textMuted}
                     letterSpacing={2}
                 >
@@ -77,7 +77,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={210}
                         y={47}
                         fontFamily="'Orbitron', sans-serif"
-                        fontSize={9}
+                        fontSize={11}
                         fill={C.danger}
                         textAnchor="middle"
                     >
@@ -99,7 +99,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={210}
                         y={91}
                         fontFamily="'Orbitron', sans-serif"
-                        fontSize={10}
+                        fontSize={11}
                         fill={C.danger}
                         textAnchor="middle"
                     >
@@ -109,7 +109,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={210}
                         y={108}
                         fontFamily="'Share Tech Mono', monospace"
-                        fontSize={7.5}
+                        fontSize={9}
                         fill={C.textMuted}
                         textAnchor="middle"
                     >
@@ -141,7 +141,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={210}
                         y={159}
                         fontFamily="'Orbitron', sans-serif"
-                        fontSize={10}
+                        fontSize={11}
                         fill={C.danger}
                         textAnchor="middle"
                     >
@@ -151,7 +151,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={210}
                         y={176}
                         fontFamily="'Share Tech Mono', monospace"
-                        fontSize={7.5}
+                        fontSize={9}
                         fill={C.textMuted}
                         textAnchor="middle"
                     >
@@ -183,7 +183,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={210}
                         y={227}
                         fontFamily="'Orbitron', sans-serif"
-                        fontSize={10}
+                        fontSize={11}
                         fill={C.danger}
                         textAnchor="middle"
                     >
@@ -193,7 +193,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={210}
                         y={244}
                         fontFamily="'Share Tech Mono', monospace"
-                        fontSize={7.5}
+                        fontSize={9}
                         fill={C.textMuted}
                         textAnchor="middle"
                     >
@@ -217,7 +217,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                     x={420}
                     y={148}
                     fontFamily="'Share Tech Mono', monospace"
-                    fontSize={7}
+                    fontSize={8.5}
                     fill={C.accent}
                     textAnchor="middle"
                 >
@@ -247,7 +247,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={610}
                         y={47}
                         fontFamily="'Orbitron', sans-serif"
-                        fontSize={9}
+                        fontSize={11}
                         fill={C.accent}
                         textAnchor="middle"
                     >
@@ -269,7 +269,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={605}
                         y={91}
                         fontFamily="'Orbitron', sans-serif"
-                        fontSize={10}
+                        fontSize={11}
                         fill={C.accent}
                         textAnchor="middle"
                     >
@@ -279,7 +279,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={605}
                         y={108}
                         fontFamily="'Share Tech Mono', monospace"
-                        fontSize={7.5}
+                        fontSize={9}
                         fill={C.textMuted}
                         textAnchor="middle"
                     >
@@ -319,7 +319,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={605}
                         y={162}
                         fontFamily="'Orbitron', sans-serif"
-                        fontSize={10}
+                        fontSize={11}
                         fill={C.accent}
                         textAnchor="middle"
                     >
@@ -329,7 +329,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={605}
                         y={179}
                         fontFamily="'Share Tech Mono', monospace"
-                        fontSize={7.5}
+                        fontSize={9}
                         fill={C.textMuted}
                         textAnchor="middle"
                     >
@@ -361,7 +361,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={605}
                         y={227}
                         fontFamily="'Orbitron', sans-serif"
-                        fontSize={10}
+                        fontSize={11}
                         fill={C.gold}
                         textAnchor="middle"
                     >
@@ -371,7 +371,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={605}
                         y={244}
                         fontFamily="'Share Tech Mono', monospace"
-                        fontSize={7.5}
+                        fontSize={9}
                         fill={C.gold}
                         textAnchor="middle"
                     >
@@ -386,7 +386,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={90}
                         y={304}
                         fontFamily="'Share Tech Mono', monospace"
-                        fontSize={8}
+                        fontSize={9}
                         fill={C.textMuted}
                     >
                         Legacy state
@@ -397,7 +397,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={230}
                         y={304}
                         fontFamily="'Share Tech Mono', monospace"
-                        fontSize={8}
+                        fontSize={9}
                         fill={C.textMuted}
                     >
                         Modernized state
@@ -408,7 +408,7 @@ export default function SpringModernizationDiagram({ onNavigate }) {
                         x={390}
                         y={304}
                         fontFamily="'Share Tech Mono', monospace"
-                        fontSize={8}
+                        fontSize={9}
                         fill={C.textMuted}
                     >
                         Enabled outcome
