@@ -1,3 +1,5 @@
+import DualAuthDiagram from '../components/diagrams/DualAuthDiagram'
+
 export const projects = [
   {
     title: "Federal C#/.NET Backend Modernization (DoE)",
@@ -55,6 +57,7 @@ export const projects = [
       outcome:
         "Delivered a production-grade dual-auth system with no security exceptions raised during enterprise review. The filter chain architecture was later referenced as the internal standard for new services.",
     },
+    diagram: <DualAuthDiagram />,
   },
   {
     title: "Kubernetes Service Deployment (Rancher)",
