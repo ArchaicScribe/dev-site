@@ -1,65 +1,87 @@
 @import './variables.css';
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 17px; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 17px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   font-family: var(--font-body);
-  background-color: var(--bg-primary);
+  background-color: #070d14;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   color: var(--text-primary);
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-/* Forerunner grid background with slow drift animation */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; width: 200%; height: 200%;
-  pointer-events: none;
-  z-index: -2;
-  background-image:
-    linear-gradient(rgba(79, 195, 220, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(79, 195, 220, 0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: gridDrift 60s linear infinite;
-}
-@keyframes gridDrift {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(-60px, -60px); }
-}
-/* Subtle top radial glow */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: -1;
-  background: radial-gradient(ellipse at 50% 0%, rgba(79,195,220,0.06) 0%, transparent 70%);
-}
-h1, h2, h3 {
+
+h1,
+h2,
+h3 {
   font-family: var(--font-display);
   font-weight: 600;
   letter-spacing: 0.08em;
   line-height: 1.2;
 }
-h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); }
-h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); color: var(--text-primary); margin-bottom: var(--spacing-lg); }
-h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
+
+h1 {
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+h3 {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+
 p {
   color: var(--text-primary);
   line-height: 1.75;
 }
+
 a {
   color: var(--accent-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
-a:hover { color: var(--accent-secondary); }
-a:focus-visible, button:focus-visible {
+
+a:hover {
+  color: var(--accent-secondary);
+}
+
+a:focus-visible,
+button:focus-visible {
   outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
 }
-button { font-family: var(--font-display); cursor: pointer; border: none; background: none; }
+
+button {
+  font-family: var(--font-display);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -73,28 +95,34 @@ button { font-family: var(--font-display); cursor: pointer; border: none; backgr
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+
 .btn-primary {
   background-color: var(--accent-primary);
   color: var(--bg-primary);
   border: 1px solid var(--accent-primary);
 }
+
 .btn-primary:hover {
   box-shadow: var(--glow-active);
 }
+
 .btn-ghost {
   background-color: transparent;
   color: var(--accent-primary);
   border: 1px solid var(--accent-primary);
 }
+
 .btn-ghost:hover {
   background-color: var(--accent-primary);
   color: var(--bg-primary);
 }
+
 section {
   padding: var(--spacing-2xl) var(--spacing-lg);
   max-width: 1200px;
   margin: 0 auto;
 }
+
 /* Section heading decorator */
 .section-heading-rule {
   display: block;
@@ -103,6 +131,7 @@ section {
   background-color: var(--accent-primary);
   margin-bottom: 1rem;
 }
+
 .loading-spinner {
   display: flex;
   align-items: center;
@@ -111,8 +140,24 @@ section {
   color: var(--accent-primary);
   font-family: var(--font-mono);
 }
-.loading-spinner::after { content: '|'; animation: cursorBlink 1s step-end infinite; }
-@keyframes cursorBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.loading-spinner::after {
+  content: '|';
+  animation: cursorBlink 1s step-end infinite;
+}
+
+@keyframes cursorBlink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
 .skip-link {
   position: absolute;
   top: -100%;
@@ -125,23 +170,51 @@ section {
   z-index: 500;
   border-radius: 0;
 }
-.skip-link:focus { top: var(--spacing-md); }
-::selection { background-color: var(--accent-primary); color: var(--bg-primary); }
+
+.skip-link:focus {
+  top: var(--spacing-md);
+}
+
+::selection {
+  background-color: var(--accent-primary);
+  color: var(--bg-primary);
+}
 
 /* Spin animation for loader */
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Cursor blink animation for Hero */
 @keyframes cursor-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Pulse animation for availability badge */
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.1); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
 }

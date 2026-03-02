@@ -1,3 +1,7 @@
+import DualAuthDiagram from '../components/diagrams/DualAuthDiagram'
+import SpringModernizationDiagram from '../components/diagrams/SpringModernizationDiagram'
+import CICDPipelineDiagram from '../components/diagrams/CICDPipelineDiagram'
+
 export const projects = [
   {
     title: "Federal C#/.NET Backend Modernization (DoE)",
@@ -36,6 +40,7 @@ export const projects = [
       outcome:
         "Delivered a maintainable, observable service under strict uptime SLAs with zero production incidents during migration. Logging improvements cut mean time to diagnose production issues significantly.",
     },
+    diagram: <SpringModernizationDiagram />,
   },
   {
     title: "Dual-Auth REST API (OAuth2 + LDAP)",
@@ -55,25 +60,27 @@ export const projects = [
       outcome:
         "Delivered a production-grade dual-auth system with no security exceptions raised during enterprise review. The filter chain architecture was later referenced as the internal standard for new services.",
     },
+    diagram: <DualAuthDiagram />,
   },
   {
-    title: "Kubernetes Service Deployment (Rancher)",
+    title: "Azure DevOps CI/CD Pipeline — Greenfield Build",
     description:
-      "Deployed and operated Dockerized Spring Boot services in Kubernetes via Rancher, backed by Oracle DBMS. Supported CI/CD workflows through GitHub PR-gated pipelines.",
-    status: "LIVE",
-    tags: ["Docker", "Kubernetes", "Oracle DB", "CI/CD"],
+      "Designed and delivered CI/CD pipelines from zero for two .NET applications. Established multi-environment promotion with test gates, approval workflows, and identified a Microsoft platform bug escalated directly to their engineering team.",
+    status: "ARCHIVED",
+    tags: ["Azure DevOps", "CI/CD", ".NET/C#", "Unit Testing", "Integration Testing"],
     category: "Infrastructure",
     featured: false,
     githubRepo: "",
     liveUrl: "",
     fullCaseStudy: {
       problem:
-        "Services needed to move from manual deployment processes into a reliable, repeatable Kubernetes-based workflow — while maintaining database integrity against a production Oracle DBMS and keeping CI/CD gates strict enough to catch issues before merge.",
+        "Two .NET applications — a customer-facing e-commerce storefront and an internal inventory management system — had no CI/CD pipelines in place. All deployments were performed manually, with no test automation or environment promotion logic.",
       decision:
-        "Containerized services with Docker, deployed via Rancher-managed Kubernetes with environment-specific config separation. PR-gated pipelines in GitHub enforced build and validation checks before any merge to main, with Postman/Insomnium collections used for API contract validation.",
+        "Built two independent pipeline tracks in Azure DevOps — one per application — with a consistent three-environment model: Dev (auto-deploy on merge, unit tests), Staging (integration tests, approval gate), and Production (manual approval). PR gates at the source control level enforced quality before any code reached the pipeline.",
       outcome:
-        "Achieved consistent, repeatable deployments with full rollback capability. PR gate enforcement eliminated an entire category of environment-specific bugs that had previously reached staging.",
+        "Delivered fully automated deployments with test gates at every stage. During the engagement, a Microsoft Azure DevOps platform bug was identified and escalated directly to their engineering team — the issue was resolved and the pipelines completed without further platform issues. Zero manual deployments remained after handoff.",
     },
+    diagram: <CICDPipelineDiagram />,
   },
   {
     title: "Azure DevOps Test Automation Pipeline",

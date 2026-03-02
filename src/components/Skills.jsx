@@ -24,7 +24,7 @@ export function Skills() {
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <motion.div style={{ marginBottom: '4rem', display: 'flex', alignItems: 'center', gap: '1.5rem' }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}>
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(79, 195, 220, 0.3))' }}></div>
-          <h2 id="skills-heading" style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', fontWeight: 500, color: '#4fc3dc', letterSpacing: '0.15em', textTransform: 'uppercase' }}>TECH STACK</h2>
+          <h2 id="skills-heading" style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', fontWeight: 500, color: '#4fc3dc', letterSpacing: '0.15em', textTransform: 'uppercase' }}>SKILLS</h2>
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(79, 195, 220, 0.3), transparent)' }}></div>
         </motion.div>
         <motion.div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }} variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-50px' }}>
