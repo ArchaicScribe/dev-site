@@ -9,11 +9,11 @@ export const projects = [
     title: 'Payment Card Default Management',
     status: 'WIP',
     tags: ['Java 8', 'Spring Boot', 'CSS', 'REST API', 'Full-Stack'],
-    description: 'Full-stack feature allowing associates to update a customer\'s default payment card, including UI, a new Payment Wrapper Service endpoint, and downstream credit card processor integration. Optimistic UI updates with async DB persistence.',
+    description: 'Full-stack feature allowing associates to update a customer\'s default payment card, including UI, a new Payment Processing Service endpoint, and downstream credit card processor integration. Optimistic UI updates with async DB persistence.',
     fullCaseStudy: {
       problem: 'Associates had no way to update a customer\'s default payment card through the internal tooling. The system had no endpoint to handle this operation, no UI to surface it, and no downstream integration to persist the change through to the credit card processor.',
-      decision: 'Built the complete vertical slice: associate-facing UI with optimistic updates and two distinct modal flows, a new PUT endpoint in the Payment Wrapper Service with LDAP auth, validation and logging, and downstream integration to the credit card processor with async DB persistence.',
-      outcome: 'Feature currently under active development. UI layer and Payment Wrapper endpoint complete. Downstream integration and async confirmation flow in progress. Default tag renders correctly and DB persistence confirmed in dev environment.',
+      decision: 'Built the complete vertical slice: associate-facing UI with optimistic updates and two distinct modal flows, a new PUT endpoint in the Payment Processing Service with LDAP auth, validation and logging, and downstream integration to the credit card processor with async DB persistence.',
+      outcome: 'Feature currently under active development. UI layer and Payment Processing endpoint complete. Downstream integration and async confirmation flow in progress. Default tag renders correctly and DB persistence confirmed in dev environment.',
     },
     diagram: <PaymentCardDiagram />,
   },
@@ -69,7 +69,7 @@ export const projects = [
     liveUrl: "",
     fullCaseStudy: {
       problem:
-        "Two .NET applications (a customer-facing e-commerce storefront and an internal inventory management system) had no CI/CD pipelines in place. All deployments were performed manually, with no test automation or environment promotion logic.",
+        "Two .NET applications across separate business domains had no CI/CD pipelines in place. All deployments were performed manually, with no test automation or environment promotion logic.",
       decision:
         "Built two independent pipeline tracks in Azure DevOps (one per application) with a consistent three-environment model: Dev (auto-deploy on merge, unit tests), Staging (integration tests, approval gate), and Production (manual approval). PR gates at the source control level enforced quality before any code reached the pipeline.",
       outcome:
@@ -82,10 +82,10 @@ export const projects = [
     title: 'CATS — Clearance Action Tracking System',
     status: 'LIVE',
     tags: ['C#', '.NET', 'Blazor', 'SQL Server', 'Federal'],
-    description: 'Developed and maintained a large-scale federal web application tracking candidates through the government security clearance process (spanning L through Top Secret and above) under strict compliance and regulatory requirements. Built with C#/.NET, Blazor, and SQL Server for Chenega Corporation.',
+    description: 'Developed and maintained a large-scale federal web application tracking candidates through the government security clearance process (spanning L through Top Secret and above) under strict compliance and regulatory requirements. Built with C#/.NET, Blazor, and SQL Server for a federal contracting firm.',
     fullCaseStudy: {
       problem: 'CATS is a mission-critical web application managing the full lifecycle of government security clearance acquisition across multiple clearance levels, from L clearance through Top Secret and above. The system serves multiple federal agencies and must meet strict regulatory and compliance requirements at every layer. Maintaining reliability and correctness in this environment is non-negotiable; errors directly affect personnel and national security workflows.',
-      decision: 'Joined Chenega Corporation as a junior software engineer and contributed to CATS over two years, progressing from bug resolution to feature development and broader system ownership. Worked across the full stack: C#/.NET backend, Blazor front-end, HTML/CSS, and SQL Server via SSMS. Every change required adherence to federal compliance standards and security regulations governing the handling of clearance data. Implementation details remain confidential in accordance with federal contractor obligations.',
+      decision: 'Joined a federal contracting firm as a junior software engineer and contributed to CATS over two years, progressing from bug resolution to feature development and broader system ownership. Worked across the full stack: C#/.NET backend, Blazor front-end, HTML/CSS, and SQL Server via SSMS. Every change required adherence to federal compliance standards and security regulations governing the handling of clearance data. Implementation details remain confidential in accordance with federal contractor obligations.',
       outcome: 'Delivered consistent contributions to a large, compliance-grade federal system over two years. Progressed from resolving defects to owning feature development across multiple system areas. Gained Q-level security clearance (the Department of Energy equivalent of Top Secret), reflecting the trust and access required to work on systems of this sensitivity. The system continues to serve federal agencies managing clearance workflows across multiple classification levels. Its architecture reflected strict data segregation and audit requirements mandated by federal security frameworks; constraints that shaped every technical decision made during development.',
     },
   },
