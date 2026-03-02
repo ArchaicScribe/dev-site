@@ -27,7 +27,7 @@ export function Contact() {
       <motion.div style={{ maxWidth: '600px', margin: '0 auto' }} variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-50px' }}>
         <motion.div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem' }} variants={itemVariants}>
           <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(79, 195, 220, 0.3))' }}></div>
-          <h2 id="contact-heading" style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', fontWeight: 500, color: '#4fc3dc', letterSpacing: '0.15em', textTransform: 'uppercase' }}>CONTACT</h2>
+          <h2 id="contact-heading" style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', fontWeight: 500, color: 'var(--accent-primary)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>CONTACT</h2>
           <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, rgba(79, 195, 220, 0.3), transparent)' }}></div>
         </motion.div>
         <motion.p style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 2rem)', fontWeight: 500, color: 'var(--text-secondary)', marginBottom: '1rem', letterSpacing: '0.05em' }} variants={itemVariants}>Let's build something.</motion.p>
@@ -51,7 +51,7 @@ export function Contact() {
             gap: '0.5rem',
             fontFamily: "'Exo 2', sans-serif",
             fontSize: '0.9rem',
-            color: '#4fc3dc',
+            color: 'var(--accent-primary)',
             fontWeight: 400
           }}>
             <span style={{
@@ -59,7 +59,7 @@ export function Contact() {
               width: '8px',
               height: '8px',
               borderRadius: '50%',
-              backgroundColor: '#4fc3dc',
+              backgroundColor: 'var(--accent-primary)',
               animation: 'pulse 2s ease-in-out infinite'
             }}></span>
             Available for new opportunities

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks'
-
-const statusColors = { LIVE: '#4fc3dc', WIP: '#c8a96e', ARCHIVED: '#5a7a8a' }
+import { STATUS_COLORS } from '../constants/statusColors'
 
 export function ProjectCard({ project, onOpenCaseStudy }) {
   const prefersReducedMotion = useReducedMotion()
@@ -43,7 +42,7 @@ export function ProjectCard({ project, onOpenCaseStudy }) {
   const readMoreStyle = {
     fontFamily: "'Share Tech Mono', monospace",
     fontSize: '0.8rem',
-    color: '#4fc3dc',
+    color: 'var(--accent-primary)',
     background: 'none',
     border: 'none',
     padding: '0.5rem 0',
@@ -93,10 +92,10 @@ export function ProjectCard({ project, onOpenCaseStudy }) {
           fontWeight: 500,
           textTransform: 'uppercase',
           padding: '3px 10px',
-          border: `1px solid ${statusColors[status]}`,
+          border: `1px solid ${STATUS_COLORS[status]}`,
           whiteSpace: 'nowrap',
           letterSpacing: '0.1em',
-          color: statusColors[status]
+          color: STATUS_COLORS[status]
         }}>
           {status}
         </span>
@@ -123,7 +122,7 @@ export function ProjectCard({ project, onOpenCaseStudy }) {
           onClick={() => onOpenCaseStudy(project)}
           style={readMoreStyle}
           onMouseEnter={(e) => e.target.style.color = '#a8d8e8'}
-          onMouseLeave={(e) => e.target.style.color = '#4fc3dc'}
+          onMouseLeave={(e) => e.target.style.color = 'var(--accent-primary)'}
         >
           // view case study ▸
         </button>

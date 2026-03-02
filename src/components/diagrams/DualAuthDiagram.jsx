@@ -1,23 +1,12 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
-
-const C = {
-  bgElevated: '#132234',
-  bgCard: '#0f1e2e',
-  borderSubtle: 'rgba(143, 240, 255, 0.15)',
-  borderActive: 'rgba(143, 240, 255, 0.35)',
-  accentPrimary: '#8ff0ff',
-  accentSecondary: '#b8f5ff',
-  textPrimary: '#eef4f8',
-  textMuted: '#6a8a9a',
-  accentGold: '#c8a96e',
-}
+import { C } from './diagramConstants'
 
 function DiagramNode({ x, y, width, height, label, sublabel, subtext, glow = false, endNode = false, isVisible, delay = 0 }) {
   const centerX = x + width / 2
   const centerY = y + height / 2
 
-  const stroke = glow ? C.accentPrimary : endNode ? C.accentSecondary : C.borderActive
+  const stroke = glow ? C.accent : endNode ? C.accentDim : C.borderBright
   const strokeWidth = glow ? 1.5 : 1
 
   return (
@@ -33,7 +22,7 @@ function DiagramNode({ x, y, width, height, label, sublabel, subtext, glow = fal
         height={height}
         rx={0}
         ry={0}
-        fill={C.bgElevated}
+        fill={C.bgCard}
         stroke={stroke}
         strokeWidth={strokeWidth}
         filter={glow ? 'url(#nodeGlow)' : undefined}
@@ -103,7 +92,7 @@ function DiagramPath({ d, animated = true, delay = 0, isVisible }) {
     <motion.path
       ref={pathRef}
       d={d}
-      stroke={C.accentPrimary}
+      stroke={C.accent}
       strokeWidth={1}
       fill="none"
       opacity={0.6}
@@ -123,7 +112,7 @@ function JunctionMarker({ cx, cy, delay = 0, isVisible }) {
       y={cy - 3}
       width={6}
       height={6}
-      fill={C.accentPrimary}
+      fill={C.accent}
       rx={0}
       initial={{ opacity: 0 }}
       animate={isVisible ? { opacity: 1 } : {}}
@@ -159,7 +148,7 @@ export default function DualAuthDiagram() {
             <path
               d="M 0 0 L 8 5 L 0 10"
               fill="none"
-              stroke={C.accentPrimary}
+              stroke={C.accent}
               strokeWidth="1.5"
             />
           </marker>
@@ -286,7 +275,7 @@ export default function DualAuthDiagram() {
         <g transform="translate(300, 498)">
           {/* KEY DECISION */}
           <g transform="translate(-140, 0)">
-            <rect x={-8} y={-4} width={8} height={8} fill={C.accentPrimary} />
+            <rect x={-8} y={-4} width={8} height={8} fill={C.accent} />
             <text
               x={6}
               y={0}
@@ -306,7 +295,7 @@ export default function DualAuthDiagram() {
               y1={0}
               x2={0}
               y2={0}
-              stroke={C.accentPrimary}
+              stroke={C.accent}
               strokeWidth={1}
               opacity={0.6}
             />
@@ -324,7 +313,7 @@ export default function DualAuthDiagram() {
 
           {/* JUNCTION */}
           <g transform="translate(90, 0)">
-            <rect x={-6} y={-3} width={6} height={6} fill={C.accentPrimary} />
+            <rect x={-6} y={-3} width={6} height={6} fill={C.accent} />
             <text
               x={6}
               y={0}

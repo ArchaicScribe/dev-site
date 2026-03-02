@@ -56,7 +56,7 @@ export function Nav() {
 
   const logoStyle = {
     fontFamily: "'Orbitron', sans-serif", fontSize: '1.25rem', fontWeight: 600,
-    color: '#4fc3dc', textDecoration: 'none', letterSpacing: '0.15em'
+    color: 'var(--accent-primary)', textDecoration: 'none', letterSpacing: '0.15em'
   }
 
   const linkListStyle = { display: 'flex', gap: '2.5rem', listStyle: 'none' }
@@ -64,8 +64,8 @@ export function Nav() {
   const linkStyle = (isActive) => ({
     fontFamily: "'Exo 2', sans-serif", fontSize: '0.85rem', fontWeight: 500,
     letterSpacing: '0.1em',
-    color: isActive ? '#4fc3dc' : '#a8d8e8', textDecoration: 'none', padding: '0.25rem 0.5rem',
-    borderBottom: isActive ? '2px solid #4fc3dc' : '2px solid transparent',
+    color: isActive ? 'var(--accent-primary)' : '#a8d8e8', textDecoration: 'none', padding: '0.25rem 0.5rem',
+    borderBottom: isActive ? '2px solid var(--accent-primary)' : '2px solid transparent',
     transition: 'all 200ms ease'
   })
 

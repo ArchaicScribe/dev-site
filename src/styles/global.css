@@ -132,6 +132,11 @@ section {
   margin-bottom: 1rem;
 }
 
+/* Hero section positioning */
+.hero {
+  position: relative;
+}
+
 .loading-spinner {
   display: flex;
   align-items: center;

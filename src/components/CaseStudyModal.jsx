@@ -1,6 +1,5 @@
 import { useEffect, useRef, cloneElement } from 'react'
-
-const statusColors = { LIVE: '#4fc3dc', WIP: '#c8a96e', ARCHIVED: '#5a7a8a' }
+import { STATUS_COLORS } from '../constants/statusColors'
 
 export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning }) {
     const { title, status, tags, fullCaseStudy, diagram } = project
@@ -122,10 +121,10 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning }
                                 fontWeight: 500,
                                 textTransform: 'uppercase',
                                 padding: '3px 10px',
-                                border: `1px solid ${statusColors[status]}`,
+                                border: `1px solid ${STATUS_COLORS[status]}`,
                                 whiteSpace: 'nowrap',
                                 letterSpacing: '0.1em',
-                                color: statusColors[status],
+                                color: STATUS_COLORS[status],
                             }}>
                                 {status}
                             </span>
