@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { fadeUpVariants, viewportConfig, transition } from '../constants/animationVariants'
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -10,9 +11,11 @@ export function Footer() {
         textAlign: 'center',
         borderTop: '1px solid rgba(79, 195, 220, 0.15)',
       }}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
+      variants={fadeUpVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportConfig}
+      transition={transition}
     >
       <p
         style={{

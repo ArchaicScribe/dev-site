@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks'
 import { STATUS_COLORS } from '../constants/statusColors'
-import { fadeUpVariants, transition } from '../constants/animationVariants'
+import { fadeUpVariants, viewportConfig, transition } from '../constants/animationVariants'
 
 export function ProjectCard({ project, onOpenCaseStudy, useStagger = false }) {
   const prefersReducedMotion = useReducedMotion()
@@ -59,10 +59,11 @@ export function ProjectCard({ project, onOpenCaseStudy, useStagger = false }) {
       transition: prefersReducedMotion ? { duration: 0 } : transition
     }
     : {
-      initial: { opacity: 0, y: 30 },
-      whileInView: { opacity: 1, y: 0 },
-      viewport: { once: true, margin: '-50px' },
-      transition: { duration: prefersReducedMotion ? 0 : 0.5 }
+      variants: fadeUpVariants,
+      initial: "hidden",
+      whileInView: "visible",
+      viewport: viewportConfig,
+      transition: prefersReducedMotion ? { duration: 0 } : transition
     }
 
   return (

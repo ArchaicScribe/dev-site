@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion'
+import { fadeUpVariants, viewportConfig, transition } from '../constants/animationVariants'
 import DualAuthDiagram from './diagrams/DualAuthDiagram'
 
 function CaseStudyRow({ label, children, goldAccent = false }) {
   const accentColor = goldAccent ? '#c8a96e' : '#4fc3dc'
-  
+
   return (
     <div style={{
       display: 'flex',
@@ -41,7 +42,7 @@ function CaseStudyRow({ label, children, goldAccent = false }) {
           {label}
         </span>
       </div>
-      
+
       {/* Right column - content */}
       <div style={{
         flex: 1,
@@ -100,7 +101,7 @@ function ComparisonTable() {
           letterSpacing: '0.1em',
         }}>REJECTED BECAUSE</span>
       </div>
-      
+
       {/* Data rows */}
       {rows.map((row, index) => (
         <div
@@ -194,7 +195,7 @@ export default function SystemsDesign() {
           }}>
             {'// DEEP DIVE'}
           </span>
-          
+
           {/* Accent rule */}
           <div style={{
             width: '40px',
@@ -202,7 +203,7 @@ export default function SystemsDesign() {
             background: '#4fc3dc',
             marginBottom: '1rem',
           }} />
-          
+
           {/* Heading */}
           <h2 style={{
             fontFamily: "'Orbitron', sans-serif",
@@ -216,7 +217,7 @@ export default function SystemsDesign() {
           }}>
             SYSTEMS DESIGN
           </h2>
-          
+
           {/* Subheading */}
           <p style={{
             fontFamily: "'Exo 2', sans-serif",
@@ -232,10 +233,11 @@ export default function SystemsDesign() {
 
         {/* Case Study Card */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          transition={transition}
           style={{
             background: '#0f1e2e',
             border: '1px solid rgba(79, 195, 220, 0.12)',
@@ -264,7 +266,7 @@ export default function SystemsDesign() {
             }}>
               DUAL-AUTH REST API
             </h3>
-            
+
             <span style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -312,7 +314,7 @@ export default function SystemsDesign() {
               preserved the integrity of each auth path while eliminating
               duplicated authorization logic.
             </p>
-            
+
             {/* Diagram wrapper */}
             <div style={{
               background: '#070d14',
@@ -321,7 +323,7 @@ export default function SystemsDesign() {
               marginTop: '0.5rem',
             }}>
               <DualAuthDiagram />
-              
+
               {/* Caption */}
               <div style={{
                 textAlign: 'center',
@@ -364,7 +366,7 @@ export default function SystemsDesign() {
                 <TradeoffPoint>Single authorization layer — no duplicated rules</TradeoffPoint>
                 <TradeoffPoint>Clean extension points for future auth mechanisms</TradeoffPoint>
               </div>
-              
+
               {/* Right panel - What I'd revisit */}
               <div style={{
                 background: 'rgba(200, 169, 110, 0.04)',
