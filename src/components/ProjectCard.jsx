@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks'
 import { STATUS_COLORS } from '../constants/statusColors'
+import { fadeUpVariants, transition } from '../constants/animationVariants'
 
-export function ProjectCard({ project, onOpenCaseStudy }) {
+export function ProjectCard({ project, onOpenCaseStudy, useStagger = false }) {
   const prefersReducedMotion = useReducedMotion()
   const { title, status, description, tags, githubRepo, liveUrl, featured, fullCaseStudy } = project
 
@@ -51,13 +52,23 @@ export function ProjectCard({ project, onOpenCaseStudy }) {
     marginTop: '0.75rem'
   }
 
+  // Use variants for stagger animation, or individual props for standalone
+  const motionProps = useStagger
+    ? {
+      variants: fadeUpVariants,
+      transition: prefersReducedMotion ? { duration: 0 } : transition
+    }
+    : {
+      initial: { opacity: 0, y: 30 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true, margin: '-50px' },
+      transition: { duration: prefersReducedMotion ? 0 : 0.5 }
+    }
+
   return (
     <motion.article
       style={cardStyle}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}
+      {...motionProps}
       whileHover={prefersReducedMotion ? {} : { borderColor: 'rgba(79, 195, 220, 0.5)' }}
     >
       {featured && (

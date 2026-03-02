@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks'
+import { fadeUpVariants, viewportConfig, transition } from '../constants/animationVariants'
 import './ResumeAnalyzer.css'
 
 export function ResumeAnalyzer({ onChatHandoff }) {
@@ -10,8 +11,23 @@ export function ResumeAnalyzer({ onChatHandoff }) {
     const [analysis, setAnalysis] = useState(null)
     const [error, setError] = useState(null)
 
-    const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: prefersReducedMotion ? 0 : 0.1 } } }
-    const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: prefersReducedMotion ? 0 : 0.5 } } }
+    const containerVariants = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: prefersReducedMotion ? 0 : 0.1
+            }
+        }
+    }
+
+    const resultsStaggerContainer = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: prefersReducedMotion ? 0 : 0.08
+            }
+        }
+    }
 
     const handleAnalyze = async () => {
         if (!jobDescription.trim() || jobDescription.length < 50) {
@@ -101,17 +117,17 @@ Be helpful and specific. Reference the analysis when relevant. Keep responses co
                 whileInView="visible"
                 viewport={{ once: true, margin: '-50px' }}
             >
-                <motion.div className="resume-analyzer-header" variants={itemVariants}>
+                <motion.div className="resume-analyzer-header" variants={fadeUpVariants}>
                     <div className="resume-analyzer-header-line"></div>
                     <h2 id="analyzer-heading" className="resume-analyzer-title">RESUME ANALYZER</h2>
                     <div className="resume-analyzer-header-line"></div>
                 </motion.div>
 
-                <motion.p className="resume-analyzer-subtitle" variants={itemVariants}>
+                <motion.p className="resume-analyzer-subtitle" variants={fadeUpVariants}>
                     Paste a job description to analyze fit against Alex's background
                 </motion.p>
 
-                <motion.div className="resume-analyzer-input-section" variants={itemVariants}>
+                <motion.div className="resume-analyzer-input-section" variants={fadeUpVariants}>
                     <label htmlFor="job-description" className="resume-analyzer-label">
             // JOB DESCRIPTION
                     </label>
@@ -157,18 +173,18 @@ Be helpful and specific. Reference the analysis when relevant. Keep responses co
                 {analysis && (
                     <motion.div
                         className="resume-analyzer-results"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: prefersReducedMotion ? 0 : 0.4 }}
+                        variants={resultsStaggerContainer}
+                        initial="hidden"
+                        animate="visible"
                     >
-                        <div className="resume-analyzer-results-header">
+                        <motion.div className="resume-analyzer-results-header" variants={fadeUpVariants}>
                             <span className="resume-analyzer-results-title">ANALYSIS COMPLETE</span>
                             <span className="resume-analyzer-remaining">
                                 {analysis.remaining} analyses remaining this hour
                             </span>
-                        </div>
+                        </motion.div>
 
-                        <div className="resume-analyzer-score-section">
+                        <motion.div className="resume-analyzer-score-section" variants={fadeUpVariants}>
                             <div className="resume-analyzer-score-label">FIT SCORE</div>
                             <div
                                 className="resume-analyzer-score-value"
@@ -177,13 +193,13 @@ Be helpful and specific. Reference the analysis when relevant. Keep responses co
                                 {analysis.fitScore}
                                 <span className="resume-analyzer-score-max">/100</span>
                             </div>
-                        </div>
+                        </motion.div>
 
-                        <div className="resume-analyzer-summary">
+                        <motion.div className="resume-analyzer-summary" variants={fadeUpVariants}>
                             {analysis.fitSummary}
-                        </div>
+                        </motion.div>
 
-                        <div className="resume-analyzer-sections">
+                        <motion.div className="resume-analyzer-sections" variants={fadeUpVariants}>
                             <div className="resume-analyzer-section">
                                 <h3 className="resume-analyzer-section-title">
                                     <span className="resume-analyzer-section-icon" style={{ color: '#70e0a0' }}>+</span>
@@ -235,17 +251,18 @@ Be helpful and specific. Reference the analysis when relevant. Keep responses co
                                     ))}
                                 </ul>
                             </div>
-                        </div>
+                        </motion.div>
 
-                        <button
+                        <motion.button
                             className="resume-analyzer-chat-button"
                             onClick={handleChatHandoff}
+                            variants={fadeUpVariants}
                         >
                             <svg className="resume-analyzer-chat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                             </svg>
                             OPEN AI CHAT TO DISCUSS
-                        </button>
+                        </motion.button>
                     </motion.div>
                 )}
             </motion.div>
