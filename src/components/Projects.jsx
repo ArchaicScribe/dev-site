@@ -20,6 +20,10 @@ export function Projects() {
     }, 250)
   }
 
+  const currentIndex = projects.findIndex(p => p.title === activeProject?.title)
+  const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null
+  const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null
+
   return (
     <section id="projects" style={sectionStyle} aria-labelledby="projects-heading">
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(79, 195, 220, 0.2), #4fc3dc, rgba(79, 195, 220, 0.2), transparent)' }}></div>
@@ -42,6 +46,10 @@ export function Projects() {
           onClose={() => setActiveProject(null)}
           onNavigate={navigateToProject}
           isTransitioning={isTransitioning}
+          prevProject={prevProject}
+          nextProject={nextProject}
+          currentIndex={currentIndex}
+          totalCount={projects.length}
         />
       )}
     </section>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, cloneElement } from 'react'
 import { STATUS_COLORS } from '../constants/statusColors'
 
-export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning }) {
+export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, prevProject, nextProject, currentIndex, totalCount }) {
     const { title, status, tags, fullCaseStudy, diagram } = project
     const panelRef = useRef(null)
 
@@ -12,14 +12,24 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning }
         }
     }, [project])
 
-    // Escape key handler
+    // Keyboard navigation handler
     useEffect(() => {
         const handleKeyDown = (e) => {
-            if (e.key === 'Escape') onClose()
+            switch (e.key) {
+                case 'Escape':
+                    onClose()
+                    break
+                case 'ArrowLeft':
+                    if (prevProject) onNavigate(prevProject.title)
+                    break
+                case 'ArrowRight':
+                    if (nextProject) onNavigate(nextProject.title)
+                    break
+            }
         }
         document.addEventListener('keydown', handleKeyDown)
         return () => document.removeEventListener('keydown', handleKeyDown)
-    }, [onClose])
+    }, [onClose, onNavigate, prevProject, nextProject])
 
     // Scroll lock
     useEffect(() => {
@@ -151,6 +161,85 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning }
                         [ CLOSE ]
                     </button>
                 </div>
+
+                {/* Navigation Bar */}
+                {(prevProject || nextProject) && (
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        padding: '0.6rem 1.5rem',
+                        borderBottom: '1px solid rgba(143, 240, 255, 0.1)',
+                        background: 'rgba(143, 240, 255, 0.03)',
+                    }}>
+                        {prevProject ? (
+                            <button
+                                onClick={() => onNavigate(prevProject.title)}
+                                style={{
+                                    fontFamily: "'Share Tech Mono', monospace",
+                                    fontSize: '0.78rem',
+                                    color: '#8ff0ff',
+                                    background: 'none',
+                                    border: '1px solid rgba(143, 240, 255, 0.2)',
+                                    padding: '0.4rem 0.9rem',
+                                    cursor: 'pointer',
+                                    letterSpacing: '0.08em',
+                                    transition: 'border-color 200ms, background 200ms',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.4rem',
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.borderColor = 'rgba(143, 240, 255, 0.5)'
+                                    e.target.style.background = 'rgba(143, 240, 255, 0.06)'
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.borderColor = 'rgba(143, 240, 255, 0.2)'
+                                    e.target.style.background = 'none'
+                                }}
+                            >
+                                ◂ {prevProject.title}
+                            </button>
+                        ) : <div />}
+                        <span style={{
+                            fontFamily: "'Share Tech Mono', monospace",
+                            fontSize: '0.7rem',
+                            color: '#6a8a9a',
+                            letterSpacing: '0.1em',
+                        }}>
+                            {currentIndex + 1} / {totalCount}
+                        </span>
+                        {nextProject ? (
+                            <button
+                                onClick={() => onNavigate(nextProject.title)}
+                                style={{
+                                    fontFamily: "'Share Tech Mono', monospace",
+                                    fontSize: '0.78rem',
+                                    color: '#8ff0ff',
+                                    background: 'none',
+                                    border: '1px solid rgba(143, 240, 255, 0.2)',
+                                    padding: '0.4rem 0.9rem',
+                                    cursor: 'pointer',
+                                    letterSpacing: '0.08em',
+                                    transition: 'border-color 200ms, background 200ms',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.4rem',
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.borderColor = 'rgba(143, 240, 255, 0.5)'
+                                    e.target.style.background = 'rgba(143, 240, 255, 0.06)'
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.borderColor = 'rgba(143, 240, 255, 0.2)'
+                                    e.target.style.background = 'none'
+                                }}
+                            >
+                                {nextProject.title} ▸
+                            </button>
+                        ) : <div />}
+                    </div>
+                )}
 
                 {/* Body */}
                 <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
