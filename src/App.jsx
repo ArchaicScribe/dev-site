@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { Nav, Hero } from './components'
 import { useReducedMotion } from './hooks'
 import ForerunnerBackground from './components/ForerunnerBackground'
@@ -8,6 +8,7 @@ import ChatWidget from './components/ChatWidget'
 const About = lazy(() => import('./components/About'))
 const Skills = lazy(() => import('./components/Skills'))
 const Projects = lazy(() => import('./components/Projects'))
+const ResumeAnalyzer = lazy(() => import('./components/ResumeAnalyzer'))
 const Contact = lazy(() => import('./components/Contact'))
 const Footer = lazy(() => import('./components/Footer'))
 
@@ -34,6 +35,15 @@ function SectionLoader() {
 
 export default function App() {
   const prefersReducedMotion = useReducedMotion()
+  const [chatContext, setChatContext] = useState(null)
+
+  const handleChatHandoff = (context) => {
+    setChatContext(context)
+  }
+
+  const handleContextCleared = () => {
+    setChatContext(null)
+  }
 
   return (
     <>
@@ -66,6 +76,10 @@ export default function App() {
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
+          <ResumeAnalyzer onChatHandoff={handleChatHandoff} />
+        </Suspense>
+
+        <Suspense fallback={<SectionLoader />}>
           <Contact />
         </Suspense>
 
@@ -74,7 +88,10 @@ export default function App() {
         </Suspense>
       </main>
 
-      <ChatWidget />
+      <ChatWidget
+        injectedContext={chatContext}
+        onContextCleared={handleContextCleared}
+      />
     </>
   )
 }

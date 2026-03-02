@@ -1,58 +1,9 @@
 import Anthropic from '@anthropic-ai/sdk'
+import { checkOrigin, getRateLimitKey, createRateLimiter } from './constants.js'
 
-const rateLimitStore = new Map()
-const RATE_LIMIT_MAX = 10
-const RATE_LIMIT_WINDOW = 3600000
+const checkRateLimit = createRateLimiter(10) // 10 requests per hour
 
-function getRateLimitKey(req) {
-    return req.headers['x-forwarded-for']
-        || req.headers['x-real-ip']
-        || 'unknown'
-}
-
-function checkRateLimit(ip) {
-    const now = Date.now()
-    const record = rateLimitStore.get(ip)
-
-    if (!record) {
-        rateLimitStore.set(ip, {
-            count: 1,
-            windowStart: now
-        })
-        return {
-            allowed: true,
-            remaining: RATE_LIMIT_MAX - 1
-        }
-    }
-
-    if (now - record.windowStart > RATE_LIMIT_WINDOW) {
-        rateLimitStore.set(ip, {
-            count: 1,
-            windowStart: now
-        })
-        return {
-            allowed: true,
-            remaining: RATE_LIMIT_MAX - 1
-        }
-    }
-
-    if (record.count >= RATE_LIMIT_MAX) {
-        const resetIn = Math.ceil(
-            (RATE_LIMIT_WINDOW - (now - record.windowStart))
-            / 60000
-        )
-        return { allowed: false, resetIn }
-    }
-
-    record.count++
-    rateLimitStore.set(ip, record)
-    return {
-        allowed: true,
-        remaining: RATE_LIMIT_MAX - record.count
-    }
-}
-
-const SYSTEM_PROMPT = `You are an AI assistant representing Alex Rauenzahn, a Senior Software Engineer with 5+ years of experience. Answer questions about Alex's background, skills, and projects on his behalf.
+const DEFAULT_SYSTEM_PROMPT = `You are an AI assistant representing Alex Rauenzahn, a Senior Software Engineer with 5+ years of experience. Answer questions about Alex's background, skills, and projects on his behalf.
 
 Keep responses concise, professional, and technically accurate. Never fabricate experience or credentials Alex does not have. Do not use em dashes in responses. Keep responses under 150 words unless a technical question genuinely requires more detail.
 
@@ -78,21 +29,9 @@ KEY PROJECTS:
 
 TONE: Professional but approachable. Technically precise. Answer as Alex's knowledgeable representative, not as Alex himself.`
 
-const ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'http://localhost:5173',
-    'https://your-domain.vercel.app'
-]
-
 export default async function handler(req, res) {
-    const origin = req.headers.origin || req.headers.referer?.replace(/\/$/, '') || ''
-    const isAllowedOrigin = ALLOWED_ORIGINS.some(allowed => origin.startsWith(allowed))
-
-    if (!isAllowedOrigin) {
-        return res.status(403).json({
-            error: 'Forbidden: Origin not allowed'
-        })
-    }
+    const originCheck = checkOrigin(req, res)
+    if (!originCheck.allowed) return
 
     if (req.method !== 'POST') {
         return res.status(405).json({
@@ -100,7 +39,7 @@ export default async function handler(req, res) {
         })
     }
 
-    res.setHeader('Access-Control-Allow-Origin', origin)
+    res.setHeader('Access-Control-Allow-Origin', originCheck.origin)
     res.setHeader('Access-Control-Allow-Methods', 'POST')
     res.setHeader(
         'Access-Control-Allow-Headers',
@@ -117,7 +56,7 @@ export default async function handler(req, res) {
         })
     }
 
-    const { messages } = req.body
+    const { messages, systemPrompt } = req.body
     if (!messages || !Array.isArray(messages)) {
         return res.status(400).json({
             error: 'Invalid request: messages array required'
@@ -152,7 +91,7 @@ export default async function handler(req, res) {
         const response = await client.messages.create({
             model: 'claude-haiku-4-5-20251001',
             max_tokens: 300,
-            system: SYSTEM_PROMPT,
+            system: systemPrompt || DEFAULT_SYSTEM_PROMPT,
             messages: recentMessages,
         })
 

@@ -6,12 +6,13 @@ const INITIAL_MESSAGE = {
     content: "SYSTEM ONLINE · I can answer questions about Alex's background, experience, projects, and technical skills. What would you like to know?",
 }
 
-export default function ChatWidget() {
+export default function ChatWidget({ injectedContext, onContextCleared }) {
     const [isOpen, setIsOpen] = useState(false)
     const [isExpanded, setIsExpanded] = useState(false)
     const [messages, setMessages] = useState([INITIAL_MESSAGE])
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const [activeSystemPrompt, setActiveSystemPrompt] = useState(null)
     const messagesEndRef = useRef(null)
 
     useEffect(() => {
@@ -19,6 +20,16 @@ export default function ChatWidget() {
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
         }
     }, [messages])
+
+    // Handle injected context from Resume Analyzer
+    useEffect(() => {
+        if (injectedContext) {
+            setActiveSystemPrompt(injectedContext.systemPrompt)
+            setMessages(injectedContext.messages || [INITIAL_MESSAGE])
+            setIsOpen(true)
+            setIsExpanded(true)
+        }
+    }, [injectedContext])
 
     const sendMessage = async () => {
         if (!input.trim() || isLoading) return
@@ -40,17 +51,24 @@ export default function ChatWidget() {
         }])
 
         try {
+            const requestBody = {
+                messages: [...messages, userMessage]
+                    .filter(m => !m.isTyping)
+                    .filter(m => m.role === 'user' || (m.role === 'assistant' && m !== INITIAL_MESSAGE))
+                    .map(m => ({ role: m.role, content: m.content }))
+            }
+
+            // Include custom system prompt if set by Resume Analyzer
+            if (activeSystemPrompt) {
+                requestBody.systemPrompt = activeSystemPrompt
+            }
+
             const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    messages: [...messages, userMessage]
-                        .filter(m => !m.isTyping)
-                        .filter(m => m.role === 'user' || (m.role === 'assistant' && m !== INITIAL_MESSAGE))
-                        .map(m => ({ role: m.role, content: m.content }))
-                }),
+                body: JSON.stringify(requestBody),
             })
 
             // Remove typing indicator
@@ -96,6 +114,14 @@ export default function ChatWidget() {
         }
     }
 
+    const handleReset = () => {
+        setActiveSystemPrompt(null)
+        setMessages([INITIAL_MESSAGE])
+        if (onContextCleared) {
+            onContextCleared()
+        }
+    }
+
     return (
         <>
             <button
@@ -116,12 +142,23 @@ export default function ChatWidget() {
             {isOpen && (
                 <div className={`chat-widget-panel ${isExpanded ? 'chat-widget-panel-expanded' : ''}`}>
                     <div className="chat-widget-header">
-                        <div className="chat-widget-header-title">FORERUNNER INTERFACE</div>
+                        <div className="chat-widget-header-title">
+                            {activeSystemPrompt ? 'ANALYSIS CONTEXT' : 'FORERUNNER INTERFACE'}
+                        </div>
                         <div className="chat-widget-header-status">
-                            <div className="chat-widget-status-dot" />
-                            ONLINE
+                            <div className={`chat-widget-status-dot ${activeSystemPrompt ? 'chat-widget-status-dot-context' : ''}`} />
+                            {activeSystemPrompt ? 'CONTEXT MODE' : 'ONLINE'}
                         </div>
                         <div className="chat-widget-header-controls">
+                            {activeSystemPrompt && (
+                                <button
+                                    className="chat-widget-reset"
+                                    onClick={handleReset}
+                                    title="Reset to normal mode"
+                                >
+                                    ↺
+                                </button>
+                            )}
                             <button
                                 className="chat-widget-expand"
                                 onClick={() => setIsExpanded(prev => !prev)}
