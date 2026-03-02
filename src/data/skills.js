@@ -8,6 +8,7 @@ export const skills = [
   { name: "Spring Cloud", category: "Tools", years: 3 },
   { name: ".NET", category: "Tools", years: 5 },
   { name: "React", category: "Tools", years: 3 },
+  { name: "Blazor", category: "Tools", years: 2 },
   { name: "OAuth2 / JWT", category: "Tools", years: 4 },
   { name: "LDAP / LDAPS", category: "Tools", years: 3 },
   { name: "SLF4J / Logback", category: "Tools", years: 4 },
