@@ -1,8 +1,22 @@
+import PaymentCardDiagram from '../components/diagrams/PaymentCardDiagram'
 import DualAuthDiagram from '../components/diagrams/DualAuthDiagram'
 import SpringModernizationDiagram from '../components/diagrams/SpringModernizationDiagram'
 import CICDPipelineDiagram from '../components/diagrams/CICDPipelineDiagram'
 
 export const projects = [
+  {
+    id: 'payment-card-default',
+    title: 'Payment Card Default Management',
+    status: 'WIP',
+    tags: ['Java 8', 'Spring Boot', 'CSS', 'REST API', 'Full-Stack'],
+    description: 'Full-stack feature allowing associates to update a customer\'s default payment card, including UI, a new Payment Wrapper Service endpoint, and downstream credit card processor integration. Optimistic UI updates with async DB persistence.',
+    fullCaseStudy: {
+      problem: 'Associates had no way to update a customer\'s default payment card through the internal tooling. The system had no endpoint to handle this operation, no UI to surface it, and no downstream integration to persist the change through to the credit card processor.',
+      decision: 'Built the complete vertical slice — associate-facing UI with optimistic updates and two distinct modal flows, a new PUT endpoint in the Payment Wrapper Service with LDAP auth, validation and logging, and downstream integration to the credit card processor with async DB persistence.',
+      outcome: 'WIP — feature under active development. UI layer and Payment Wrapper endpoint complete. Downstream integration and async confirmation flow in progress. Default tag renders correctly and DB persistence confirmed in dev environment.',
+    },
+    diagram: <PaymentCardDiagram />,
+  },
   {
     title: "Federal C#/.NET Backend Modernization (DoE)",
     description:
