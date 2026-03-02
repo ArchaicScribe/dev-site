@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { useTypewriter, useReducedMotion } from '../hooks'
-import styles from './Hero.module.css'
 
 const roles = [
   "Senior Software Engineer",
@@ -68,7 +67,7 @@ export function Hero() {
   }
 
   return (
-    <section className={styles.hero} style={heroStyle} aria-label="Introduction">
+    <section className="hero" style={heroStyle} aria-label="Introduction">
       <div style={energyGlowStyle} />
       <motion.div style={{ textAlign: 'center', maxWidth: '900px', position: 'relative', zIndex: 1 }} variants={containerVariants} initial="hidden" animate="visible">
         <motion.p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '0.85rem', color: '#5a7a8a', marginBottom: '1.5rem', letterSpacing: '0.2em', textTransform: 'uppercase' }} variants={itemVariants}>// SYSTEM.INIT</motion.p>
