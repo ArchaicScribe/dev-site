@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Nav, Hero } from './components'
 import { useReducedMotion } from './hooks'
 import ForerunnerBackground from './components/ForerunnerBackground'
+import ChatWidget from './components/ChatWidget'
 
 // Lazy load below-the-fold sections for better performance
 const About = lazy(() => import('./components/About'))
@@ -72,6 +73,8 @@ export default function App() {
           <Footer />
         </Suspense>
       </main>
+
+      <ChatWidget />
     </>
   )
 }
