@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks'
+import { viewportConfig } from '../constants/animationVariants'
 
 const systemInfo = [
   { label: 'OS', value: 'Windows 11 + Ubuntu (WSL2)' },
@@ -16,7 +17,7 @@ export function TerminalCard() {
   const prefersReducedMotion = useReducedMotion()
   const lineVariants = {
     hidden: { opacity: 0, x: -10 },
-    visible: (i) => ({ opacity: 1, x: 0, transition: { delay: prefersReducedMotion ? 0 : i * 0.1, duration: prefersReducedMotion ? 0 : 0.3 } })
+    visible: (i) => ({ opacity: 1, x: 0, transition: { delay: prefersReducedMotion ? 0 : i * 0.1, duration: prefersReducedMotion ? 0 : 0.3, ease: 'easeOut' } })
   }
 
   const cardStyle = {
@@ -42,14 +43,14 @@ export function TerminalCard() {
           <div style={{ flex: 1, minWidth: 0 }}>
             {systemInfo.map((item, index) => (
               <motion.div key={item.label} style={{ display: 'flex', marginBottom: '0.5rem', flexWrap: 'wrap' }}
-                custom={index} variants={lineVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                custom={index} variants={lineVariants} initial="hidden" whileInView="visible" viewport={viewportConfig}>
                 <span style={{ color: '#4fc3dc', fontWeight: 500, minWidth: '90px' }}>{item.label}</span>
                 <span style={{ color: '#5a7a8a', marginRight: '0.75em' }}>→</span>
                 <span style={{ color: '#a8d8e8' }}>{item.value}</span>
               </motion.div>
             ))}
             <motion.div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
-              custom={systemInfo.length} variants={lineVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+              custom={systemInfo.length} variants={lineVariants} initial="hidden" whileInView="visible" viewport={viewportConfig}>
               <span style={{ width: '8px', height: '8px', backgroundColor: '#4fc3dc', display: 'inline-block' }}></span>
               <span style={{ color: '#4fc3dc', fontWeight: 500, letterSpacing: '0.1em' }}>ONLINE</span>
             </motion.div>

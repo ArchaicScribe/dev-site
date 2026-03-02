@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useTypewriter, useReducedMotion } from '../hooks'
+import { fadeUpVariants, transition } from '../constants/animationVariants'
 
 const roles = [
   "Senior Software Engineer",
@@ -18,8 +19,8 @@ export function Hero() {
     visible: { opacity: 1, transition: { staggerChildren: prefersReducedMotion ? 0 : 0.2, delayChildren: prefersReducedMotion ? 0 : 0.3 } }
   }
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: prefersReducedMotion ? 0 : 0.6, ease: 'easeOut' } }
+    hidden: fadeUpVariants.hidden,
+    visible: { ...fadeUpVariants.visible, transition: { ...transition, duration: prefersReducedMotion ? 0 : transition.duration } }
   }
 
   const handleScrollTo = (e, id) => {

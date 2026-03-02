@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks'
 import TerminalCard from './TerminalCard'
+import { fadeUpVariants, transition } from '../constants/animationVariants'
 
 export function About() {
   const prefersReducedMotion = useReducedMotion()
   const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: prefersReducedMotion ? 0 : 0.2 } } }
-  const itemVariants = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: prefersReducedMotion ? 0 : 0.6, ease: 'easeOut' } } }
+  const itemVariants = { hidden: fadeUpVariants.hidden, visible: { ...fadeUpVariants.visible, transition: { ...transition, duration: prefersReducedMotion ? 0 : transition.duration } } }
 
   const sectionStyle = { padding: '8rem 2rem', backgroundColor: '#0a1219', position: 'relative' }
   const contentStyle = { display: 'grid', gridTemplateColumns: 'minmax(300px, 1fr) 1.2fr', gap: '4rem', alignItems: 'start', maxWidth: '1200px', margin: '0 auto' }
