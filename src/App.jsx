@@ -1,9 +1,6 @@
 import { lazy, Suspense, useState } from 'react'
-import { Nav, Hero } from './components'
+import { Nav, Hero, ForerunnerBackground, ChatWidget, Terminal, SectionLoader } from './components'
 import { useReducedMotion } from './hooks'
-import ForerunnerBackground from './components/ForerunnerBackground'
-import ChatWidget from './components/ChatWidget'
-import Terminal from './components/Terminal'
 
 // Lazy load below-the-fold sections for better performance
 const About = lazy(() => import('./components/About'))
@@ -12,27 +9,6 @@ const Projects = lazy(() => import('./components/Projects'))
 const ResumeAnalyzer = lazy(() => import('./components/ResumeAnalyzer'))
 const Contact = lazy(() => import('./components/Contact'))
 const Footer = lazy(() => import('./components/Footer'))
-
-// Loading fallback with Forerunner-style loader
-function SectionLoader() {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '50vh',
-        color: '#4fc3dc',
-        fontFamily: "'Share Tech Mono', monospace",
-        fontSize: '0.85rem',
-        letterSpacing: '0.1em',
-      }}
-    >
-      <div style={{ width: '24px', height: '24px', border: '2px solid rgba(79, 195, 220, 0.3)', borderTopColor: '#4fc3dc', borderRadius: '0', animation: 'spin 1s linear infinite', marginRight: '1rem' }} />
-      LOADING MODULE...
-    </div>
-  )
-}
 
 export default function App() {
   const prefersReducedMotion = useReducedMotion()
