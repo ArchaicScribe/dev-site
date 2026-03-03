@@ -10,7 +10,7 @@ const navLinks = [
   { href: '#contact', label: 'CONTACT' },
 ]
 
-export function Nav() {
+export function Nav({ onTerminalOpen }) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -70,6 +70,25 @@ export function Nav() {
     transition: 'all 200ms ease'
   })
 
+  const terminalLinkStyle = {
+    fontFamily: "'Exo 2', sans-serif",
+    fontSize: '0.75rem',
+    fontWeight: 500,
+    letterSpacing: '0.1em',
+    color: 'rgba(79, 195, 220, 0.6)',
+    textDecoration: 'none',
+    padding: '0.25rem 0.5rem',
+    borderBottom: '2px solid transparent',
+    transition: 'all 200ms ease',
+    cursor: 'pointer'
+  }
+
+  const handleTerminalClick = (e) => {
+    e.preventDefault()
+    onTerminalOpen?.()
+    setIsMobileMenuOpen(false)
+  }
+
   return (
     <motion.nav style={navStyle} initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}>
       <div style={containerStyle}>
@@ -82,6 +101,17 @@ export function Nav() {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href="#"
+              style={terminalLinkStyle}
+              onClick={handleTerminalClick}
+              onMouseEnter={(e) => e.target.style.color = '#4fc3dc'}
+              onMouseLeave={(e) => e.target.style.color = 'rgba(79, 195, 220, 0.6)'}
+            >
+              TERMINAL
+            </a>
+          </li>
         </ul>
       </div>
     </motion.nav>

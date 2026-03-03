@@ -3,6 +3,7 @@ import { Nav, Hero } from './components'
 import { useReducedMotion } from './hooks'
 import ForerunnerBackground from './components/ForerunnerBackground'
 import ChatWidget from './components/ChatWidget'
+import Terminal from './components/Terminal'
 
 // Lazy load below-the-fold sections for better performance
 const About = lazy(() => import('./components/About'))
@@ -36,6 +37,7 @@ function SectionLoader() {
 export default function App() {
   const prefersReducedMotion = useReducedMotion()
   const [chatContext, setChatContext] = useState(null)
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false)
 
   const handleChatHandoff = (context) => {
     setChatContext(context)
@@ -55,7 +57,7 @@ export default function App() {
       </a>
 
       {/* Navigation */}
-      <Nav />
+      <Nav onTerminalOpen={() => setIsTerminalOpen(true)} />
 
       {/* Main content */}
       <main id="main-content" style={{ position: 'relative', zIndex: 1 }}>
@@ -92,6 +94,10 @@ export default function App() {
         injectedContext={chatContext}
         onContextCleared={handleContextCleared}
       />
+
+      {isTerminalOpen && (
+        <Terminal onClose={() => setIsTerminalOpen(false)} />
+      )}
     </>
   )
 }
