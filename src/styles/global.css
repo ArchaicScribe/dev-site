@@ -7,7 +7,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: background-color 600ms ease, border-color 600ms ease, color 600ms ease;
+  transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease;
 }
 
 /* Exclude elements where transition causes jank */
