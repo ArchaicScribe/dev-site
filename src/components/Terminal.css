@@ -43,9 +43,9 @@
     width: 800px;
     max-width: 95vw;
     height: 70vh;
-    background: #070d14;
-    border: 1px solid #4fc3dc;
-    box-shadow: 0 0 30px rgba(79, 195, 220, 0.2), inset 0 0 60px rgba(0, 0, 0, 0.5);
+    background: var(--bg-primary);
+    border: 1px solid var(--accent-secondary);
+    box-shadow: 0 0 30px var(--accent-secondary-glow), inset 0 0 60px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     position: relative;
@@ -106,8 +106,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem 1rem;
-    background: linear-gradient(180deg, #0d1e2e 0%, #070d14 100%);
-    border-bottom: 1px solid rgba(79, 195, 220, 0.3);
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    border-bottom: 1px solid var(--border-color);
     flex-shrink: 0;
 }
 
@@ -115,15 +115,15 @@
     font-family: 'Orbitron', sans-serif;
     font-size: 0.75rem;
     font-weight: 600;
-    color: #4fc3dc;
+    color: var(--accent-secondary);
     letter-spacing: 0.15em;
     margin: 0;
 }
 
 .terminal-close {
     background: transparent;
-    border: 1px solid rgba(79, 195, 220, 0.3);
-    color: #4fc3dc;
+    border: 1px solid var(--border-color);
+    color: var(--accent-secondary);
     width: 28px;
     height: 28px;
     display: flex;
@@ -136,9 +136,9 @@
 }
 
 .terminal-close:hover {
-    background: rgba(79, 195, 220, 0.1);
-    border-color: #4fc3dc;
-    color: #fff;
+    background: var(--accent-secondary-glow);
+    border-color: var(--accent-secondary);
+    color: var(--text-primary);
 }
 
 /* Terminal Body */
@@ -159,7 +159,7 @@
     font-size: 0.875rem;
     line-height: 1.6;
     scrollbar-width: thin;
-    scrollbar-color: rgba(79, 195, 220, 0.3) transparent;
+    scrollbar-color: var(--border-color) transparent;
 }
 
 .terminal-output::-webkit-scrollbar {
@@ -171,11 +171,11 @@
 }
 
 .terminal-output::-webkit-scrollbar-thumb {
-    background: rgba(79, 195, 220, 0.3);
+    background: var(--border-color);
 }
 
 .terminal-output::-webkit-scrollbar-thumb:hover {
-    background: rgba(79, 195, 220, 0.5);
+    background: var(--border-active);
 }
 
 /* Output Lines */
@@ -186,20 +186,20 @@
 }
 
 .terminal-line.boot {
-    color: #4fc3dc;
-    text-shadow: 0 0 10px rgba(79, 195, 220, 0.3);
+    color: var(--accent-secondary);
+    text-shadow: 0 0 10px var(--accent-secondary-glow);
 }
 
 .terminal-line.command {
-    color: #d4743a;
+    color: var(--accent-primary);
 }
 
 .terminal-line.response {
-    color: #b0c8d8;
+    color: var(--text-secondary);
 }
 
 .terminal-line.system {
-    color: #4fc3dc;
+    color: var(--accent-secondary);
 }
 
 .terminal-line.error {
@@ -207,17 +207,17 @@
 }
 
 .terminal-line.header {
-    color: #c8a96e;
+    color: var(--accent-gold);
     font-weight: 600;
 }
 
 /* Status indicators */
 .status-online {
-    color: #4fc3dc;
+    color: var(--accent-secondary);
 }
 
 .status-label {
-    color: #6a8a9a;
+    color: var(--text-muted);
 }
 
 /* Terminal Input Area */
@@ -225,15 +225,15 @@
     display: flex;
     align-items: center;
     padding: 0.75rem 1rem;
-    background: rgba(13, 30, 46, 0.5);
-    border-top: 1px solid rgba(79, 195, 220, 0.15);
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-subtle);
     flex-shrink: 0;
 }
 
 .terminal-prompt {
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.875rem;
-    color: #c8a96e;
+    color: var(--accent-gold);
     margin-right: 0.5rem;
     white-space: nowrap;
 }
@@ -245,12 +245,12 @@
     outline: none;
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.875rem;
-    color: #d4743a;
-    caret-color: #d4743a;
+    color: var(--accent-primary);
+    caret-color: var(--accent-primary);
 }
 
 .terminal-input::placeholder {
-    color: rgba(212, 116, 58, 0.3);
+    color: var(--accent-glow);
 }
 
 /* Blinking cursor simulation for display */
@@ -258,7 +258,7 @@
     display: inline-block;
     width: 8px;
     height: 1.1em;
-    background: #d4743a;
+    background: var(--accent-primary);
     animation: blink 1s step-end infinite;
     vertical-align: text-bottom;
     margin-left: 2px;
@@ -279,15 +279,15 @@
 
 /* Links in terminal */
 .terminal-link {
-    color: #4fc3dc;
+    color: var(--accent-secondary);
     text-decoration: none;
-    border-bottom: 1px solid rgba(79, 195, 220, 0.3);
+    border-bottom: 1px solid var(--border-color);
     transition: all 200ms ease;
 }
 
 .terminal-link:hover {
-    color: #fff;
-    border-bottom-color: #fff;
+    color: var(--text-primary);
+    border-bottom-color: var(--text-primary);
 }
 
 /* Table-like output formatting */
@@ -303,22 +303,22 @@
 }
 
 .terminal-table-row .label {
-    color: #c8a96e;
+    color: var(--accent-gold);
 }
 
 .terminal-table-row .value {
-    color: #b0c8d8;
+    color: var(--text-secondary);
 }
 
 /* Project list formatting */
 .project-entry {
     margin-bottom: 0.75rem;
     padding-left: 1rem;
-    border-left: 2px solid rgba(79, 195, 220, 0.3);
+    border-left: 2px solid var(--border-color);
 }
 
 .project-entry .project-title {
-    color: #4fc3dc;
+    color: var(--accent-secondary);
     font-weight: 600;
 }
 
@@ -329,22 +329,22 @@
 }
 
 .project-entry .project-status.live {
-    color: #4fc3dc;
-    border: 1px solid rgba(79, 195, 220, 0.5);
+    color: var(--accent-secondary);
+    border: 1px solid var(--border-color);
 }
 
 .project-entry .project-status.wip {
-    color: #c8a96e;
+    color: var(--accent-gold);
     border: 1px solid rgba(200, 169, 110, 0.5);
 }
 
 .project-entry .project-status.archived {
-    color: #6a8a9a;
+    color: var(--text-muted);
     border: 1px solid rgba(106, 138, 154, 0.5);
 }
 
 .project-entry .project-desc {
-    color: #6a8a9a;
+    color: var(--text-muted);
     font-size: 0.8rem;
     margin-top: 0.25rem;
 }
@@ -359,11 +359,11 @@
 
 .status-module .module-name {
     min-width: 140px;
-    color: #b0c8d8;
+    color: var(--text-secondary);
 }
 
 .status-module .module-status {
-    color: #4fc3dc;
+    color: var(--accent-secondary);
     font-size: 0.8rem;
 }
 
