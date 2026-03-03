@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { projects } from '../data/projects'
 import { EMAIL, GITHUB_URL, LINKEDIN_URL } from '../data/config'
+import { useTheme } from '../context/ThemeContext'
 import './Terminal.css'
 
 const BOOT_SEQUENCE = [
@@ -25,6 +26,7 @@ AVAILABLE COMMANDS:
   clearance  Security classification status
   status     Active system modules
   whoami     Current operator identification
+  theme      Toggle interface color scheme
   clear      Clear terminal output
   exit       Close terminal interface
 ═══════════════════════════════════════════════════════
@@ -140,6 +142,7 @@ SYSTEM STATUS — ACTIVE MODULES
 }
 
 export function Terminal({ onClose }) {
+    const { theme, toggleTheme } = useTheme()
     const [output, setOutput] = useState([])
     const [inputValue, setInputValue] = useState('')
     const [commandHistory, setCommandHistory] = useState([])
@@ -232,6 +235,20 @@ export function Terminal({ onClose }) {
         const newHistory = [cmd, ...commandHistory.filter(h => h !== cmd)].slice(0, 20)
         setCommandHistory(newHistory)
         setHistoryIndex(-1)
+
+        // Handle theme command specially (needs access to current theme state)
+        if (trimmedCmd === 'theme') {
+            const message = theme === 'default'
+                ? 'SWITCHING TO FORERUNNER ARCHIVE VARIANT — GOLD CLASSIFICATION...'
+                : 'RESTORING STANDARD MONITOR INTERFACE...'
+            newOutput.push({ type: 'system', content: message })
+            setOutput(newOutput)
+            // Delay theme toggle so user reads the message first
+            setTimeout(() => {
+                toggleTheme()
+            }, 300)
+            return
+        }
 
         // Execute command
         const commandFn = COMMANDS[trimmedCmd]

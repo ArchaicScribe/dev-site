@@ -1,11 +1,27 @@
 @import './variables.css';
 
+/* Theme transition for smooth color changes */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: background-color 600ms ease, border-color 600ms ease, color 600ms ease;
+}
+
+/* Exclude elements where transition causes jank */
+svg path,
+svg line,
+svg ellipse,
+svg rect,
+svg polygon,
+svg polyline,
+canvas,
+.no-theme-transition,
+.no-theme-transition *,
+[data-framer-motion] {
+  transition: none !important;
 }
 
 html {

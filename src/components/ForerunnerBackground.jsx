@@ -1,4 +1,40 @@
-export default function ForerunnerBackground() {
+import { useMemo } from 'react'
+
+// Seeded random number generator for consistent star field
+function seededRandom(seed) {
+  const x = Math.sin(seed) * 10000
+  return x - Math.floor(x)
+}
+
+// Generate star field with seeded positions
+function generateStars(count, seed) {
+  const stars = []
+  for (let i = 0; i < count; i++) {
+    const s = seed + i * 137.508 // Golden angle increment for distribution
+    stars.push({
+      x: seededRandom(s) * 1440,
+      y: seededRandom(s + 1) * 900,
+      size: 1 + seededRandom(s + 2) * 2,
+      opacity: 0.3 + seededRandom(s + 3) * 0.5,
+      isTeal: seededRandom(s + 4) > 0.7, // 30% chance of teal tint
+    })
+  }
+  return stars
+}
+
+export function ForerunnerBackground({ theme = 'default' }) {
+  const isGold = theme === 'gold'
+
+  // Memoize star field so it doesn't re-randomize
+  const stars = useMemo(() => generateStars(80, 42), [])
+
+  // Theme-specific colors
+  const traceColor1 = isGold ? '#c9a84c' : '#d4743a'
+  const traceColor2 = isGold ? '#b89840' : '#c8622a'
+  const traceColor3 = isGold ? '#d4b050' : '#e08040'
+  const tealColor = isGold ? '#7eb8c9' : '#8ff0ff'
+  const tealColorLight = isGold ? '#a0d0e0' : '#c8eeff'
+
   return (
     <div
       style={{
@@ -10,6 +46,7 @@ export default function ForerunnerBackground() {
         pointerEvents: 'none',
         zIndex: 0,
       }}
+      className="no-theme-transition"
     >
       <svg
         width="100%"
@@ -20,61 +57,61 @@ export default function ForerunnerBackground() {
         <defs>
           {/* Background gradient — deep atmospheric dark */}
           <linearGradient id="bgAtmos" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#060810" stopOpacity="1" />
-            <stop offset="40%" stopColor="#080c18" stopOpacity="1" />
-            <stop offset="100%" stopColor="#050810" stopOpacity="1" />
+            <stop offset="0%" stopColor={isGold ? '#05060a' : '#060810'} stopOpacity="1" />
+            <stop offset="40%" stopColor={isGold ? '#06080c' : '#080c18'} stopOpacity="1" />
+            <stop offset="100%" stopColor={isGold ? '#04050a' : '#050810'} stopOpacity="1" />
           </linearGradient>
 
           {/* Purple atmospheric haze (left side) */}
           <radialGradient id="hazeLeft" cx="15%" cy="30%" r="45%">
-            <stop offset="0%" stopColor="#1a0f2e" stopOpacity="0.5" />
-            <stop offset="50%" stopColor="#0d0818" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="#060810" stopOpacity="0" />
+            <stop offset="0%" stopColor={isGold ? '#1a1408' : '#1a0f2e'} stopOpacity="0.5" />
+            <stop offset="50%" stopColor={isGold ? '#0a0806' : '#0d0818'} stopOpacity="0.2" />
+            <stop offset="100%" stopColor={isGold ? '#05060a' : '#060810'} stopOpacity="0" />
           </radialGradient>
 
           {/* Purple atmospheric haze (upper right) */}
           <radialGradient id="hazeRight" cx="85%" cy="15%" r="35%">
-            <stop offset="0%" stopColor="#12082a" stopOpacity="0.4" />
-            <stop offset="60%" stopColor="#0a0618" stopOpacity="0.15" />
-            <stop offset="100%" stopColor="#060810" stopOpacity="0" />
+            <stop offset="0%" stopColor={isGold ? '#12100a' : '#12082a'} stopOpacity="0.4" />
+            <stop offset="60%" stopColor={isGold ? '#080706' : '#0a0618'} stopOpacity="0.15" />
+            <stop offset="100%" stopColor={isGold ? '#05060a' : '#060810'} stopOpacity="0" />
           </radialGradient>
 
           {/* Vertical conduit glow gradient */}
           <linearGradient id="conduitGlow" x1="0%" y1="100%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#8ff0ff" stopOpacity="0" />
-            <stop offset="20%" stopColor="#8ff0ff" stopOpacity="0.4" />
+            <stop offset="0%" stopColor={tealColor} stopOpacity="0" />
+            <stop offset="20%" stopColor={tealColor} stopOpacity="0.4" />
             <stop offset="50%" stopColor="#ffffff" stopOpacity="0.7" />
-            <stop offset="75%" stopColor="#8ff0ff" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#8ff0ff" stopOpacity="0.1" />
+            <stop offset="75%" stopColor={tealColor} stopOpacity="0.5" />
+            <stop offset="100%" stopColor={tealColor} stopOpacity="0.1" />
           </linearGradient>
 
           {/* Secondary conduit (dimmer) */}
           <linearGradient id="conduitDim" x1="0%" y1="100%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#8ff0ff" stopOpacity="0" />
-            <stop offset="30%" stopColor="#8ff0ff" stopOpacity="0.2" />
-            <stop offset="60%" stopColor="#c8eeff" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#8ff0ff" stopOpacity="0" />
+            <stop offset="0%" stopColor={tealColor} stopOpacity="0" />
+            <stop offset="30%" stopColor={tealColor} stopOpacity="0.2" />
+            <stop offset="60%" stopColor={tealColorLight} stopOpacity="0.35" />
+            <stop offset="100%" stopColor={tealColor} stopOpacity="0" />
           </linearGradient>
 
-          {/* Orange circuit trace gradient */}
+          {/* Orange/Gold circuit trace gradient */}
           <linearGradient id="orangeTrace" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#c8622a" stopOpacity="0" />
-            <stop offset="30%" stopColor="#d4743a" stopOpacity="0.5" />
-            <stop offset="60%" stopColor="#e08040" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#c8622a" stopOpacity="0" />
+            <stop offset="0%" stopColor={traceColor2} stopOpacity="0" />
+            <stop offset="30%" stopColor={traceColor1} stopOpacity="0.5" />
+            <stop offset="60%" stopColor={traceColor3} stopOpacity="0.7" />
+            <stop offset="100%" stopColor={traceColor2} stopOpacity="0" />
           </linearGradient>
 
           <linearGradient id="orangeTrace2" x1="100%" y1="0%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#c8622a" stopOpacity="0" />
-            <stop offset="25%" stopColor="#d4743a" stopOpacity="0.4" />
-            <stop offset="55%" stopColor="#e08040" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#c8622a" stopOpacity="0" />
+            <stop offset="0%" stopColor={traceColor2} stopOpacity="0" />
+            <stop offset="25%" stopColor={traceColor1} stopOpacity="0.4" />
+            <stop offset="55%" stopColor={traceColor3} stopOpacity="0.6" />
+            <stop offset="100%" stopColor={traceColor2} stopOpacity="0" />
           </linearGradient>
 
           {/* Ground energy stream gradient */}
           <linearGradient id="floorStream" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#8ff0ff" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#8ff0ff" stopOpacity="0" />
+            <stop offset="0%" stopColor={tealColor} stopOpacity="0.25" />
+            <stop offset="100%" stopColor={tealColor} stopOpacity="0" />
           </linearGradient>
 
           {/* Node bloom filter */}
@@ -111,8 +148,8 @@ export default function ForerunnerBackground() {
 
           {/* Vignette */}
           <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
-            <stop offset="40%" stopColor="#060810" stopOpacity="0" />
-            <stop offset="100%" stopColor="#060810" stopOpacity="0.95" />
+            <stop offset="40%" stopColor={isGold ? '#05060a' : '#060810'} stopOpacity="0" />
+            <stop offset="100%" stopColor={isGold ? '#05060a' : '#060810'} stopOpacity="0.95" />
           </radialGradient>
         </defs>
 
@@ -123,13 +160,25 @@ export default function ForerunnerBackground() {
         <rect width="1440" height="900" fill="url(#hazeLeft)" />
         <rect width="1440" height="900" fill="url(#hazeRight)" />
 
+        {/* Star field layer (gold theme only) */}
+        {isGold && stars.map((star, i) => (
+          <circle
+            key={i}
+            cx={star.x}
+            cy={star.y}
+            r={star.size / 2}
+            fill={star.isTeal ? tealColor : '#ffffff'}
+            opacity={star.opacity * 0.6}
+          />
+        ))}
+
         {/* Subtle ground-level blue mist */}
         <ellipse
           cx="720"
           cy="920"
           rx="800"
           ry="180"
-          fill="#0a2040"
+          fill={isGold ? '#0a1820' : '#0a2040'}
           opacity="0.12"
           filter="url(#atmosBloom)"
         />
@@ -727,3 +776,5 @@ export default function ForerunnerBackground() {
     </div>
   )
 }
+
+export default ForerunnerBackground
