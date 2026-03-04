@@ -1,0 +1,114 @@
+/* Skills Section Styles */
+
+.skills-category {
+    background-color: var(--ui-panel-bg);
+    border: 1px solid var(--ui-input-border);
+    padding: 2rem;
+    transition: border-color 200ms ease;
+}
+
+.skills-category:hover {
+    border-color: var(--ui-input-border-focus);
+}
+
+.skill-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    background-color: var(--ui-input-bg);
+    border: 1px solid var(--ui-panel-border-light);
+    cursor: pointer;
+    transition: color 200ms ease, border-color 200ms ease, background-color 200ms ease;
+    user-select: none;
+}
+
+.skill-item:hover {
+    color: var(--accent-secondary);
+    border-color: var(--ui-input-border-focus);
+}
+
+.skill-item:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+.skill-item.selected {
+    color: var(--ui-highlight);
+    border-color: var(--ui-highlight);
+    background-color: var(--ui-highlight-glow);
+}
+
+/* Skill Info Panel */
+.skill-info-panel {
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    background-color: var(--ui-panel-bg);
+    border: 1px solid var(--ui-highlight);
+    border-left: 3px solid var(--ui-highlight);
+    animation: skillPanelFadeIn 300ms ease forwards;
+}
+
+@keyframes skillPanelFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.skill-info-header {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ui-highlight);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.skill-info-close {
+    background: none;
+    border: none;
+    color: var(--chat-muted);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    transition: color 200ms ease;
+}
+
+.skill-info-close:hover {
+    color: var(--ui-highlight);
+}
+
+.skill-info-description {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skill-info-panel {
+        animation: none;
+    }
+
+    .skill-item {
+        transition: none;
+    }
+
+    .skills-category {
+        transition: none;
+    }
+}
