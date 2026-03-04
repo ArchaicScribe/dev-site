@@ -238,14 +238,20 @@ export function Terminal({ onClose }) {
 
         // Handle theme command specially (needs access to current theme state)
         if (trimmedCmd === 'theme') {
+            console.log('Theme command - current theme:', theme)
             const message = theme === 'default'
                 ? 'SWITCHING TO FORERUNNER ARCHIVE VARIANT — GOLD CLASSIFICATION...'
                 : 'RESTORING STANDARD MONITOR INTERFACE...'
             newOutput.push({ type: 'system', content: message })
             setOutput(newOutput)
-            // Delay theme toggle so user reads the message first
+            // Delay theme toggle so user reads the message first, then close terminal
             setTimeout(() => {
+                console.log('Calling toggleTheme()')
                 toggleTheme()
+                // Close terminal after theme toggle
+                setTimeout(() => {
+                    handleClose()
+                }, 400)
             }, 300)
             return
         }

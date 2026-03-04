@@ -27,16 +27,16 @@ export function Contact() {
     }
   }
 
-  const inputStyle = { width: '100%', padding: '0.75rem 1rem', fontFamily: "'Share Tech Mono', monospace", fontSize: '0.9rem', color: 'var(--text-secondary)', backgroundColor: '#0a1219', border: '1px solid rgba(79, 195, 220, 0.2)', transition: 'border-color 200ms ease' }
-  const socialStyle = { display: 'flex', alignItems: 'center', justifyContent: 'center', width: '50px', height: '50px', color: 'var(--text-secondary)', border: '1px solid rgba(79, 195, 220, 0.25)', transition: 'all 200ms ease' }
+  const inputStyle = { width: '100%', padding: '0.75rem 1rem', fontFamily: "'Share Tech Mono', monospace", fontSize: '0.9rem', color: 'var(--text-secondary)', backgroundColor: 'var(--ui-input-bg)', border: '1px solid var(--ui-input-border)', transition: 'border-color 200ms ease' }
+  const socialStyle = { display: 'flex', alignItems: 'center', justifyContent: 'center', width: '50px', height: '50px', color: 'var(--text-secondary)', border: '1px solid var(--ui-panel-border)', transition: 'all 200ms ease' }
 
   return (
     <section id="contact" style={{ padding: '8rem 2rem', textAlign: 'center' }} aria-labelledby="contact-heading">
       <motion.div style={{ maxWidth: '600px', margin: '0 auto' }} variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-50px' }}>
         <motion.div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem' }} variants={fadeUpVariants}>
-          <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(79, 195, 220, 0.3))' }}></div>
+          <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, transparent, var(--ui-highlight-dim))' }}></div>
           <h2 id="contact-heading" style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', fontWeight: 500, color: 'var(--accent-primary)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>CONTACT</h2>
-          <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, rgba(79, 195, 220, 0.3), transparent)' }}></div>
+          <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, var(--ui-highlight-dim), transparent)' }}></div>
         </motion.div>
         <motion.p style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 2rem)', fontWeight: 500, color: 'var(--text-secondary)', marginBottom: '1rem', letterSpacing: '0.05em' }} variants={fadeUpVariants}>Let's build something.</motion.p>
         <motion.p style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '1rem', fontWeight: 300, color: 'var(--text-muted)', marginBottom: '4rem', lineHeight: 1.8 }} variants={fadeUpVariants}>Always interested in discussing distributed systems, performance optimization, or new opportunities. Drop me a line.</motion.p>
@@ -50,8 +50,8 @@ export function Contact() {
           gap: '0.5rem',
           marginBottom: '4rem',
           padding: '1rem 1.5rem',
-          border: '1px solid rgba(79, 195, 220, 0.3)',
-          backgroundColor: 'rgba(7, 13, 20, 0.5)'
+          border: '1px solid var(--ui-highlight-dim)',
+          backgroundColor: 'var(--bg-surface)'
         }} variants={fadeUpVariants}>
           <div style={{
             display: 'flex',
@@ -82,7 +82,7 @@ export function Contact() {
             Remote · Open to relocation · Direct hire only · Not considering on-site NM roles
           </div>
         </motion.div>
-        <motion.form style={{ textAlign: 'left', backgroundColor: '#0d1620', border: '1px solid rgba(79, 195, 220, 0.2)', padding: '2rem' }} onSubmit={handleSubmit} variants={fadeUpVariants}>
+        <motion.form style={{ textAlign: 'left', backgroundColor: 'var(--ui-panel-bg)', border: '1px solid var(--ui-input-border)', padding: '2rem' }} onSubmit={handleSubmit} variants={fadeUpVariants}>
           <div style={{ marginBottom: '1.25rem' }}><label style={{ display: 'block', fontFamily: "'Share Tech Mono', monospace", fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }} htmlFor="name">// NAME</label><input type="text" id="name" name="name" value={formState.name} onChange={handleChange} required style={inputStyle} placeholder="John Doe" autoComplete="name" /></div>
           <div style={{ marginBottom: '1.25rem' }}><label style={{ display: 'block', fontFamily: "'Share Tech Mono', monospace", fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }} htmlFor="email">// EMAIL</label><input type="email" id="email" name="email" value={formState.email} onChange={handleChange} required style={inputStyle} placeholder="you@example.com" autoComplete="email" /></div>
           <div style={{ marginBottom: '1.25rem' }}><label style={{ display: 'block', fontFamily: "'Share Tech Mono', monospace", fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }} htmlFor="message">// MESSAGE</label><textarea id="message" name="message" value={formState.message} onChange={handleChange} required style={{ ...inputStyle, resize: 'vertical', minHeight: '120px' }} placeholder="Your message..." rows={4}></textarea></div>

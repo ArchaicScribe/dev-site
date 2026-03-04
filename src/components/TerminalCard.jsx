@@ -21,19 +21,19 @@ export function TerminalCard() {
   }
 
   const cardStyle = {
-    backgroundColor: '#0d1620', border: '1px solid rgba(79, 195, 220, 0.25)',
+    backgroundColor: 'var(--ui-panel-bg)', border: '1px solid var(--ui-panel-border)',
     overflow: 'hidden', fontFamily: "'Share Tech Mono', monospace", fontSize: '0.85rem'
   }
 
   return (
     <div style={cardStyle} role="img" aria-label="System profile information">
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem 1rem', backgroundColor: '#0a1219', borderBottom: '1px solid rgba(79, 195, 220, 0.2)' }}>
-        <span style={{ color: '#5a7a8a', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}>// SYSTEM.PROFILE</span>
-        <span style={{ color: '#c8a96e', fontSize: '0.7rem', letterSpacing: '0.1em' }}>ACTIVE</span>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem 1rem', backgroundColor: 'var(--ui-input-bg)', borderBottom: '1px solid var(--ui-input-border)' }}>
+        <span style={{ color: 'var(--chat-muted)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}>// SYSTEM.PROFILE</span>
+        <span style={{ color: 'var(--accent-gold)', fontSize: '0.7rem', letterSpacing: '0.1em' }}>ACTIVE</span>
       </div>
       <div style={{ padding: '1.5rem' }}>
         <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-          <pre style={{ color: '#4fc3dc', fontSize: '0.55rem', lineHeight: 1.3, margin: 0, flexShrink: 0, opacity: 0.6 }} aria-hidden="true">{`  ╔═══════════╗
+          <pre style={{ color: 'var(--accent-secondary)', fontSize: '0.55rem', lineHeight: 1.3, margin: 0, flexShrink: 0, opacity: 0.6 }} aria-hidden="true">{`  ╔═══════════╗
   ║           ║
   ║   ◈   ◈   ║
   ║     ◇     ║
@@ -44,15 +44,15 @@ export function TerminalCard() {
             {systemInfo.map((item, index) => (
               <motion.div key={item.label} style={{ display: 'flex', marginBottom: '0.5rem', flexWrap: 'wrap' }}
                 custom={index} variants={lineVariants} initial="hidden" whileInView="visible" viewport={viewportConfig}>
-                <span style={{ color: '#4fc3dc', fontWeight: 500, minWidth: '90px' }}>{item.label}</span>
-                <span style={{ color: '#5a7a8a', marginRight: '0.75em' }}>→</span>
-                <span style={{ color: '#a8d8e8' }}>{item.value}</span>
+                <span style={{ color: 'var(--accent-secondary)', fontWeight: 500, minWidth: '90px' }}>{item.label}</span>
+                <span style={{ color: 'var(--chat-muted)', marginRight: '0.75em' }}>→</span>
+                <span style={{ color: 'var(--text-secondary)' }}>{item.value}</span>
               </motion.div>
             ))}
             <motion.div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
               custom={systemInfo.length} variants={lineVariants} initial="hidden" whileInView="visible" viewport={viewportConfig}>
-              <span style={{ width: '8px', height: '8px', backgroundColor: '#4fc3dc', display: 'inline-block' }}></span>
-              <span style={{ color: '#4fc3dc', fontWeight: 500, letterSpacing: '0.1em' }}>ONLINE</span>
+              <span style={{ width: '8px', height: '8px', backgroundColor: 'var(--accent-secondary)', display: 'inline-block' }}></span>
+              <span style={{ color: 'var(--accent-secondary)', fontWeight: 500, letterSpacing: '0.1em' }}>ONLINE</span>
             </motion.div>
           </div>
         </div>

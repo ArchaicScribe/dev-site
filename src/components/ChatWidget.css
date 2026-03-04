@@ -5,8 +5,8 @@
     z-index: 1000;
     width: 52px;
     height: 52px;
-    background: #0b1520;
-    border: 1px solid rgba(143, 240, 255, 0.4);
+    background: var(--ui-panel-bg);
+    border: 1px solid var(--ui-panel-border-hover);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -15,14 +15,14 @@
 }
 
 .chat-widget-trigger:hover {
-    border-color: rgba(143, 240, 255, 0.8);
-    background: rgba(143, 240, 255, 0.08);
+    border-color: var(--ui-panel-border-active);
+    background: var(--ui-highlight-glow);
 }
 
 .chat-widget-trigger-icon {
     width: 22px;
     height: 22px;
-    color: #8ff0ff;
+    color: var(--ui-highlight);
 }
 
 .chat-widget-panel {
@@ -32,11 +32,11 @@
     z-index: 1000;
     width: 380px;
     max-height: 520px;
-    background: #0b1520;
-    border: 1px solid rgba(143, 240, 255, 0.25);
+    background: var(--ui-panel-bg);
+    border: 1px solid var(--ui-panel-border);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 40px rgba(143, 240, 255, 0.08);
+    box-shadow: 0 0 40px var(--ui-highlight-glow);
     transition: width 250ms ease, max-height 250ms ease;
 }
 
@@ -47,8 +47,8 @@
 
 .chat-widget-header {
     padding: 0.85rem 1rem;
-    border-bottom: 1px solid rgba(143, 240, 255, 0.15);
-    background: rgba(143, 240, 255, 0.04);
+    border-bottom: 1px solid var(--ui-panel-border-light);
+    background: var(--ui-highlight-glow);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -58,14 +58,14 @@
 .chat-widget-header-title {
     font-family: 'Orbitron', sans-serif;
     font-size: 0.75rem;
-    color: #8ff0ff;
+    color: var(--ui-highlight);
     letter-spacing: 0.12em;
 }
 
 .chat-widget-header-status {
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.65rem;
-    color: #70e0a0;
+    color: var(--status-online);
     letter-spacing: 0.1em;
     display: flex;
     align-items: center;
@@ -75,7 +75,7 @@
 .chat-widget-status-dot {
     width: 6px;
     height: 6px;
-    background: #70e0a0;
+    background: var(--status-online);
     border-radius: 50%;
     animation: pulse 2s infinite;
 }
@@ -101,7 +101,7 @@
 .chat-widget-expand {
     background: none;
     border: none;
-    color: #d4743a;
+    color: var(--chat-expand-color);
     cursor: pointer;
     font-size: 1rem;
     padding: 0;
@@ -110,13 +110,13 @@
 }
 
 .chat-widget-expand:hover {
-    color: #e08040;
+    color: var(--chat-expand-hover);
 }
 
 .chat-widget-close {
     background: none;
     border: none;
-    color: #6a8a9a;
+    color: var(--chat-muted);
     cursor: pointer;
     font-size: 1rem;
     padding: 0;
@@ -125,7 +125,7 @@
 }
 
 .chat-widget-close:hover {
-    color: #8ff0ff;
+    color: var(--ui-highlight);
 }
 
 .chat-widget-messages {
@@ -147,7 +147,7 @@
 }
 
 .chat-widget-messages::-webkit-scrollbar-thumb {
-    background: rgba(143, 240, 255, 0.2);
+    background: var(--ui-panel-border-light);
 }
 
 .chat-message {
@@ -171,11 +171,11 @@
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.6rem;
     letter-spacing: 0.1em;
-    color: #6a8a9a;
+    color: var(--chat-muted);
 }
 
 .chat-message.user .chat-message-label {
-    color: rgba(143, 240, 255, 0.5);
+    color: var(--ui-highlight-dim);
 }
 
 .chat-message-bubble {
@@ -187,36 +187,36 @@
 }
 
 .chat-message.user .chat-message-bubble {
-    background: rgba(143, 240, 255, 0.08);
-    border: 1px solid rgba(143, 240, 255, 0.2);
-    color: #eef4f8;
+    background: var(--chat-user-bubble-bg);
+    border: 1px solid var(--chat-user-bubble-border);
+    color: var(--chat-user-text);
 }
 
 .chat-message.assistant .chat-message-bubble {
-    background: rgba(15, 30, 46, 0.8);
-    border: 1px solid rgba(143, 240, 255, 0.1);
-    color: #b0c8d8;
+    background: var(--chat-assistant-bubble-bg);
+    border: 1px solid var(--chat-assistant-bubble-border);
+    color: var(--text-secondary);
 }
 
 .chat-message-typing .chat-message-bubble {
-    color: #6a8a9a;
+    color: var(--chat-muted);
     font-style: italic;
 }
 
 .chat-widget-input-row {
     padding: 0.75rem 1rem;
-    border-top: 1px solid rgba(143, 240, 255, 0.15);
+    border-top: 1px solid var(--ui-panel-border-light);
     display: flex;
     gap: 0.5rem;
     flex-shrink: 0;
-    background: rgba(143, 240, 255, 0.02);
+    background: var(--ui-highlight-glow);
 }
 
 .chat-widget-input {
     flex: 1;
-    background: rgba(143, 240, 255, 0.04);
-    border: 1px solid rgba(143, 240, 255, 0.2);
-    color: #eef4f8;
+    background: var(--ui-highlight-glow);
+    border: 1px solid var(--chat-user-bubble-border);
+    color: var(--chat-user-text);
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.8rem;
     padding: 0.5rem 0.75rem;
@@ -225,17 +225,17 @@
 }
 
 .chat-widget-input::placeholder {
-    color: #6a8a9a;
+    color: var(--chat-muted);
 }
 
 .chat-widget-input:focus {
-    border-color: rgba(143, 240, 255, 0.5);
+    border-color: var(--ui-input-border-focus);
 }
 
 .chat-widget-send {
-    background: rgba(143, 240, 255, 0.08);
-    border: 1px solid rgba(143, 240, 255, 0.3);
-    color: #8ff0ff;
+    background: var(--ui-highlight-glow);
+    border: 1px solid var(--ui-highlight-dim);
+    color: var(--ui-highlight);
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.75rem;
     padding: 0.5rem 0.85rem;
@@ -245,8 +245,8 @@
 }
 
 .chat-widget-send:hover:not(:disabled) {
-    background: rgba(143, 240, 255, 0.14);
-    border-color: rgba(143, 240, 255, 0.6);
+    background: var(--ui-highlight-glow);
+    border-color: var(--ui-panel-border-active);
 }
 
 .chat-widget-send:disabled {
@@ -256,10 +256,10 @@
 
 .chat-widget-footer {
     padding: 0.4rem 1rem;
-    border-top: 1px solid rgba(143, 240, 255, 0.08);
+    border-top: 1px solid var(--ui-panel-border-light);
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.6rem;
-    color: #6a8a9a;
+    color: var(--chat-muted);
     letter-spacing: 0.08em;
     text-align: center;
 }
@@ -267,7 +267,7 @@
 .chat-widget-reset {
     background: none;
     border: none;
-    color: #d4743a;
+    color: var(--chat-expand-color);
     cursor: pointer;
     font-size: 1.1rem;
     padding: 0;
@@ -276,10 +276,10 @@
 }
 
 .chat-widget-reset:hover {
-    color: #e08040;
+    color: var(--chat-expand-hover);
 }
 
 .chat-widget-status-dot-context {
-    background: #d4743a;
+    background: var(--accent-primary);
     animation: none;
 }

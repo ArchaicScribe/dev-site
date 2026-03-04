@@ -8,8 +8,8 @@ export function ProjectCard({ project, onOpenCaseStudy, useStagger = false }) {
   const { title, status, description, tags, githubRepo, liveUrl, featured, fullCaseStudy } = project
 
   const cardStyle = {
-    backgroundColor: '#0d1620',
-    border: '1px solid rgba(79, 195, 220, 0.2)',
+    backgroundColor: 'var(--ui-panel-bg)',
+    border: '1px solid var(--ui-input-border)',
     padding: '2rem',
     display: 'flex',
     flexDirection: 'column',
@@ -22,7 +22,7 @@ export function ProjectCard({ project, onOpenCaseStudy, useStagger = false }) {
     fontFamily: "'Share Tech Mono', monospace",
     fontSize: '0.7rem',
     color: 'var(--text-secondary)',
-    backgroundColor: 'rgba(79, 195, 220, 0.1)',
+    backgroundColor: 'var(--ui-highlight-glow)',
     padding: '3px 10px',
     letterSpacing: '0.05em'
   }
@@ -70,7 +70,7 @@ export function ProjectCard({ project, onOpenCaseStudy, useStagger = false }) {
     <motion.article
       style={cardStyle}
       {...motionProps}
-      whileHover={prefersReducedMotion ? {} : { borderColor: 'rgba(79, 195, 220, 0.5)' }}
+      whileHover={prefersReducedMotion ? {} : { borderColor: 'var(--ui-input-border-focus)' }}
     >
       {featured && (
         <div style={{
@@ -79,7 +79,7 @@ export function ProjectCard({ project, onOpenCaseStudy, useStagger = false }) {
           left: '1rem',
           fontFamily: "'Share Tech Mono', monospace",
           fontSize: '0.65rem',
-          color: '#c8a96e',
+          color: 'var(--accent-gold)',
           letterSpacing: '0.1em',
           fontWeight: 500
         }}>
@@ -133,7 +133,7 @@ export function ProjectCard({ project, onOpenCaseStudy, useStagger = false }) {
         <button
           onClick={() => onOpenCaseStudy(project)}
           style={readMoreStyle}
-          onMouseEnter={(e) => e.target.style.color = '#a8d8e8'}
+          onMouseEnter={(e) => e.target.style.color = 'var(--text-secondary)'}
           onMouseLeave={(e) => e.target.style.color = 'var(--accent-primary)'}
         >
           // view case study ▸
@@ -145,7 +145,7 @@ export function ProjectCard({ project, onOpenCaseStudy, useStagger = false }) {
           display: 'flex',
           gap: '1.5rem',
           paddingTop: '1rem',
-          borderTop: '1px solid rgba(79, 195, 220, 0.15)',
+          borderTop: '1px solid var(--ui-panel-border-light)',
           marginTop: '1rem'
         }}>
           {githubRepo && (

@@ -22,6 +22,39 @@
   --glow-primary: 0 0 20px rgba(79, 195, 220, 0.15);
   --glow-active: 0 0 30px rgba(79, 195, 220, 0.25);
 
+  /* UI Component colors - theme-aware */
+  --ui-panel-bg: #0b1520;
+  --ui-panel-border: rgba(143, 240, 255, 0.25);
+  --ui-panel-border-light: rgba(143, 240, 255, 0.15);
+  --ui-panel-border-hover: rgba(143, 240, 255, 0.4);
+  --ui-panel-border-active: rgba(143, 240, 255, 0.8);
+  --ui-highlight: #8ff0ff;
+  --ui-highlight-dim: rgba(143, 240, 255, 0.3);
+  --ui-highlight-glow: rgba(143, 240, 255, 0.08);
+  --ui-input-bg: #0a1219;
+  --ui-input-border: rgba(79, 195, 220, 0.2);
+  --ui-input-border-focus: rgba(79, 195, 220, 0.5);
+  --ui-button-bg: #8ff0ff;
+  --ui-button-bg-hover: #a8f4ff;
+  --ui-button-text: #0b1520;
+
+  /* Status colors */
+  --status-online: #70e0a0;
+  --status-error: #e05050;
+  --status-error-bg: rgba(224, 80, 80, 0.1);
+  --status-error-border: rgba(224, 80, 80, 0.3);
+  --terminal-error: #9e4a4a;
+
+  /* Chat widget specific */
+  --chat-expand-color: #d4743a;
+  --chat-expand-hover: #e08040;
+  --chat-muted: #6a8a9a;
+  --chat-user-bubble-bg: rgba(143, 240, 255, 0.08);
+  --chat-user-bubble-border: rgba(143, 240, 255, 0.2);
+  --chat-user-text: #eef4f8;
+  --chat-assistant-bubble-bg: rgba(15, 30, 46, 0.8);
+  --chat-assistant-bubble-border: rgba(143, 240, 255, 0.1);
+
   /* Typography */
   --font-display: 'Orbitron', sans-serif;
   --font-body: 'Exo 2', sans-serif;
@@ -67,6 +100,39 @@
   --border-active: rgba(201, 168, 76, 0.35);
   --glow-primary: 0 0 20px rgba(201, 168, 76, 0.15);
   --glow-active: 0 0 30px rgba(201, 168, 76, 0.25);
+
+  /* UI Component colors - gold theme */
+  --ui-panel-bg: #0a1118;
+  --ui-panel-border: rgba(201, 168, 76, 0.25);
+  --ui-panel-border-light: rgba(201, 168, 76, 0.15);
+  --ui-panel-border-hover: rgba(201, 168, 76, 0.4);
+  --ui-panel-border-active: rgba(201, 168, 76, 0.8);
+  --ui-highlight: #d4b85c;
+  --ui-highlight-dim: rgba(201, 168, 76, 0.3);
+  --ui-highlight-glow: rgba(201, 168, 76, 0.08);
+  --ui-input-bg: #080d14;
+  --ui-input-border: rgba(201, 168, 76, 0.2);
+  --ui-input-border-focus: rgba(201, 168, 76, 0.5);
+  --ui-button-bg: #d4b85c;
+  --ui-button-bg-hover: #e0c468;
+  --ui-button-text: #0a1118;
+
+  /* Status colors - gold theme */
+  --status-online: #8cd090;
+  --status-error: #d06060;
+  --status-error-bg: rgba(208, 96, 96, 0.1);
+  --status-error-border: rgba(208, 96, 96, 0.3);
+  --terminal-error: #a85a5a;
+
+  /* Chat widget specific - gold theme */
+  --chat-expand-color: #c9a84c;
+  --chat-expand-hover: #d4b85c;
+  --chat-muted: #8a9a80;
+  --chat-user-bubble-bg: rgba(201, 168, 76, 0.08);
+  --chat-user-bubble-border: rgba(201, 168, 76, 0.2);
+  --chat-user-text: #f4f0e8;
+  --chat-assistant-bubble-bg: rgba(15, 25, 35, 0.8);
+  --chat-assistant-bubble-border: rgba(201, 168, 76, 0.1);
 }
 
 @media (prefers-reduced-motion: reduce) {

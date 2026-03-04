@@ -203,7 +203,7 @@
 }
 
 .terminal-line.error {
-    color: #9e4a4a;
+    color: var(--terminal-error);
 }
 
 .terminal-line.header {
@@ -335,12 +335,12 @@
 
 .project-entry .project-status.wip {
     color: var(--accent-gold);
-    border: 1px solid rgba(200, 169, 110, 0.5);
+    border: 1px solid var(--border-active);
 }
 
 .project-entry .project-status.archived {
     color: var(--text-muted);
-    border: 1px solid rgba(106, 138, 154, 0.5);
+    border: 1px solid var(--border-color);
 }
 
 .project-entry .project-desc {

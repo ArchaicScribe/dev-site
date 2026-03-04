@@ -65,7 +65,7 @@ export function Nav({ onTerminalOpen }) {
   const linkStyle = (isActive) => ({
     fontFamily: "'Exo 2', sans-serif", fontSize: '0.85rem', fontWeight: 500,
     letterSpacing: '0.1em',
-    color: isActive ? 'var(--accent-primary)' : '#a8d8e8', textDecoration: 'none', padding: '0.25rem 0.5rem',
+    color: isActive ? 'var(--accent-primary)' : 'var(--text-secondary)', textDecoration: 'none', padding: '0.25rem 0.5rem',
     borderBottom: isActive ? '2px solid var(--accent-primary)' : '2px solid transparent',
     transition: 'all 200ms ease'
   })
@@ -75,7 +75,7 @@ export function Nav({ onTerminalOpen }) {
     fontSize: '0.75rem',
     fontWeight: 500,
     letterSpacing: '0.1em',
-    color: 'rgba(79, 195, 220, 0.6)',
+    color: 'var(--ui-highlight-dim)',
     textDecoration: 'none',
     padding: '0.25rem 0.5rem',
     borderBottom: '2px solid transparent',
@@ -106,8 +106,8 @@ export function Nav({ onTerminalOpen }) {
               href="#"
               style={terminalLinkStyle}
               onClick={handleTerminalClick}
-              onMouseEnter={(e) => e.target.style.color = '#4fc3dc'}
-              onMouseLeave={(e) => e.target.style.color = 'rgba(79, 195, 220, 0.6)'}
+              onMouseEnter={(e) => e.target.style.color = 'var(--accent-secondary)'}
+              onMouseLeave={(e) => e.target.style.color = 'var(--ui-highlight-dim)'}
             >
               TERMINAL
             </a>

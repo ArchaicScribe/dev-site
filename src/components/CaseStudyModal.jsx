@@ -56,8 +56,8 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
     }
 
     const panelStyle = {
-        background: '#0b1520',
-        border: '1px solid rgba(143, 240, 255, 0.25)',
+        background: 'var(--ui-panel-bg)',
+        border: '1px solid var(--ui-panel-border)',
         width: '100%',
         maxWidth: '1000px',
         maxHeight: '85vh',
@@ -71,7 +71,7 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
 
     const headerStyle = {
         padding: '1.5rem 2rem 1rem',
-        borderBottom: '1px solid rgba(143, 240, 255, 0.1)',
+        borderBottom: '1px solid var(--ui-panel-border-light)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
@@ -81,7 +81,7 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
         fontFamily: "'Share Tech Mono', monospace",
         fontSize: '0.7rem',
         color: 'var(--text-secondary)',
-        backgroundColor: 'rgba(79, 195, 220, 0.1)',
+        backgroundColor: 'var(--ui-highlight-glow)',
         padding: '3px 10px',
         letterSpacing: '0.05em',
     }
@@ -94,7 +94,7 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
     const labelStyle = {
         fontFamily: "'Share Tech Mono', monospace",
         fontSize: '0.8rem',
-        color: '#6a8a9a',
+        color: 'var(--chat-muted)',
         textTransform: 'uppercase',
         letterSpacing: '0.1em',
         marginBottom: '0.5rem',
@@ -119,7 +119,7 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
                                 fontFamily: "'Orbitron', sans-serif",
                                 fontSize: '1.2rem',
                                 fontWeight: 500,
-                                color: '#8ff0ff',
+                                color: 'var(--ui-highlight)',
                                 margin: 0,
                                 letterSpacing: '0.05em',
                             }}>
@@ -148,15 +148,15 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
                         style={{
                             fontFamily: "'Share Tech Mono', monospace",
                             fontSize: '0.8rem',
-                            color: '#6a8a9a',
+                            color: 'var(--chat-muted)',
                             background: 'none',
                             border: 'none',
                             cursor: 'pointer',
                             letterSpacing: '0.1em',
                             transition: 'color 200ms ease',
                         }}
-                        onMouseEnter={(e) => e.target.style.color = '#8ff0ff'}
-                        onMouseLeave={(e) => e.target.style.color = '#6a8a9a'}
+                        onMouseEnter={(e) => e.target.style.color = 'var(--ui-highlight)'}
+                        onMouseLeave={(e) => e.target.style.color = 'var(--chat-muted)'}
                     >
                         [ CLOSE ]
                     </button>
@@ -169,8 +169,8 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         padding: '0.6rem 1.5rem',
-                        borderBottom: '1px solid rgba(143, 240, 255, 0.1)',
-                        background: 'rgba(143, 240, 255, 0.03)',
+                        borderBottom: '1px solid var(--ui-panel-border-light)',
+                        background: 'var(--ui-highlight-glow)',
                     }}>
                         {prevProject ? (
                             <button
@@ -178,9 +178,9 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
                                 style={{
                                     fontFamily: "'Share Tech Mono', monospace",
                                     fontSize: '0.78rem',
-                                    color: '#8ff0ff',
+                                    color: 'var(--ui-highlight)',
                                     background: 'none',
-                                    border: '1px solid rgba(143, 240, 255, 0.2)',
+                                    border: '1px solid var(--chat-user-bubble-border)',
                                     padding: '0.4rem 0.9rem',
                                     cursor: 'pointer',
                                     letterSpacing: '0.08em',
@@ -190,11 +190,11 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
                                     gap: '0.4rem',
                                 }}
                                 onMouseEnter={(e) => {
-                                    e.target.style.borderColor = 'rgba(143, 240, 255, 0.5)'
-                                    e.target.style.background = 'rgba(143, 240, 255, 0.06)'
+                                    e.target.style.borderColor = 'var(--ui-input-border-focus)'
+                                    e.target.style.background = 'var(--ui-highlight-glow)'
                                 }}
                                 onMouseLeave={(e) => {
-                                    e.target.style.borderColor = 'rgba(143, 240, 255, 0.2)'
+                                    e.target.style.borderColor = 'var(--chat-user-bubble-border)'
                                     e.target.style.background = 'none'
                                 }}
                             >
@@ -204,7 +204,7 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
                         <span style={{
                             fontFamily: "'Share Tech Mono', monospace",
                             fontSize: '0.7rem',
-                            color: '#6a8a9a',
+                            color: 'var(--chat-muted)',
                             letterSpacing: '0.1em',
                         }}>
                             {currentIndex + 1} / {totalCount}
@@ -215,9 +215,9 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
                                 style={{
                                     fontFamily: "'Share Tech Mono', monospace",
                                     fontSize: '0.78rem',
-                                    color: '#8ff0ff',
+                                    color: 'var(--ui-highlight)',
                                     background: 'none',
-                                    border: '1px solid rgba(143, 240, 255, 0.2)',
+                                    border: '1px solid var(--chat-user-bubble-border)',
                                     padding: '0.4rem 0.9rem',
                                     cursor: 'pointer',
                                     letterSpacing: '0.08em',
@@ -227,11 +227,11 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
                                     gap: '0.4rem',
                                 }}
                                 onMouseEnter={(e) => {
-                                    e.target.style.borderColor = 'rgba(143, 240, 255, 0.5)'
-                                    e.target.style.background = 'rgba(143, 240, 255, 0.06)'
+                                    e.target.style.borderColor = 'var(--ui-input-border-focus)'
+                                    e.target.style.background = 'var(--ui-highlight-glow)'
                                 }}
                                 onMouseLeave={(e) => {
-                                    e.target.style.borderColor = 'rgba(143, 240, 255, 0.2)'
+                                    e.target.style.borderColor = 'var(--chat-user-bubble-border)'
                                     e.target.style.background = 'none'
                                 }}
                             >
@@ -245,7 +245,7 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
                 <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                     {/* PROBLEM */}
                     <div style={sectionStyle}>
-                        <div style={{ width: '2px', backgroundColor: '#8ff0ff', flexShrink: 0 }}></div>
+                        <div style={{ width: '2px', backgroundColor: 'var(--ui-highlight)', flexShrink: 0 }}></div>
                         <div>
                             <div style={labelStyle}>PROBLEM</div>
                             <div style={contentStyle}>{fullCaseStudy.problem}</div>
@@ -254,7 +254,7 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
 
                     {/* DECISION */}
                     <div style={sectionStyle}>
-                        <div style={{ width: '2px', backgroundColor: '#8ff0ff', flexShrink: 0 }}></div>
+                        <div style={{ width: '2px', backgroundColor: 'var(--ui-highlight)', flexShrink: 0 }}></div>
                         <div>
                             <div style={labelStyle}>DECISION</div>
                             <div style={contentStyle}>{fullCaseStudy.decision}</div>
@@ -263,7 +263,7 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
 
                     {/* OUTCOME */}
                     <div style={sectionStyle}>
-                        <div style={{ width: '2px', backgroundColor: '#8ff0ff', flexShrink: 0 }}></div>
+                        <div style={{ width: '2px', backgroundColor: 'var(--ui-highlight)', flexShrink: 0 }}></div>
                         <div>
                             <div style={labelStyle}>OUTCOME</div>
                             <div style={contentStyle}>{fullCaseStudy.outcome}</div>
@@ -273,13 +273,13 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
                     {/* ARCHITECTURE (if diagram exists) */}
                     {diagram && (
                         <div style={{
-                            borderTop: '1px solid rgba(143, 240, 255, 0.1)',
+                            borderTop: '1px solid var(--ui-panel-border-light)',
                             paddingTop: '1.5rem',
                         }}>
                             <div style={{
                                 fontFamily: "'Share Tech Mono', monospace",
                                 fontSize: '0.8rem',
-                                color: '#6a8a9a',
+                                color: 'var(--chat-muted)',
                                 textTransform: 'uppercase',
                                 letterSpacing: '0.1em',
                                 marginBottom: '1rem',

@@ -25,6 +25,9 @@ function generateStars(count, seed) {
 export function ForerunnerBackground({ theme = 'default' }) {
   const isGold = theme === 'gold'
 
+  // Debug: log theme changes
+  console.log('ForerunnerBackground render - theme:', theme, 'isGold:', isGold)
+
   // Memoize star field so it doesn't re-randomize
   const stars = useMemo(() => generateStars(80, 42), [])
 
@@ -46,9 +49,9 @@ export function ForerunnerBackground({ theme = 'default' }) {
         pointerEvents: 'none',
         zIndex: 0,
       }}
-      className="no-theme-transition"
     >
       <svg
+        key={theme}
         width="100%"
         height="100%"
         viewBox="0 0 1440 900"

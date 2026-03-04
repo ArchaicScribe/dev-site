@@ -18,11 +18,19 @@ export function ThemeProvider({ children }) {
     // Apply theme to document on mount and change
     useEffect(() => {
         document.documentElement.dataset.theme = theme
+        // Also apply class-based theme for broader CSS selector compatibility
+        document.documentElement.classList.remove('theme-default', 'theme-gold')
+        document.documentElement.classList.add(`theme-${theme}`)
         localStorage.setItem(STORAGE_KEY, theme)
     }, [theme])
 
     const toggleTheme = useCallback(() => {
-        setTheme(current => current === 'default' ? 'gold' : 'default')
+        console.log('toggleTheme called')
+        setTheme(current => {
+            const newTheme = current === 'default' ? 'gold' : 'default'
+            console.log('Theme changing from', current, 'to', newTheme)
+            return newTheme
+        })
     }, [])
 
     return (
