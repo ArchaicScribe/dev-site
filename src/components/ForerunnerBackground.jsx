@@ -60,23 +60,23 @@ export function ForerunnerBackground({ theme = 'default' }) {
         <defs>
           {/* Background gradient — deep atmospheric dark */}
           <linearGradient id="bgAtmos" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor={isGold ? '#05060a' : '#060810'} stopOpacity="1" />
-            <stop offset="40%" stopColor={isGold ? '#06080c' : '#080c18'} stopOpacity="1" />
-            <stop offset="100%" stopColor={isGold ? '#04050a' : '#050810'} stopOpacity="1" />
+            <stop offset="0%" stopColor={isGold ? '#0a0804' : '#060810'} stopOpacity="1" />
+            <stop offset="40%" stopColor={isGold ? '#0c0906' : '#080c18'} stopOpacity="1" />
+            <stop offset="100%" stopColor={isGold ? '#080604' : '#050810'} stopOpacity="1" />
           </linearGradient>
 
           {/* Purple atmospheric haze (left side) */}
           <radialGradient id="hazeLeft" cx="15%" cy="30%" r="45%">
-            <stop offset="0%" stopColor={isGold ? '#1a1408' : '#1a0f2e'} stopOpacity="0.5" />
-            <stop offset="50%" stopColor={isGold ? '#0a0806' : '#0d0818'} stopOpacity="0.2" />
-            <stop offset="100%" stopColor={isGold ? '#05060a' : '#060810'} stopOpacity="0" />
+            <stop offset="0%" stopColor={isGold ? '#201808' : '#1a0f2e'} stopOpacity="0.5" />
+            <stop offset="50%" stopColor={isGold ? '#120e06' : '#0d0818'} stopOpacity="0.2" />
+            <stop offset="100%" stopColor={isGold ? '#0a0804' : '#060810'} stopOpacity="0" />
           </radialGradient>
 
           {/* Purple atmospheric haze (upper right) */}
           <radialGradient id="hazeRight" cx="85%" cy="15%" r="35%">
-            <stop offset="0%" stopColor={isGold ? '#12100a' : '#12082a'} stopOpacity="0.4" />
-            <stop offset="60%" stopColor={isGold ? '#080706' : '#0a0618'} stopOpacity="0.15" />
-            <stop offset="100%" stopColor={isGold ? '#05060a' : '#060810'} stopOpacity="0" />
+            <stop offset="0%" stopColor={isGold ? '#1a1408' : '#12082a'} stopOpacity="0.4" />
+            <stop offset="60%" stopColor={isGold ? '#100c06' : '#0a0618'} stopOpacity="0.15" />
+            <stop offset="100%" stopColor={isGold ? '#0a0804' : '#060810'} stopOpacity="0" />
           </radialGradient>
 
           {/* Vertical conduit glow gradient */}

@@ -84,16 +84,16 @@
   --accent-secondary: #7eb8c9;
   --accent-glow: rgba(201, 168, 76, 0.3);
   --accent-secondary-glow: rgba(126, 184, 201, 0.3);
-  --bg-primary: #07080f;
-  --bg-surface: rgba(8, 8, 18, 0.88);
+  --bg-primary: #0d0a04;
+  --bg-surface: rgba(13, 10, 4, 0.88);
   --border-color: rgba(201, 168, 76, 0.25);
   --text-primary: #ede8d8;
   --text-muted: rgba(237, 232, 216, 0.5);
 
   /* Legacy variables - remapped for gold */
-  --bg-secondary: #0a1520;
-  --bg-card: #0f1a28;
-  --bg-elevated: #121e2c;
+  --bg-secondary: #12100a;
+  --bg-card: #161208;
+  --bg-elevated: #1a150c;
   --accent-gold: #c9a84c;
   --text-secondary: #c8d8e0;
   --border-subtle: rgba(201, 168, 76, 0.12);
@@ -102,7 +102,7 @@
   --glow-active: 0 0 30px rgba(201, 168, 76, 0.25);
 
   /* UI Component colors - gold theme */
-  --ui-panel-bg: #0a1118;
+  --ui-panel-bg: #100d06;
   --ui-panel-border: rgba(201, 168, 76, 0.25);
   --ui-panel-border-light: rgba(201, 168, 76, 0.15);
   --ui-panel-border-hover: rgba(201, 168, 76, 0.4);
@@ -110,12 +110,12 @@
   --ui-highlight: #d4b85c;
   --ui-highlight-dim: rgba(201, 168, 76, 0.3);
   --ui-highlight-glow: rgba(201, 168, 76, 0.08);
-  --ui-input-bg: #080d14;
+  --ui-input-bg: #0a0804;
   --ui-input-border: rgba(201, 168, 76, 0.2);
   --ui-input-border-focus: rgba(201, 168, 76, 0.5);
   --ui-button-bg: #d4b85c;
   --ui-button-bg-hover: #e0c468;
-  --ui-button-text: #0a1118;
+  --ui-button-text: #0a0804;
 
   /* Status colors - gold theme */
   --status-online: #8cd090;

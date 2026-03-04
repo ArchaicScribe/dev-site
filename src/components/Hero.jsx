@@ -61,7 +61,7 @@ export function Hero() {
     display: 'inline-block',
     width: '2px',
     height: '1.2em',
-    backgroundColor: '#8ff0ff',
+    backgroundColor: 'var(--ui-highlight)',
     marginLeft: '4px',
     verticalAlign: 'text-bottom',
     animation: isTyping ? 'none' : 'cursor-blink 1s step-end infinite'
@@ -71,19 +71,19 @@ export function Hero() {
     <section className="hero" style={heroStyle} aria-label="Introduction">
       <div style={energyGlowStyle} />
       <motion.div style={{ textAlign: 'center', maxWidth: '900px', position: 'relative', zIndex: 1 }} variants={containerVariants} initial="hidden" animate="visible">
-        <motion.p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '0.85rem', color: '#5a7a8a', marginBottom: '1.5rem', letterSpacing: '0.2em', textTransform: 'uppercase' }} variants={itemVariants}>// SYSTEM.INIT</motion.p>
-        <motion.h1 style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(3rem, 10vw, 5.5rem)', fontWeight: 600, color: '#8ff0ff', letterSpacing: '0.08em', marginBottom: '1.5rem' }} variants={itemVariants}>ALEX RAUENZAHN</motion.h1>
-        <motion.div style={{ fontFamily: "'Exo 2', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', fontWeight: 300, color: '#a8d8e8', marginBottom: '2.5rem', minHeight: '2.5rem' }} variants={itemVariants}>
+        <motion.p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '0.85rem', color: 'var(--chat-muted)', marginBottom: '1.5rem', letterSpacing: '0.2em', textTransform: 'uppercase' }} variants={itemVariants}>// SYSTEM.INIT</motion.p>
+        <motion.h1 style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(3rem, 10vw, 5.5rem)', fontWeight: 600, color: 'var(--ui-highlight)', letterSpacing: '0.08em', marginBottom: '1.5rem' }} variants={itemVariants}>ALEX RAUENZAHN</motion.h1>
+        <motion.div style={{ fontFamily: "'Exo 2', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', fontWeight: 300, color: 'var(--text-secondary)', marginBottom: '2.5rem', minHeight: '2.5rem' }} variants={itemVariants}>
           <span style={{ display: 'inline-flex', alignItems: 'center' }}>
             {text}<span style={cursorStyle}></span>
           </span>
         </motion.div>
-        <motion.p style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '1rem', fontWeight: 300, color: '#5a7a8a', lineHeight: 1.8, marginBottom: '4rem', maxWidth: '600px', margin: '0 auto 4rem' }} variants={itemVariants}>
+        <motion.p style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '1rem', fontWeight: 300, color: 'var(--chat-muted)', lineHeight: 1.8, marginBottom: '4rem', maxWidth: '600px', margin: '0 auto 4rem' }} variants={itemVariants}>
           Building enterprise-grade systems and secure APIs that scale.<br />Open to remote or Seattle relocation · Direct hire only · Not considering on-site NM roles
         </motion.p>
         <motion.div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }} variants={itemVariants}>
-          <a href="#projects" className="btn btn-primary" onClick={(e) => handleScrollTo(e, 'projects')} style={{ minWidth: '180px', backgroundColor: '#8ff0ff', borderColor: '#8ff0ff', color: '#070d14' }}>VIEW PROJECTS</a>
-          <a href="#skills" className="btn btn-ghost" onClick={(e) => handleScrollTo(e, 'skills')} style={{ minWidth: '180px', color: '#8ff0ff', borderColor: '#8ff0ff' }}>READ MY STACK</a>
+          <a href="#projects" className="btn btn-primary" onClick={(e) => handleScrollTo(e, 'projects')} style={{ minWidth: '180px', backgroundColor: 'var(--ui-button-bg)', borderColor: 'var(--ui-button-bg)', color: 'var(--ui-button-text)' }}>VIEW PROJECTS</a>
+          <a href="#skills" className="btn btn-ghost" onClick={(e) => handleScrollTo(e, 'skills')} style={{ minWidth: '180px', color: 'var(--ui-highlight)', borderColor: 'var(--ui-highlight)' }}>READ MY STACK</a>
         </motion.div>
       </motion.div>
     </section>
