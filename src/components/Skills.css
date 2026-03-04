@@ -23,6 +23,12 @@
     cursor: pointer;
     transition: color 200ms ease, border-color 200ms ease, background-color 200ms ease;
     user-select: none;
+    /* Reset button defaults */
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    text-align: left;
+    line-height: 1.4;
 }
 
 .skill-item:hover {
@@ -41,20 +47,20 @@
     background-color: var(--ui-highlight-glow);
 }
 
-/* Skill Info Panel */
-.skill-info-panel {
-    margin-top: 2rem;
-    padding: 1.5rem 2rem;
+/* Floating Skill Tooltip */
+.skill-tooltip {
+    max-width: 280px;
+    padding: 0.875rem 1rem;
     background-color: var(--ui-panel-bg);
     border: 1px solid var(--ui-highlight);
-    border-left: 3px solid var(--ui-highlight);
-    animation: skillPanelFadeIn 300ms ease forwards;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px var(--ui-highlight-glow);
+    animation: tooltipFadeIn 200ms ease forwards;
 }
 
-@keyframes skillPanelFadeIn {
+@keyframes tooltipFadeIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(4px);
     }
 
     to {
@@ -63,44 +69,27 @@
     }
 }
 
-.skill-info-header {
+.skill-tooltip-header {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 0.85rem;
+    font-weight: 600;
     color: var(--ui-highlight);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    margin-bottom: 0.5rem;
 }
 
-.skill-info-close {
-    background: none;
-    border: none;
-    color: var(--chat-muted);
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-    cursor: pointer;
-    padding: 0.25rem 0.5rem;
-    transition: color 200ms ease;
-}
-
-.skill-info-close:hover {
-    color: var(--ui-highlight);
-}
-
-.skill-info-description {
+.skill-tooltip-description {
     font-family: 'Exo 2', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     font-weight: 300;
-    color: var(--text-secondary);
-    line-height: 1.7;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .skill-info-panel {
+    .skill-tooltip {
         animation: none;
     }
 

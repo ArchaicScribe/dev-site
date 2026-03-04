@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks'
 import { fadeUpVariants, staggerContainer, viewportConfig, transition } from '../constants/animationVariants'
@@ -10,7 +10,7 @@ const skillDescriptions = {
   'C#': 'Full-stack .NET development including ASP.NET Core APIs, Entity Framework, and Azure-integrated enterprise applications.',
   'SQL': 'Advanced query optimization, stored procedures, and database design across Oracle, SQL Server, and PostgreSQL environments.',
   'TypeScript': 'Strongly-typed JavaScript for scalable frontend applications, React components, and Node.js backend services.',
-  'Python': 'Scripting, automation, data processing, and rapid prototyping for DevOps tooling and API development.',
+  'Python': 'Used for scripting and task automation. Not a primary language — day-to-day development is primarily Java and C#.',
 
   // Frameworks
   'Spring Boot': 'Rapid development of production-ready microservices with auto-configuration, embedded servers, and cloud-native patterns.',
@@ -55,37 +55,135 @@ const skillCategories = [
   { title: 'Tools & Practices', skills: ['Git', 'GitHub Actions', 'Azure DevOps', 'CI/CD', 'Agile'] },
 ]
 
+const TOOLTIP_WIDTH = 280
+const TOOLTIP_HEIGHT_ESTIMATE = 120
+const TOOLTIP_GAP = 8
+
 export function Skills() {
   const prefersReducedMotion = useReducedMotion()
-  const [selectedSkill, setSelectedSkill] = useState(null)
-  const panelRef = useRef(null)
+  const [tooltip, setTooltip] = useState(null) // { skill }
+  const [tooltipPosition, setTooltipPosition] = useState(null) // { top, left }
+  const tooltipRef = useRef(null)
+  const selectedSkillRef = useRef(null) // Ref to the clicked skill element
 
-  // Close panel when clicking outside
+  const closeTooltip = useCallback(() => {
+    setTooltip(null)
+    setTooltipPosition(null)
+    selectedSkillRef.current = null
+  }, [])
+
+  // Calculate tooltip position based on skill element's current position
+  const calculateTooltipPosition = useCallback(() => {
+    if (!selectedSkillRef.current) return null
+
+    const rect = selectedSkillRef.current.getBoundingClientRect()
+    const card = selectedSkillRef.current.closest('.skills-category')
+    const cardRect = card ? card.getBoundingClientRect() : null
+
+    const viewportWidth = window.innerWidth
+    const viewportHeight = window.innerHeight
+
+    let top, left
+
+    // Default: position above the card (not just the skill tag) to avoid overlap
+    const aboveCardTop = cardRect ? cardRect.top - TOOLTIP_HEIGHT_ESTIMATE - TOOLTIP_GAP : rect.top - TOOLTIP_HEIGHT_ESTIMATE - TOOLTIP_GAP
+    const belowSkillBottom = rect.bottom + TOOLTIP_GAP
+
+    // Check if tooltip fits above the card
+    if (aboveCardTop >= 10) {
+      top = aboveCardTop
+    } else {
+      // Place below the skill tag if above doesn't fit
+      top = belowSkillBottom
+    }
+
+    // Horizontal positioning - center on the skill tag
+    left = rect.left + (rect.width / 2) - (TOOLTIP_WIDTH / 2)
+
+    // Keep within viewport horizontally
+    if (left < 10) {
+      left = 10
+    } else if (left + TOOLTIP_WIDTH > viewportWidth - 10) {
+      left = viewportWidth - TOOLTIP_WIDTH - 10
+    }
+
+    // Keep within viewport vertically
+    if (top + TOOLTIP_HEIGHT_ESTIMATE > viewportHeight - 10) {
+      top = viewportHeight - TOOLTIP_HEIGHT_ESTIMATE - 10
+    }
+
+    return { top, left }
+  }, [])
+
+  // Close on Escape or click outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (selectedSkill && panelRef.current && !panelRef.current.contains(event.target)) {
-        if (!event.target.classList.contains('skill-item')) {
-          setSelectedSkill(null)
-        }
+    if (!tooltip) return
+
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') closeTooltip()
+    }
+
+    const handleClickOutside = (e) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(e.target) && !e.target.classList.contains('skill-item')) {
+        closeTooltip()
       }
     }
 
-    const handleEscape = (event) => {
-      if (event.key === 'Escape') {
-        setSelectedSkill(null)
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
     document.addEventListener('keydown', handleEscape)
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
       document.removeEventListener('keydown', handleEscape)
+      document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [selectedSkill])
+  }, [tooltip, closeTooltip])
 
-  const handleSkillClick = (skill) => {
-    setSelectedSkill(selectedSkill === skill ? null : skill)
+  // Update tooltip position on scroll
+  useEffect(() => {
+    if (!tooltip) return
+
+    const handleScroll = () => {
+      const newPosition = calculateTooltipPosition()
+      if (newPosition) {
+        setTooltipPosition(newPosition)
+      }
+    }
+
+    // Use passive listener for better scroll performance
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [tooltip, calculateTooltipPosition])
+
+  const handleSkillClick = (e, skill) => {
+    e.stopPropagation()
+    e.preventDefault()
+
+    // Toggle off if clicking the same skill
+    if (tooltip?.skill === skill) {
+      closeTooltip()
+      return
+    }
+
+    // Store ref to clicked element
+    selectedSkillRef.current = e.currentTarget
+
+    // Calculate initial position
+    const position = calculateTooltipPosition()
+    setTooltip({ skill })
+    setTooltipPosition(position)
+  }
+
+  // Get tooltip style from position state
+  const getTooltipStyle = () => {
+    if (!tooltipPosition) return { visibility: 'hidden' }
+
+    return {
+      position: 'fixed',
+      top: `${tooltipPosition.top}px`,
+      left: `${tooltipPosition.left}px`,
+      zIndex: 9999,
+    }
   }
 
   const categoryStyle = { backgroundColor: 'var(--ui-panel-bg)', border: '1px solid var(--ui-input-border)', padding: '2rem', transition: 'border-color 200ms ease' }
@@ -104,47 +202,41 @@ export function Skills() {
               <h3 style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.85rem', fontWeight: 500, color: 'var(--accent-gold)', marginBottom: '1.25rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{category.title}</h3>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                 {category.skills.map((skill) => (
-                  <span
+                  <button
                     key={skill}
-                    className={`skill-item ${selectedSkill === skill ? 'selected' : ''}`}
-                    onClick={() => handleSkillClick(skill)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleSkillClick(skill)}
-                    tabIndex={0}
-                    role="button"
-                    aria-pressed={selectedSkill === skill}
+                    type="button"
+                    className={`skill-item ${tooltip?.skill === skill ? 'selected' : ''}`}
+                    onClick={(e) => handleSkillClick(e, skill)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSkillClick(e, skill)}
+                    aria-pressed={tooltip?.skill === skill}
+                    aria-describedby={tooltip?.skill === skill ? 'skill-tooltip' : undefined}
                   >
                     {skill}
-                  </span>
+                  </button>
                 ))}
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {selectedSkill && skillDescriptions[selectedSkill] && (
-          <div ref={panelRef} style={{ marginTop: '2rem' }}>
-            <div className="skill-info-panel">
-              <div className="skill-info-header">
-                <span>{selectedSkill}</span>
-                <button
-                  className="skill-info-close"
-                  onClick={() => setSelectedSkill(null)}
-                  aria-label="Close skill description"
-                >
-                  [ESC]
-                </button>
-              </div>
-              <p className="skill-info-description">
-                {skillDescriptions[selectedSkill]}
-              </p>
-            </div>
-          </div>
-        )}
-
         <motion.div style={{ marginTop: '4rem', padding: '1rem 1.5rem', fontSize: '0.85rem', fontFamily: "'Share Tech Mono', monospace", color: 'var(--text-muted)', borderLeft: '2px solid var(--ui-highlight-dim)' }} variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={viewportConfig} transition={prefersReducedMotion ? { duration: 0 } : { ...transition, delay: 0.5 }}>
           <span style={{ color: 'var(--accent-gold)', marginRight: '0.5rem' }}>*</span>Always learning. Currently exploring: Advanced Spring patterns, cloud-native architectures, and distributed systems.
         </motion.div>
       </div>
+
+      {/* Floating Tooltip */}
+      {tooltip && skillDescriptions[tooltip.skill] && (
+        <div
+          ref={tooltipRef}
+          id="skill-tooltip"
+          className="skill-tooltip"
+          style={getTooltipStyle()}
+          role="tooltip"
+        >
+          <div className="skill-tooltip-header">{tooltip.skill}</div>
+          <p className="skill-tooltip-description">{skillDescriptions[tooltip.skill]}</p>
+        </div>
+      )}
     </section>
   )
 }
