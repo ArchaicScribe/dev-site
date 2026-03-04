@@ -20,7 +20,7 @@ KEY PROJECTS:
 4. Dual-Auth REST API: Two Spring Security filter chains (OAuth2/JWT + LDAP/LDAPS), shared authorization. Zero security exceptions in enterprise review.
 5. Azure DevOps CI/CD: Two .NET pipeline tracks, Dev/Staging/Prod, test gates. Resolved Microsoft platform bug with their engineering team.
 
-PREFERENCES: Remote or Seattle relocation, direct hire only, not considering on-site NM.
+PREFERENCES: Washington state, Massachusetts, or remote, direct hire only, not considering on-site NM.
 
 Respond ONLY with valid JSON in this exact format:
 {

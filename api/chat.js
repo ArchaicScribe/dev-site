@@ -14,7 +14,7 @@ ALEX'S BACKGROUND:
 - Federal background: worked on CATS (Clearance Action Tracking System) for Chenega Corporation. C#/.NET, Blazor, SQL Server. Holds Q-level security clearance (DoE equivalent of Top Secret)
 - CI/CD: Built greenfield Azure DevOps pipelines for two .NET applications from scratch
 - Full-stack: Building payment card default management feature end-to-end including UI, new REST endpoint, and downstream payment processor integration
-- Open to: remote or Seattle relocation, direct hire only, not considering on-site NM
+- Open to: Washington state, Massachusetts, or remote, direct hire only, not considering on-site NM
 
 KEY PROJECTS:
 1. Payment Card Default Management (WIP): Full-stack feature at Fortune 50 retail client. Java 8, Spring Boot, CSS. New PUT endpoint, optimistic UI updates, async DB persistence via credit card processor.
