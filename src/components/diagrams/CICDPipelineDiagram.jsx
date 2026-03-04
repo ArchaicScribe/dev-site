@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { C, DiagramArrowDefs } from './diagramConstants'
 
 export default function CICDPipelineDiagram() {
     const [showDetail, setShowDetail] = useState(false)
+    const detailsRef = useRef(null)
 
     return (
         <div>
@@ -735,7 +736,17 @@ export default function CICDPipelineDiagram() {
 
             {/* Toggle Button */}
             <button
-                onClick={() => setShowDetail(prev => !prev)}
+                onClick={() => {
+                    setShowDetail(prev => {
+                        if (!prev) {
+                            // Expanding - scroll to details after render
+                            setTimeout(() => {
+                                detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                            }, 100)
+                        }
+                        return !prev
+                    })
+                }}
                 style={{
                     fontFamily: "'Share Tech Mono', monospace",
                     fontSize: '0.82rem',
@@ -758,13 +769,16 @@ export default function CICDPipelineDiagram() {
 
             {/* Technical Detail Panel */}
             {showDetail && (
-                <div style={{
-                    borderTop: '1px solid rgba(143, 240, 255, 0.08)',
-                    paddingTop: '1.5rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '1.5rem',
-                }}>
+                <div
+                    ref={detailsRef}
+                    style={{
+                        borderTop: '1px solid rgba(143, 240, 255, 0.08)',
+                        paddingTop: '1.5rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1.5rem',
+                    }}
+                >
                     {/* SECTION 1 — ENGAGEMENT CONTEXT */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         <div style={{
