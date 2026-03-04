@@ -39,7 +39,7 @@ export function Contact() {
           <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, var(--ui-highlight-dim), transparent)' }}></div>
         </motion.div>
         <motion.p style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 2rem)', fontWeight: 500, color: 'var(--text-secondary)', marginBottom: '1rem', letterSpacing: '0.05em' }} variants={fadeUpVariants}>Let's build something.</motion.p>
-        <motion.p style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '1rem', fontWeight: 300, color: 'var(--text-muted)', marginBottom: '4rem', lineHeight: 1.8 }} variants={fadeUpVariants}>Always interested in discussing distributed systems, performance optimization, or new opportunities. Drop me a line.</motion.p>
+        <motion.p style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '1rem', fontWeight: 300, color: 'var(--text-muted)', marginBottom: '4rem', lineHeight: 1.8 }} variants={fadeUpVariants}>Open to discussing distributed systems, performance optimization, and new opportunities.</motion.p>
         <motion.div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '3rem' }} variants={fadeUpVariants}>
           {socialLinks.map((link) => <a key={link.name} href={link.href} target={link.href.startsWith('mailto') ? undefined : '_blank'} rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'} style={socialStyle} aria-label={link.name} title={link.tooltip}><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" dangerouslySetInnerHTML={{ __html: link.icon }}></svg></a>)}
         </motion.div>
