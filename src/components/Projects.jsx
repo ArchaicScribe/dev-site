@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks'
+import { useModal } from '../context/ModalContext'
 import ProjectCard from './ProjectCard'
 import CaseStudyModal from './CaseStudyModal'
 import { projects } from '../data/projects'
@@ -8,9 +9,16 @@ import { fadeUpVariants, staggerContainer, viewportConfig, transition } from '..
 
 export function Projects() {
   const prefersReducedMotion = useReducedMotion()
+  const { registerModalClose } = useModal()
   const [activeProject, setActiveProject] = useState(null)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const sectionStyle = { padding: '8rem 2rem', backgroundColor: 'var(--ui-input-bg)', position: 'relative' }
+
+  // Register CaseStudyModal close callback with modal context
+  useEffect(() => {
+    const unregister = registerModalClose(() => setActiveProject(null))
+    return unregister
+  }, [registerModalClose])
 
   const navigateToProject = (projectTitle) => {
     setIsTransitioning(true)

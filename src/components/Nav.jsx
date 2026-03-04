@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '../hooks'
+import { useModal } from '../context/ModalContext'
 
 const navLinks = [
   { href: '#about', label: 'ABOUT' },
@@ -15,6 +16,7 @@ export function Nav({ onTerminalOpen }) {
   const [activeSection, setActiveSection] = useState('')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const prefersReducedMotion = useReducedMotion()
+  const { closeAllModals } = useModal()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,10 +91,16 @@ export function Nav({ onTerminalOpen }) {
     setIsMobileMenuOpen(false)
   }
 
+  const handleLogoClick = (e) => {
+    e.preventDefault()
+    closeAllModals()
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' })
+  }
+
   return (
     <motion.nav style={navStyle} initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}>
       <div style={containerStyle}>
-        <a href="#" style={logoStyle}>RAUENZAHN</a>
+        <a href="#" style={logoStyle} onClick={handleLogoClick}>RAUENZAHN</a>
         <ul style={linkListStyle}>
           {navLinks.map((link) => (
             <li key={link.href}>
