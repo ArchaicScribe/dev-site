@@ -98,6 +98,60 @@ button {
   background: none;
 }
 
+/* ============================================
+   TEXT CURSOR & SELECTION RULES
+   Disable text selection cursor on non-interactive text
+   ============================================ */
+
+/* Default: disable I-beam cursor and text selection on static display text */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+span:not(.copyable),
+.section-title,
+.card-title,
+.skill-category-title,
+.stat-label,
+.nav-brand,
+.hero-title,
+.hero-subtitle {
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Ensure clickable elements retain pointer cursor */
+a,
+button,
+[role="button"],
+.skill-item,
+.project-card,
+.nav-link,
+.social-icon,
+.clickable {
+  cursor: pointer;
+}
+
+/* Allow text selection on content users may want to copy */
+.copyable,
+input,
+textarea,
+code,
+pre,
+.terminal-input,
+.email-address,
+.contact-email,
+[contenteditable="true"] {
+  cursor: text;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;

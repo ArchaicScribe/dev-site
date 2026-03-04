@@ -64,55 +64,10 @@ export function Skills() {
   const [tooltip, setTooltip] = useState(null) // { skill }
   const [tooltipPosition, setTooltipPosition] = useState(null) // { top, left }
   const tooltipRef = useRef(null)
-  const selectedSkillRef = useRef(null) // Ref to the clicked skill element
 
   const closeTooltip = useCallback(() => {
     setTooltip(null)
     setTooltipPosition(null)
-    selectedSkillRef.current = null
-  }, [])
-
-  // Calculate tooltip position based on skill element's current position
-  const calculateTooltipPosition = useCallback(() => {
-    if (!selectedSkillRef.current) return null
-
-    const rect = selectedSkillRef.current.getBoundingClientRect()
-    const card = selectedSkillRef.current.closest('.skills-category')
-    const cardRect = card ? card.getBoundingClientRect() : null
-
-    const viewportWidth = window.innerWidth
-    const viewportHeight = window.innerHeight
-
-    let top, left
-
-    // Default: position above the card (not just the skill tag) to avoid overlap
-    const aboveCardTop = cardRect ? cardRect.top - TOOLTIP_HEIGHT_ESTIMATE - TOOLTIP_GAP : rect.top - TOOLTIP_HEIGHT_ESTIMATE - TOOLTIP_GAP
-    const belowSkillBottom = rect.bottom + TOOLTIP_GAP
-
-    // Check if tooltip fits above the card
-    if (aboveCardTop >= 10) {
-      top = aboveCardTop
-    } else {
-      // Place below the skill tag if above doesn't fit
-      top = belowSkillBottom
-    }
-
-    // Horizontal positioning - center on the skill tag
-    left = rect.left + (rect.width / 2) - (TOOLTIP_WIDTH / 2)
-
-    // Keep within viewport horizontally
-    if (left < 10) {
-      left = 10
-    } else if (left + TOOLTIP_WIDTH > viewportWidth - 10) {
-      left = viewportWidth - TOOLTIP_WIDTH - 10
-    }
-
-    // Keep within viewport vertically
-    if (top + TOOLTIP_HEIGHT_ESTIMATE > viewportHeight - 10) {
-      top = viewportHeight - TOOLTIP_HEIGHT_ESTIMATE - 10
-    }
-
-    return { top, left }
   }, [])
 
   // Close on Escape or click outside
@@ -137,23 +92,15 @@ export function Skills() {
     }
   }, [tooltip, closeTooltip])
 
-  // Update tooltip position on scroll
+  // Dismiss tooltip on scroll
   useEffect(() => {
     if (!tooltip) return
 
-    const handleScroll = () => {
-      const newPosition = calculateTooltipPosition()
-      if (newPosition) {
-        setTooltipPosition(newPosition)
-      }
-    }
-
-    // Use passive listener for better scroll performance
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', closeTooltip, { passive: true })
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', closeTooltip)
     }
-  }, [tooltip, calculateTooltipPosition])
+  }, [tooltip, closeTooltip])
 
   const handleSkillClick = (e, skill) => {
     e.stopPropagation()
@@ -165,13 +112,42 @@ export function Skills() {
       return
     }
 
-    // Store ref to clicked element
-    selectedSkillRef.current = e.currentTarget
+    // Calculate position from clicked element
+    const rect = e.currentTarget.getBoundingClientRect()
+    const card = e.currentTarget.closest('.skills-category')
+    const cardRect = card ? card.getBoundingClientRect() : null
 
-    // Calculate initial position
-    const position = calculateTooltipPosition()
+    const viewportWidth = window.innerWidth
+    const viewportHeight = window.innerHeight
+
+    let top, left
+
+    // Default: position above the card to avoid overlap
+    const aboveCardTop = cardRect ? cardRect.top - TOOLTIP_HEIGHT_ESTIMATE - TOOLTIP_GAP : rect.top - TOOLTIP_HEIGHT_ESTIMATE - TOOLTIP_GAP
+    const belowSkillBottom = rect.bottom + TOOLTIP_GAP
+
+    if (aboveCardTop >= 10) {
+      top = aboveCardTop
+    } else {
+      top = belowSkillBottom
+    }
+
+    // Horizontal positioning - center on the skill tag
+    left = rect.left + (rect.width / 2) - (TOOLTIP_WIDTH / 2)
+
+    // Keep within viewport
+    if (left < 10) {
+      left = 10
+    } else if (left + TOOLTIP_WIDTH > viewportWidth - 10) {
+      left = viewportWidth - TOOLTIP_WIDTH - 10
+    }
+
+    if (top + TOOLTIP_HEIGHT_ESTIMATE > viewportHeight - 10) {
+      top = viewportHeight - TOOLTIP_HEIGHT_ESTIMATE - 10
+    }
+
     setTooltip({ skill })
-    setTooltipPosition(position)
+    setTooltipPosition({ top, left })
   }
 
   // Get tooltip style from position state
