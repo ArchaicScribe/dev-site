@@ -32,8 +32,8 @@ export function TerminalCard() {
         <span style={{ color: 'var(--accent-gold)', fontSize: '0.7rem', letterSpacing: '0.1em' }}>ACTIVE</span>
       </div>
       <div style={{ padding: '1.5rem' }}>
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-          <pre style={{ color: 'var(--accent-secondary)', fontSize: '0.55rem', lineHeight: 1.3, margin: 0, flexShrink: 0, opacity: 0.6 }} aria-hidden="true">{`  ╔═══════════╗
+        <div className="terminal-card-content" style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+          <pre className="terminal-card-ascii" style={{ color: 'var(--accent-secondary)', fontSize: '0.55rem', lineHeight: 1.3, margin: 0, flexShrink: 0, opacity: 0.6 }} aria-hidden="true">{`  ╔═══════════╗
   ║           ║
   ║   ◈   ◈   ║
   ║     ◇     ║
@@ -44,7 +44,7 @@ export function TerminalCard() {
             {systemInfo.map((item, index) => (
               <motion.div key={item.label} style={{ display: 'flex', marginBottom: '0.5rem', flexWrap: 'wrap' }}
                 custom={index} variants={lineVariants} initial="hidden" whileInView="visible" viewport={viewportConfig}>
-                <span style={{ color: 'var(--accent-secondary)', fontWeight: 500, minWidth: '90px' }}>{item.label}</span>
+                <span className="terminal-card-label" style={{ color: 'var(--accent-secondary)', fontWeight: 500, minWidth: '90px' }}>{item.label}</span>
                 <span style={{ color: 'var(--chat-muted)', marginRight: '0.75em' }}>→</span>
                 <span style={{ color: 'var(--text-secondary)' }}>{item.value}</span>
               </motion.div>

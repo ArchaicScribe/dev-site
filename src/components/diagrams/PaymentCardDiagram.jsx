@@ -533,6 +533,7 @@ export default function PaymentCardDiagram() {
             {showDetail && (
                 <div
                     ref={detailsRef}
+                    className="tech-details-panel"
                     style={{
                         borderTop: '1px solid rgba(143, 240, 255, 0.08)',
                         paddingTop: '1.5rem',

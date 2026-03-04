@@ -172,7 +172,7 @@ export function Skills() {
           <h2 id="skills-heading" style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', fontWeight: 500, color: 'var(--accent-secondary)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>SKILLS</h2>
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, var(--ui-highlight-dim), transparent)' }}></div>
         </motion.div>
-        <motion.div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }} variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportConfig}>
+        <motion.div className="skills-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }} variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportConfig}>
           {skillCategories.map((category) => (
             <motion.div key={category.title} className="skills-category" style={categoryStyle} variants={fadeUpVariants}>
               <h3 style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.85rem', fontWeight: 500, color: 'var(--accent-gold)', marginBottom: '1.25rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{category.title}</h3>

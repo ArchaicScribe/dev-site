@@ -50,7 +50,8 @@ export function Projects() {
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, var(--ui-highlight-dim), transparent)' }}></div>
         </motion.div>
         <motion.div
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}
+          className="projects-grid"
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}
           role="list"
           variants={staggerContainer}
           initial="hidden"

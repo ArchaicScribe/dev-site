@@ -75,6 +75,8 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
+        flexWrap: 'wrap',
+        gap: '1rem',
     }
 
     const tagStyle = {
@@ -109,10 +111,10 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
     }
 
     return (
-        <div style={overlayStyle} onClick={onClose}>
-            <div ref={panelRef} style={panelStyle} onClick={(e) => e.stopPropagation()}>
+        <div className="case-study-overlay" style={overlayStyle} onClick={onClose}>
+            <div ref={panelRef} className="case-study-panel" style={panelStyle} onClick={(e) => e.stopPropagation()}>
                 {/* Header */}
-                <div style={headerStyle}>
+                <div className="case-study-header" style={headerStyle}>
                     <div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.75rem' }}>
                             <h3 style={{
@@ -164,7 +166,7 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
 
                 {/* Navigation Bar */}
                 {(prevProject || nextProject) && (
-                    <div style={{
+                    <div className="case-study-nav" style={{
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
@@ -242,7 +244,7 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
                 )}
 
                 {/* Body */}
-                <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                <div className="case-study-body" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                     {/* PROBLEM */}
                     <div style={sectionStyle}>
                         <div style={{ width: '2px', backgroundColor: 'var(--ui-highlight)', flexShrink: 0 }}></div>

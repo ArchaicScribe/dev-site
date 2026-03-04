@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '../hooks'
 import { useModal } from '../context/ModalContext'
+import './Nav.css'
 
 const navLinks = [
   { href: '#about', label: 'ABOUT' },
@@ -34,6 +35,29 @@ export function Nav({ onTerminalOpen }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Close mobile menu on Escape
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+    document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [isMobileMenuOpen])
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMobileMenuOpen])
+
   const handleNavClick = (e, href) => {
     e.preventDefault()
     const element = document.querySelector(href)
@@ -61,8 +85,6 @@ export function Nav({ onTerminalOpen }) {
     fontFamily: "'Orbitron', sans-serif", fontSize: '1.25rem', fontWeight: 600,
     color: 'var(--accent-primary)', textDecoration: 'none', letterSpacing: '0.15em'
   }
-
-  const linkListStyle = { display: 'flex', gap: '2.5rem', listStyle: 'none' }
 
   const linkStyle = (isActive) => ({
     fontFamily: "'Exo 2', sans-serif", fontSize: '0.85rem', fontWeight: 500,
@@ -98,13 +120,67 @@ export function Nav({ onTerminalOpen }) {
   }
 
   return (
-    <motion.nav style={navStyle} initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}>
-      <div style={containerStyle}>
-        <a href="#" style={logoStyle} onClick={handleLogoClick}>RAUENZAHN</a>
-        <ul style={linkListStyle}>
+    <>
+      <motion.nav style={navStyle} initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}>
+        <div style={containerStyle}>
+          <a href="#" style={logoStyle} onClick={handleLogoClick}>RAUENZAHN</a>
+
+          {/* Desktop Navigation */}
+          <ul className="nav-links-desktop">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} style={linkStyle(activeSection === link.href.slice(1))} onClick={(e) => handleNavClick(e, link.href)}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a
+                href="#"
+                style={terminalLinkStyle}
+                onClick={handleTerminalClick}
+                onMouseEnter={(e) => e.target.style.color = 'var(--accent-secondary)'}
+                onMouseLeave={(e) => e.target.style.color = 'var(--ui-highlight-dim)'}
+              >
+                TERMINAL
+              </a>
+            </li>
+          </ul>
+
+          {/* Hamburger Button (Mobile) */}
+          <button
+            className="hamburger-btn"
+            onClick={() => setIsMobileMenuOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`mobile-menu-overlay ${isMobileMenuOpen ? 'open' : ''}`}
+        aria-hidden={!isMobileMenuOpen}
+      >
+        <button
+          className="mobile-menu-close"
+          onClick={() => setIsMobileMenuOpen(false)}
+          aria-label="Close menu"
+        >
+          ✕
+        </button>
+        <ul className="mobile-menu-nav">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a href={link.href} style={linkStyle(activeSection === link.href.slice(1))} onClick={(e) => handleNavClick(e, link.href)}>
+              <a
+                href={link.href}
+                className={activeSection === link.href.slice(1) ? 'active' : ''}
+                onClick={(e) => handleNavClick(e, link.href)}
+              >
                 {link.label}
               </a>
             </li>
@@ -112,17 +188,15 @@ export function Nav({ onTerminalOpen }) {
           <li>
             <a
               href="#"
-              style={terminalLinkStyle}
+              className="terminal-link"
               onClick={handleTerminalClick}
-              onMouseEnter={(e) => e.target.style.color = 'var(--accent-secondary)'}
-              onMouseLeave={(e) => e.target.style.color = 'var(--ui-highlight-dim)'}
             >
               TERMINAL
             </a>
           </li>
         </ul>
       </div>
-    </motion.nav>
+    </>
   )
 }
 export default Nav

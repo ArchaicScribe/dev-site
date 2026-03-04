@@ -1,0 +1,150 @@
+/* Nav Mobile Styles */
+
+/* Hamburger button - hidden on desktop */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 8px;
+    transition: border-color 200ms ease;
+}
+
+.hamburger-btn:hover,
+.hamburger-btn:focus-visible {
+    border-color: var(--ui-highlight);
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--ui-highlight);
+    transition: transform 200ms ease, opacity 200ms ease;
+}
+
+/* Desktop nav links */
+.nav-links-desktop {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+/* Mobile menu overlay - hidden by default */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(7, 13, 20, 0.97);
+    z-index: 400;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 200ms ease, visibility 200ms ease;
+}
+
+.mobile-menu-overlay.open {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: 1px solid var(--ui-highlight-dim);
+    color: var(--ui-highlight);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 200ms ease, color 200ms ease;
+}
+
+.mobile-menu-close:hover,
+.mobile-menu-close:focus-visible {
+    border-color: var(--ui-highlight);
+    color: var(--accent-primary);
+}
+
+.mobile-menu-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu-nav a {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    padding: 0.75rem 1.5rem;
+    transition: color 200ms ease;
+}
+
+.mobile-menu-nav a:hover,
+.mobile-menu-nav a:focus-visible {
+    color: var(--accent-primary);
+}
+
+.mobile-menu-nav a.active {
+    color: var(--accent-primary);
+}
+
+/* Terminal link in mobile menu */
+.mobile-menu-nav .terminal-link {
+    font-size: 1rem;
+    color: var(--ui-highlight-dim);
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ui-highlight-dim);
+}
+
+.mobile-menu-nav .terminal-link:hover {
+    color: var(--accent-secondary);
+}
+
+/* Mobile breakpoint */
+@media (max-width: 767px) {
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .nav-links-desktop {
+        display: none;
+    }
+
+    .mobile-menu-overlay {
+        display: flex;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .mobile-menu-overlay.open {
+        opacity: 1;
+        visibility: visible;
+    }
+}

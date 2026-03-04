@@ -335,6 +335,24 @@
     height: 18px;
 }
 
+@media (max-width: 767px) {
+    .resume-analyzer-section {
+        padding: 4rem 1rem;
+    }
+
+    .resume-analyzer-input-section {
+        padding: 1.25rem;
+    }
+
+    .resume-analyzer-summary {
+        padding: 1rem 1.25rem;
+    }
+
+    .resume-analyzer-section {
+        padding: 1rem 1.25rem;
+    }
+}
+
 @media (max-width: 640px) {
     .resume-analyzer-sections {
         grid-template-columns: 1fr;
