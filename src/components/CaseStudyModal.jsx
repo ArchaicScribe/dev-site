@@ -31,42 +31,43 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
         return () => document.removeEventListener('keydown', handleKeyDown)
     }, [onClose, onNavigate, prevProject, nextProject])
 
-    // Scroll lock
-    useEffect(() => {
-        const originalOverflow = document.body.style.overflow
-        document.body.style.overflow = 'hidden'
-        return () => {
-            document.body.style.overflow = originalOverflow
-        }
-    }, [])
 
     const overlayStyle = {
         position: 'fixed',
         top: 0,
         left: 0,
-        width: '100vw',
-        height: '100vh',
+        width: '100%',
+        height: '100%',
         background: 'rgba(4, 9, 16, 0.92)',
         zIndex: 1000,
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center',
-        padding: '2rem',
+        padding: '1rem',
         backdropFilter: 'blur(4px)',
+        overflow: 'hidden',
+        touchAction: 'pan-y',
+        overscrollBehavior: 'contain',
+        WebkitOverflowScrolling: 'touch',
     }
 
     const panelStyle = {
+        touchAction: 'pan-y',
         background: 'var(--ui-panel-bg)',
         border: '1px solid var(--ui-panel-border)',
         width: '100%',
         maxWidth: '1000px',
-        maxHeight: '85vh',
+        maxHeight: 'calc(100vh - 2rem)',
+        paddingTop: '4rem',
+        minHeight: 0,
         overflowY: 'auto',
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         opacity: isTransitioning ? 0 : 1,
         transition: 'opacity 250ms ease',
+        overscrollBehavior: 'contain',
+        WebkitOverflowScrolling: 'touch',
     }
 
     const headerStyle = {
@@ -288,7 +289,15 @@ export function CaseStudyModal({ project, onClose, onNavigate, isTransitioning, 
                             }}>
                                 ARCHITECTURE
                             </div>
-                            {diagram ? cloneElement(diagram, { onNavigate }) : null}
+                            <div style={{
+                                width: '100%',
+                                overflowX: 'auto',
+                                overscrollBehavior: 'contain',
+                                touchAction: 'pan-y',
+                                flexShrink: 0
+                            }}>
+                                {diagram ? cloneElement(diagram, { onNavigate }) : null}
+                            </div>
                         </div>
                     )}
                 </div>

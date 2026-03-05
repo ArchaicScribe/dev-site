@@ -1,5 +1,6 @@
+
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks'
 import { useModal } from '../context/ModalContext'
 import './Nav.css'
@@ -35,7 +36,6 @@ export function Nav({ onTerminalOpen }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close mobile menu on Escape
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape' && isMobileMenuOpen) {
@@ -46,27 +46,7 @@ export function Nav({ onTerminalOpen }) {
     return () => document.removeEventListener('keydown', handleEscape)
   }, [isMobileMenuOpen])
 
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isMobileMenuOpen])
-
-  const handleNavClick = (e, href) => {
-    e.preventDefault()
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })
-      setIsMobileMenuOpen(false)
-    }
-  }
-
+  // Style objects
   const navStyle = {
     position: 'fixed', top: 0, left: 0, right: 0, zIndex: 300,
     padding: '1rem 0',
@@ -107,6 +87,16 @@ export function Nav({ onTerminalOpen }) {
     cursor: 'pointer'
   }
 
+  // Handlers
+  const handleNavClick = (e, href) => {
+    e.preventDefault()
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })
+      setIsMobileMenuOpen(false)
+    }
+  }
+
   const handleTerminalClick = (e) => {
     e.preventDefault()
     onTerminalOpen?.()
@@ -117,6 +107,7 @@ export function Nav({ onTerminalOpen }) {
     e.preventDefault()
     closeAllModals()
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' })
+    setIsMobileMenuOpen(false)
   }
 
   return (
@@ -149,9 +140,9 @@ export function Nav({ onTerminalOpen }) {
 
           {/* Hamburger Button (Mobile) */}
           <button
-            className="hamburger-btn"
-            onClick={() => setIsMobileMenuOpen(true)}
-            aria-label="Open menu"
+            className={`hamburger-btn ${isMobileMenuOpen ? 'open' : ''}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}
           >
             <span></span>
@@ -162,40 +153,37 @@ export function Nav({ onTerminalOpen }) {
       </motion.nav>
 
       {/* Mobile Menu Overlay */}
-      <div
-        className={`mobile-menu-overlay ${isMobileMenuOpen ? 'open' : ''}`}
-        aria-hidden={!isMobileMenuOpen}
-      >
-        <button
-          className="mobile-menu-close"
-          onClick={() => setIsMobileMenuOpen(false)}
-          aria-label="Close menu"
+      {isMobileMenuOpen && (
+        <div
+          className="mobile-menu-overlay open"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
         >
-          ✕
-        </button>
-        <ul className="mobile-menu-nav">
-          {navLinks.map((link) => (
-            <li key={link.href}>
+          <ul className="mobile-menu-nav">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className={activeSection === link.href.slice(1) ? 'active' : ''}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+            <li>
               <a
-                href={link.href}
-                className={activeSection === link.href.slice(1) ? 'active' : ''}
-                onClick={(e) => handleNavClick(e, link.href)}
+                href="#"
+                className="terminal-link"
+                onClick={handleTerminalClick}
               >
-                {link.label}
+                TERMINAL
               </a>
             </li>
-          ))}
-          <li>
-            <a
-              href="#"
-              className="terminal-link"
-              onClick={handleTerminalClick}
-            >
-              TERMINAL
-            </a>
-          </li>
-        </ul>
-      </div>
+          </ul>
+        </div>
+      )}
     </>
   )
 }
