@@ -779,10 +779,10 @@ export default function PaymentCardDiagram() {
                             gap: '0.75rem',
                         }}>
                             <p style={{ margin: 0 }}>
-                                The optimistic update pattern was chosen deliberately for an internal associate tool where the payment processor round trip introduces latency that would degrade the associate experience. Associates are performing this action while a customer is present — perceived responsiveness directly affects customer service quality.
+                                The optimistic update pattern was chosen deliberately for an internal associate tool where the payment processor round trip introduces latency that would degrade the associate experience. Associates are performing this action while a customer is present, and perceived responsiveness directly affects customer service quality.
                             </p>
                             <p style={{ margin: 0 }}>
-                                The two distinct modal flows — one for changing an existing default, one for the no-card-on-file state — exist because these are fundamentally different situations that require different associate responses. Collapsing them into a single generic error state would obscure the distinction and increase associate error rates.
+                                The two distinct modal flows (one for changing an existing default, one for the no-card-on-file state) exist because these are fundamentally different situations that require different associate responses. Collapsing them into a single generic error state would obscure the distinction and increase associate error rates.
                             </p>
                             <p style={{ margin: 0 }}>
                                 A new endpoint was authored in the Payment Wrapper Service rather than calling the credit card processor directly from the UI layer. This maintains the architectural boundary between the front-end and payment infrastructure, ensures auth and logging are applied consistently, and keeps the downstream integration testable in isolation.
