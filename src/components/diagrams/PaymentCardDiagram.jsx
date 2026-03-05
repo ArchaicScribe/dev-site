@@ -10,7 +10,8 @@ export default function PaymentCardDiagram() {
             <svg
                 viewBox="0 0 960 360"
                 width="100%"
-                style={{ display: 'block', minWidth: '700px' }}
+                preserveAspectRatio="xMidYMid meet"
+                style={{ display: 'block', width: '100%' }}
             >
                 <DiagramArrowDefs />
 

@@ -133,8 +133,8 @@ export default function DualAuthDiagram() {
         ref={ref}
         viewBox="0 0 600 520"
         width="100%"
-        height="auto"
-        style={{ display: 'block' }}
+        preserveAspectRatio="xMidYMid meet"
+        style={{ display: 'block', width: '100%' }}
       >
         <defs>
           <marker
