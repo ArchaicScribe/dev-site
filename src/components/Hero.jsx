@@ -13,14 +13,27 @@ const roles = [
 export function Hero() {
   const { text, isTyping } = useTypewriter(roles, 80, 40, 2500)
   const prefersReducedMotion = useReducedMotion()
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: prefersReducedMotion ? 0 : 0.2, delayChildren: prefersReducedMotion ? 0 : 0.3 } }
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: prefersReducedMotion || isMobile ? 0 : 0.2,
+        delayChildren: prefersReducedMotion || isMobile ? 0 : 0.3
+      }
+    }
   }
   const itemVariants = {
     hidden: fadeUpVariants.hidden,
-    visible: { ...fadeUpVariants.visible, transition: { ...transition, duration: prefersReducedMotion ? 0 : transition.duration } }
+    visible: {
+      ...fadeUpVariants.visible,
+      transition: {
+        ...transition,
+        duration: prefersReducedMotion || isMobile ? 0 : transition.duration
+      }
+    }
   }
 
   const handleScrollTo = (e, id) => {
