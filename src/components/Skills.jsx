@@ -14,15 +14,11 @@ const skillDescriptions = {
 
   // Frameworks
   'Spring Boot': 'Rapid development of production-ready microservices with auto-configuration, embedded servers, and cloud-native patterns.',
-  'Spring Security': 'Comprehensive authentication and authorization including OAuth2, JWT, LDAP integration, and custom security filters.',
   '.NET': 'Microsoft ecosystem development with ASP.NET Core, Blazor, and Azure service integrations for enterprise solutions.',
-  'Hibernate': 'Object-relational mapping for Java applications with optimized queries, caching strategies, and database migrations.',
-  'JPA': 'Java Persistence API for standardized ORM across enterprise applications with repository patterns and query methods.',
 
   // Databases
   'Oracle': 'Enterprise database administration, PL/SQL development, performance tuning, and complex stored procedures.',
   'SQL Server': 'Microsoft SQL Server design, T-SQL development, SSIS packages, and high-availability configurations.',
-  'PostgreSQL': 'Advanced open-source relational database with JSON support, full-text search, and extension development.',
   'MongoDB': 'Document-oriented NoSQL for flexible schemas, aggregation pipelines, and horizontally scalable architectures.',
   'Redis': 'In-memory caching, session management, pub/sub messaging, and distributed locks for high-throughput systems.',
 
@@ -48,8 +44,8 @@ const skillDescriptions = {
 
 const skillCategories = [
   { title: 'Languages', skills: ['Java', 'C#', 'SQL', 'TypeScript', 'Python'] },
-  { title: 'Frameworks', skills: ['Spring Boot', 'Spring Security', '.NET', 'Hibernate', 'JPA'] },
-  { title: 'Databases', skills: ['Oracle', 'SQL Server', 'PostgreSQL', 'MongoDB', 'Redis'] },
+  { title: 'Frameworks', skills: ['Spring Boot', '.NET'] },
+  { title: 'Databases', skills: ['Oracle', 'SQL Server', 'MongoDB', 'Redis'] },
   { title: 'Infrastructure', skills: ['Docker', 'Kubernetes', 'AWS', 'Azure', 'Linux'] },
   { title: 'Auth & Security', skills: ['OAuth2/JWT', 'LDAP/LDAPS', 'Spring Security', 'SSO'] },
   { title: 'Tools & Practices', skills: ['Git', 'GitHub Actions', 'Azure DevOps', 'CI/CD', 'Agile'] },
@@ -74,10 +70,14 @@ export function Skills() {
   useEffect(() => {
     if (!tooltip) return
 
+    // Removed Spring Security, Hibernate, JPA from Frameworks
     const handleEscape = (e) => {
-      if (e.key === 'Escape') closeTooltip()
+      if (e.key === 'Escape') {
+        closeTooltip()
+      }
     }
 
+    // Removed PostgreSQL from Databases
     const handleClickOutside = (e) => {
       if (tooltipRef.current && !tooltipRef.current.contains(e.target) && !e.target.classList.contains('skill-item')) {
         closeTooltip()
