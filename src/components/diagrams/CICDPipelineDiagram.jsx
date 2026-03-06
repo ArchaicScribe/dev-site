@@ -10,7 +10,8 @@ export default function CICDPipelineDiagram() {
             <svg
                 viewBox="0 0 960 420"
                 width="100%"
-                style={{ display: 'block', minWidth: '700px' }}
+                preserveAspectRatio="xMidYMid meet"
+                style={{ display: 'block', width: '100%' }}
             >
                 <DiagramArrowDefs />
 
