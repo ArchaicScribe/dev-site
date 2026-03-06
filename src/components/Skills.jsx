@@ -195,8 +195,8 @@ export function Skills() {
           ))}
         </motion.div>
 
-        <motion.div style={{ marginTop: '4rem', padding: '1rem 1.5rem', fontSize: '0.85rem', fontFamily: "'Share Tech Mono', monospace", color: 'var(--text-muted)', borderLeft: '2px solid var(--ui-highlight-dim)' }} variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={viewportConfig} transition={prefersReducedMotion ? { duration: 0 } : { ...transition, delay: 0.5 }}>
-          <span style={{ color: 'var(--accent-gold)', marginRight: '0.5rem' }}>*</span>Always learning. Currently exploring: Advanced Spring patterns, cloud-native architectures, and distributed systems.
+        <motion.div style={{ marginTop: '4rem', padding: '1rem 1.5rem', fontSize: '0.85rem', fontFamily: "'Share Tech Mono', monospace", color: 'var(--text-muted)', borderLeft: '2px solid var(--ui-highlight-dim)', textAlign: 'center' }} variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={viewportConfig} transition={prefersReducedMotion ? { duration: 0 } : { ...transition, delay: 0.5 }}>
+          <span style={{ color: 'var(--accent-gold)', marginRight: '0.5rem' }}>*</span>Always learning. Currently exploring: Advanced Spring patterns, cloud-native architectures, distributed systems, and AI/ML integration.
         </motion.div>
       </div>
 
