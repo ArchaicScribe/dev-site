@@ -95,18 +95,5 @@ export const projects = [
     diagram: <CICDPipelineDiagram />,
   },
   {
-    id: 'cats-clearance-system',
-    title: 'CATS — Clearance Action Tracking System',
-    status: 'LIVE',
-    tags: ['C#', '.NET', 'Blazor', 'SQL Server', 'Federal'],
-    description: 'Developed and maintained a large-scale federal web application tracking candidates through the government security clearance process (spanning L through Top Secret and above) under strict compliance and regulatory requirements. Built with C#/.NET, Blazor, and SQL Server for a federal contracting firm.',
-    fullCaseStudy: {
-      problem:
-        "CATS is a mission-critical web application managing the full lifecycle of government security clearance acquisition across multiple clearance levels, from L clearance through Top Secret and above. The system serves multiple federal agencies and must meet strict regulatory and compliance requirements at every layer. Maintaining reliability and correctness in this environment is non-negotiable, as errors directly affect personnel and national security workflows.",
-      decision:
-        "Joined a federal contracting firm as a junior software engineer and contributed to CATS over two years, progressing from bug resolution to feature development and broader system ownership. Worked across the full stack: C#/.NET backend, Blazor front-end, HTML/CSS, and SQL Server via SSMS. Every change required adherence to federal compliance standards and security regulations governing the handling of clearance data. Implementation details remain confidential in accordance with federal contractor obligations.",
-      outcome:
-        "Delivered consistent contributions to a large, compliance-grade federal system over two years. Progressed from resolving defects to owning feature development across multiple system areas. Gained Q-level security clearance (the Department of Energy equivalent of Top Secret), reflecting the trust and access required to work on systems of this sensitivity. The system continues to serve federal agencies managing clearance workflows across multiple classification levels. Its architecture reflected strict data segregation and audit requirements mandated by federal security frameworks, constraints that shaped every technical decision made during development.",
-    },
-  },
+  // ...existing code...
 ]
