@@ -133,8 +133,8 @@ export default function DualAuthDiagram() {
         ref={ref}
         viewBox="0 0 600 520"
         width="100%"
-        height="auto"
-        style={{ display: 'block' }}
+        preserveAspectRatio="xMidYMid meet"
+        style={{ display: 'block', width: '100%' }}
       >
         <defs>
           <marker
@@ -400,7 +400,7 @@ export default function DualAuthDiagram() {
               <div style={{ color: '#6a8a9a' }}>Endpoint Scope</div>
               <div style={{ color: '#eef4f8' }}>Service-specific endpoints per auth consumer type</div>
               <div style={{ color: '#6a8a9a' }}>Token Authority</div>
-              <div style={{ color: '#eef4f8' }}>Internal network auth server — not public JWKS</div>
+              <div style={{ color: '#eef4f8' }}>Internal network auth server (not public JWKS)</div>
             </div>
           </div>
 
@@ -426,13 +426,13 @@ export default function DualAuthDiagram() {
                 flex: 1,
               }}>
                 <div style={{ color: '#6a8a9a' }}>DSL</div>
-                <div style={{ color: '#eef4f8' }}>Spring oauth2ResourceServer() — built-in</div>
+                <div style={{ color: '#eef4f8' }}>Spring oauth2ResourceServer(), built-in</div>
                 <div style={{ color: '#6a8a9a' }}>Token Validation</div>
                 <div style={{ color: '#eef4f8' }}>Validated against internal network auth server</div>
                 <div style={{ color: '#6a8a9a' }}>Filter Scope</div>
                 <div style={{ color: '#eef4f8' }}>API consumer endpoints only</div>
                 <div style={{ color: '#6a8a9a' }}>Chain Order</div>
-                <div style={{ color: '#eef4f8' }}>Independently scoped — no shared state with Chain B</div>
+                <div style={{ color: '#eef4f8' }}>Independently scoped, no shared state with Chain B</div>
               </div>
             </div>
           </div>
@@ -461,13 +461,13 @@ export default function DualAuthDiagram() {
                 <div style={{ color: '#6a8a9a' }}>Provider</div>
                 <div style={{ color: '#eef4f8' }}>LdapAuthenticationProvider</div>
                 <div style={{ color: '#6a8a9a' }}>Integration</div>
-                <div style={{ color: '#eef4f8' }}>Cross-service — upstream security microservice updated to enable directory communication</div>
+                <div style={{ color: '#eef4f8' }}>Cross-service: upstream security microservice updated to enable directory communication</div>
                 <div style={{ color: '#6a8a9a' }}>Transport</div>
-                <div style={{ color: '#eef4f8' }}>LDAPS — encrypted directory communication</div>
+                <div style={{ color: '#eef4f8' }}>LDAPS (encrypted directory communication)</div>
                 <div style={{ color: '#6a8a9a' }}>Role Source</div>
                 <div style={{ color: '#eef4f8' }}>Roles resolved directly from LDAP directory attributes</div>
                 <div style={{ color: '#6a8a9a' }}>Chain Order</div>
-                <div style={{ color: '#eef4f8' }}>Independently scoped — no shared state with Chain A</div>
+                <div style={{ color: '#eef4f8' }}>Independently scoped, no shared state with Chain A</div>
               </div>
             </div>
           </div>
@@ -496,11 +496,11 @@ export default function DualAuthDiagram() {
                 <div style={{ color: '#6a8a9a' }}>Strategy</div>
                 <div style={{ color: '#eef4f8' }}>Role-based access control</div>
                 <div style={{ color: '#6a8a9a' }}>Enforcement</div>
-                <div style={{ color: '#eef4f8' }}>@PreAuthorize — method-level security</div>
+                <div style={{ color: '#eef4f8' }}>@PreAuthorize for method-level security</div>
                 <div style={{ color: '#6a8a9a' }}>Authority Mapping</div>
                 <div style={{ color: '#eef4f8' }}>LDAP directory group attributes → Spring GrantedAuthority</div>
                 <div style={{ color: '#6a8a9a' }}>Applies To</div>
-                <div style={{ color: '#eef4f8' }}>Both auth paths — evaluated downstream of both filter chains</div>
+                <div style={{ color: '#eef4f8' }}>Both auth paths, evaluated downstream of both filter chains</div>
               </div>
             </div>
           </div>

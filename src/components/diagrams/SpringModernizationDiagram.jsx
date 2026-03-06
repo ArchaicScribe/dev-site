@@ -10,7 +10,8 @@ export default function SpringModernizationDiagram({ onNavigate }) {
             <svg
                 viewBox="0 0 820 320"
                 width="100%"
-                style={{ display: 'block', minWidth: '600px' }}
+                preserveAspectRatio="xMidYMid meet"
+                style={{ display: 'block', width: '100%' }}
             >
                 <DiagramArrowDefs />
 

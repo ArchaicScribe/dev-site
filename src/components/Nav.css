@@ -14,6 +14,7 @@
     cursor: pointer;
     padding: 8px;
     transition: border-color 200ms ease;
+    z-index: 450;
 }
 
 .hamburger-btn:hover,
@@ -26,7 +27,22 @@
     width: 22px;
     height: 2px;
     background-color: var(--ui-highlight);
-    transition: transform 200ms ease, opacity 200ms ease;
+    transition: transform 280ms ease-out, opacity 280ms ease-out;
+    transform-origin: center;
+}
+
+/* Hamburger to X animation */
+.hamburger-btn.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.hamburger-btn.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Desktop nav links */
@@ -38,80 +54,71 @@
 
 /* Mobile menu overlay - hidden by default */
 .mobile-menu-overlay {
-    display: none;
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(7, 13, 20, 0.97);
+    background-color: rgba(10, 10, 10, 0.97);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-left: 1px solid var(--accent-primary);
     z-index: 400;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 200ms ease, visibility 200ms ease;
+    animation: mobileMenuSlideIn 280ms ease-out;
 }
 
 .mobile-menu-overlay.open {
-    display: flex;
-    opacity: 1;
-    visibility: visible;
+    /* removed: now handled by conditional rendering and animation */
 }
 
-.mobile-menu-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 44px;
-    height: 44px;
-    background: none;
-    border: 1px solid var(--ui-highlight-dim);
-    color: var(--ui-highlight);
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 1.25rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 200ms ease, color 200ms ease;
-}
+@keyframes mobileMenuSlideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0.5;
+    }
 
-.mobile-menu-close:hover,
-.mobile-menu-close:focus-visible {
-    border-color: var(--ui-highlight);
-    color: var(--accent-primary);
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
 }
 
 .mobile-menu-nav {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+    align-items: flex-start;
+    gap: 0.5rem;
     list-style: none;
-    padding: 0;
+    padding: 0 2rem;
     margin: 0;
 }
 
 .mobile-menu-nav a {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 500;
     color: var(--text-secondary);
     text-decoration: none;
-    letter-spacing: 0.15em;
-    padding: 0.75rem 1.5rem;
-    transition: color 200ms ease;
+    letter-spacing: 0.08em;
+    padding: 1rem 1.5rem;
+    border-left: 3px solid transparent;
+    transition: color 150ms ease, border-color 150ms ease;
 }
 
 .mobile-menu-nav a:hover,
 .mobile-menu-nav a:focus-visible {
     color: var(--accent-primary);
+    border-left-color: var(--accent-primary);
 }
 
 .mobile-menu-nav a.active {
     color: var(--accent-primary);
+    border-left-color: var(--accent-primary);
 }
 
 /* Terminal link in mobile menu */
@@ -135,16 +142,5 @@
 
     .nav-links-desktop {
         display: none;
-    }
-
-    .mobile-menu-overlay {
-        display: flex;
-        opacity: 0;
-        visibility: hidden;
-    }
-
-    .mobile-menu-overlay.open {
-        opacity: 1;
-        visibility: visible;
     }
 }
