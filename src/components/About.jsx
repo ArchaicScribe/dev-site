@@ -15,14 +15,14 @@ export function About() {
     <section id="about" style={sectionStyle} aria-labelledby="about-heading">
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, var(--ui-input-border), var(--accent-secondary), var(--ui-input-border), transparent)' }}></div>
       <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }}>
-        <motion.div style={{ maxWidth: '1200px', margin: '0 auto 4rem', display: 'flex', alignItems: 'center', gap: '1.5rem' }} variants={itemVariants}>
+        <motion.div style={{ maxWidth: '1200px', margin: '0 auto 4rem', display: 'flex', alignItems: 'center', gap: '1.5rem' }} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent, var(--ui-highlight-dim))' }}></div>
           <h2 id="about-heading" style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', fontWeight: 500, color: 'var(--accent-secondary)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>ABOUT</h2>
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, var(--ui-highlight-dim), transparent)' }}></div>
         </motion.div>
         <div className="about-content-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) 1.2fr', gap: '4rem', alignItems: 'start', maxWidth: '1200px', margin: '0 auto' }}>
-          <motion.div variants={itemVariants}><TerminalCard /></motion.div>
-          <motion.div style={{ color: 'var(--text-primary)', fontFamily: "'Exo 2', sans-serif", fontSize: '1rem', fontWeight: 300, lineHeight: 1.9 }} variants={itemVariants}>
+          <motion.div variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}><TerminalCard /></motion.div>
+          <motion.div style={{ color: 'var(--text-primary)', fontFamily: "'Exo 2', sans-serif", fontSize: '1rem', fontWeight: 300, lineHeight: 1.9 }} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
             <p style={{ marginBottom: '2rem' }}>Senior Software Engineer with 5+ years modernizing long-lived enterprise Java and .NET applications into maintainable Spring Boot architectures and cloud-ready deployments.</p>
             <p style={{ marginBottom: '2rem' }}>Deep experience in production troubleshooting (concurrency issues, memory behavior, performance bottlenecks, and transactional correctness), with a strong focus on observability using SLF4J and Logback.</p>
             <p style={{ marginBottom: '2rem' }}>Specialized in secure API design: dual-authentication systems with OAuth2/JWT and LDAP/LDAPS via Spring Security, deployed on Docker and Kubernetes (Rancher) across AWS and Azure environments.</p>
