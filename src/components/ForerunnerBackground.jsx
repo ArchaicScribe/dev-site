@@ -42,10 +42,7 @@ export function ForerunnerBackground({ theme = 'default' }) {
     <div
       style={{
         position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
+        inset: 0,
         pointerEvents: 'none',
         zIndex: 0,
       }}
