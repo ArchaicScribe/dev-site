@@ -10,7 +10,7 @@ const skillDescriptions = {
   'C#': 'Full-stack .NET development including ASP.NET Core APIs, Entity Framework, and Azure-integrated enterprise applications.',
   'SQL': 'Advanced query optimization, stored procedures, and database design across Oracle, SQL Server, and PostgreSQL environments.',
   'TypeScript': 'Strongly-typed JavaScript for scalable frontend applications, React components, and Node.js backend services.',
-  'Python': 'Used for scripting and task automation. Not a primary language — day-to-day development is primarily Java and C#.',
+  'Python': 'Used for scripting and task automation. Not a primary language; day-to-day development is primarily Java and C#.',
 
   // Frameworks
   'Spring Boot': 'Rapid development of production-ready microservices with auto-configuration, embedded servers, and cloud-native patterns.',
