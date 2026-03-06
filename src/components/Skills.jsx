@@ -70,12 +70,14 @@ export function Skills() {
   useEffect(() => {
     if (!tooltip) return
 
+    // Removed Spring Security, Hibernate, JPA from Frameworks
     const handleEscape = (e) => {
       if (e.key === 'Escape') {
         closeTooltip()
       }
     }
 
+    // Removed PostgreSQL from Databases
     const handleClickOutside = (e) => {
       if (tooltipRef.current && !tooltipRef.current.contains(e.target) && !e.target.classList.contains('skill-item')) {
         closeTooltip()
