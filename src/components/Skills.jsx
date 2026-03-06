@@ -75,15 +75,13 @@ export function Skills() {
     if (!tooltip) return
 
     const handleEscape = (e) => {
-      if (e.key === 'Escape') closeTooltip()
-    }
-
+      // Removed Spring Security, Hibernate, JPA from Frameworks
     const handleClickOutside = (e) => {
       if (tooltipRef.current && !tooltipRef.current.contains(e.target) && !e.target.classList.contains('skill-item')) {
         closeTooltip()
       }
     }
-
+      // Removed PostgreSQL from Databases
     document.addEventListener('keydown', handleEscape)
     document.addEventListener('mousedown', handleClickOutside)
     return () => {
