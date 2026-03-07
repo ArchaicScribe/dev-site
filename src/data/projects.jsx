@@ -4,7 +4,6 @@ import SpringModernizationDiagram from '../components/diagrams/SpringModernizati
 import CICDPipelineDiagram from '../components/diagrams/CICDPipelineDiagram'
 
 export const projects = [
-  // 1. Payment Card Default Management (WIP)
   {
     id: 'payment-card-default',
     title: 'Payment Card Default Management',
@@ -18,7 +17,6 @@ export const projects = [
     },
     diagram: <PaymentCardDiagram />,
   },
-  // 2. Enterprise Java → Spring Boot Modernization (LIVE)
   {
     title: "Enterprise Java \u2192 Spring Boot Modernization",
     description: "Refactored a core Java 8 enterprise service into Spring Boot 2.7.14 and Spring Cloud under strict production uptime requirements. Focused on resilience, observability, and long-term maintainability.",
@@ -35,7 +33,6 @@ export const projects = [
     },
     diagram: <SpringModernizationDiagram />,
   },
-  // 3. Dual-Auth REST API (LIVE)
   {
     title: "Dual-Auth REST API (OAuth2 + LDAP)",
     description: "Designed and implemented secure REST APIs with dual authentication via OAuth2/JWT and LDAP/LDAPS using Spring Security filter chains. Built to meet enterprise security controls in a production environment.",
@@ -52,53 +49,16 @@ export const projects = [
     },
     diagram: <DualAuthDiagram />,
   },
-  // 4. CATS — Clearance Action Tracking System (LIVE)
   {
     id: 'cats-clearance-system',
-    title: 'CATS — Clearance Action Tracking System',
-    status: 'LIVE',
+    title: 'CATS \u2014 Clearance Action Tracking System',
+    status: 'ARCHIVED',
     tags: ['C#', '.NET', 'Blazor', 'SQL Server', 'Federal'],
     description: 'Developed and maintained a large-scale federal web application tracking candidates through the government security clearance process (spanning L through Top Secret and above) under strict compliance and regulatory requirements. Built with C#/.NET, Blazor, and SQL Server for a federal contracting firm.',
     fullCaseStudy: {
       problem: 'CATS is a mission-critical web application managing the full lifecycle of government security clearance acquisition across multiple clearance levels, from L clearance through Top Secret and above. The system serves multiple federal agencies and must meet strict regulatory and compliance requirements at every layer. Maintaining reliability and correctness in this environment is non-negotiable; errors directly affect personnel and national security workflows.',
       decision: 'Joined a federal contracting firm as a junior software engineer and contributed to CATS over two years, progressing from bug resolution to feature development and broader system ownership. Worked across the full stack: C#/.NET backend, Blazor front-end, HTML/CSS, and SQL Server via SSMS. Every change required adherence to federal compliance standards and security regulations governing the handling of clearance data. Implementation details remain confidential in accordance with federal contractor obligations.',
       outcome: 'Delivered consistent contributions to a large, compliance-grade federal system over two years. Progressed from resolving defects to owning feature development across multiple system areas. Gained Q-level security clearance (the Department of Energy equivalent of Top Secret), reflecting the trust and access required to work on systems of this sensitivity. The system continues to serve federal agencies managing clearance workflows across multiple classification levels. Its architecture reflected strict data segregation and audit requirements mandated by federal security frameworks; constraints that shaped every technical decision made during development.',
-    },
-  },
-  // 5. Azure DevOps CI/CD Pipeline (ARCHIVED)
-  {
-    title: "Azure DevOps CI/CD Pipeline — Greenfield Build",
-    description:
-      "Designed and delivered CI/CD pipelines from zero for two .NET applications. Established multi-environment promotion with test gates, approval workflows, and identified a Microsoft platform bug and escalated it directly to their engineering team for resolution.",
-    status: "ARCHIVED",
-    tags: ["Azure DevOps", "CI/CD", ".NET/C#", "Unit Testing", "Integration Testing"],
-    category: "Infrastructure",
-    featured: false,
-    githubRepo: "",
-    liveUrl: "",
-    fullCaseStudy: {
-      problem:
-        "Two .NET applications across separate business domains had no CI/CD pipelines in place. All deployments were performed manually, with no test automation or environment promotion logic.",
-      decision:
-        "Built two independent pipeline tracks in Azure DevOps (one per application) with a consistent three-environment model: Dev (auto-deploy on merge, unit tests), Staging (integration tests, approval gate), and Production (manual approval). PR gates at the source control level enforced quality before any code reached the pipeline.",
-      outcome:
-        "Delivered fully automated deployments with test gates at every stage. During the engagement, a Microsoft Azure DevOps platform bug was identified and escalated directly to their engineering team. The issue was resolved and the pipelines completed without further platform issues. Zero manual deployments remained after handoff.",
-    },
-    diagram: <CICDPipelineDiagram />,
-  },
-  {
-    id: 'cats-clearance-system',
-    title: 'CATS \u2014 Clearance Action Tracking System',
-    status: 'LIVE',
-    tags: ['C#', '.NET', 'Blazor', 'SQL Server', 'Federal'],
-    description: 'Developed and maintained a large-scale federal web application tracking candidates through the government security clearance process (spanning L through Top Secret and above) under strict compliance and regulatory requirements. Built with C#/.NET, Blazor, and SQL Server for a federal contracting firm.',
-    fullCaseStudy: {
-      problem:
-        "CATS is a mission-critical web application managing the full lifecycle of government security clearance acquisition across multiple clearance levels, from L clearance through Top Secret and above. The system serves multiple federal agencies and must meet strict regulatory and compliance requirements at every layer. Maintaining reliability and correctness in this environment is non-negotiable, as errors directly affect personnel and national security workflows.",
-      decision:
-        "Joined a federal contracting firm as a junior software engineer and contributed to CATS over two years, progressing from bug resolution to feature development and broader system ownership. Worked across the full stack: C#/.NET backend, Blazor front-end, HTML/CSS, and SQL Server via SSMS. Every change required adherence to federal compliance standards and security regulations governing the handling of clearance data. Implementation details remain confidential in accordance with federal contractor obligations.",
-      outcome:
-        "Delivered consistent contributions to a large, compliance-grade federal system over two years. Progressed from resolving defects to owning feature development across multiple system areas. Gained Q-level security clearance (the Department of Energy equivalent of Top Secret), reflecting the trust and access required to work on systems of this sensitivity. The system continues to serve federal agencies managing clearance workflows across multiple classification levels. Its architecture reflected strict data segregation and audit requirements mandated by federal security frameworks, constraints that shaped every technical decision made during development.",
     },
   },
   {
