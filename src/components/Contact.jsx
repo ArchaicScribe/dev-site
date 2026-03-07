@@ -79,7 +79,7 @@ export function Contact() {
             letterSpacing: '0.04em',
             textAlign: 'center'
           }}>
-            Remote · Open to relocation · Direct hire only · Not considering on-site NM roles
+            Building enterprise-grade systems and secure APIs that scale. Targeting Seattle, the greater Boston area, and remote-first teams. Direct hire only.
           </div>
         </motion.div>
         <motion.form style={{ textAlign: 'left', backgroundColor: 'var(--ui-panel-bg)', border: '1px solid var(--ui-input-border)', padding: '2rem' }} onSubmit={handleSubmit} variants={fadeUpVariants}>
