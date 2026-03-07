@@ -52,7 +52,7 @@ export const projects = [
   {
     id: 'cats-clearance-system',
     title: 'CATS \u2014 Clearance Action Tracking System',
-    status: 'ARCHIVED',
+      status: 'ARCHIVED',
     tags: ['C#', '.NET', 'Blazor', 'SQL Server', 'Federal'],
     description: 'Developed and maintained a large-scale federal web application tracking candidates through the government security clearance process (spanning L through Top Secret and above) under strict compliance and regulatory requirements. Built with C#/.NET, Blazor, and SQL Server for a federal contracting firm.',
     fullCaseStudy: {
