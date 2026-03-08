@@ -1,7 +1,8 @@
 export const ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:5173',
-    'https://portfolio-site-taupe-xi.vercel.app'
+    'https://alexrauenzahn.dev',
+    'https://www.alexrauenzahn.dev'
 ]
 
 export const RATE_LIMIT_WINDOW = 3600000 // 1 hour in milliseconds
