@@ -53,7 +53,8 @@ export default async function handler(req, res) {
         const resend = new Resend(process.env.RESEND_API_KEY)
 
         await resend.emails.send({
-            from: 'Portfolio Contact <contact@alexrauenzahn.dev>',
+            // TODO: switch back to contact@alexrauenzahn.dev once domain verification clears
+            from: 'Portfolio Contact <onboarding@resend.dev>',
             to: 'alex.rauenzahn@gmail.com',
             replyTo: email,
             subject: `Portfolio contact from ${name}`,
