@@ -25,12 +25,7 @@ export function ThemeProvider({ children }) {
     }, [theme])
 
     const toggleTheme = useCallback(() => {
-        console.log('toggleTheme called')
-        setTheme(current => {
-            const newTheme = current === 'default' ? 'gold' : 'default'
-            console.log('Theme changing from', current, 'to', newTheme)
-            return newTheme
-        })
+        setTheme(current => current === 'default' ? 'gold' : 'default')
     }, [])
 
     return (
