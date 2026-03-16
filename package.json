@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "generate-og": "node scripts/generate-og-image.mjs"
+    "generate-og": "node scripts/generate-og-image.mjs",
+    "save-secrets": "bash scripts/secrets-1password-devsite.sh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
