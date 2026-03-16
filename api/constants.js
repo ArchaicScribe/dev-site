@@ -15,7 +15,7 @@ export function getRateLimitKey(req) {
 
 export function checkOrigin(req, res) {
     const origin = req.headers.origin || req.headers.referer?.replace(/\/$/, '') || ''
-    const isAllowedOrigin = ALLOWED_ORIGINS.some(allowed => origin.startsWith(allowed))
+    const isAllowedOrigin = ALLOWED_ORIGINS.some(allowed => origin === allowed)
 
     if (!isAllowedOrigin) {
         res.status(403).json({
@@ -32,6 +32,16 @@ export function createRateLimiter(maxRequests) {
 
     return function checkRateLimit(ip) {
         const now = Date.now()
+
+        // Purge expired entries to prevent unbounded memory growth
+        if (store.size > 500) {
+            for (const [key, record] of store.entries()) {
+                if (now - record.windowStart > RATE_LIMIT_WINDOW) {
+                    store.delete(key)
+                }
+            }
+        }
+
         const record = store.get(ip)
 
         if (!record) {

@@ -104,7 +104,7 @@ export default async function handler(req, res) {
             const jsonMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/) || [null, text]
             analysis = JSON.parse(jsonMatch[1].trim())
         } catch (parseError) {
-            console.error('JSON parse error:', parseError, 'Raw text:', text)
+            console.error('JSON parse error:', parseError.message)
             return res.status(500).json({
                 error: 'Failed to parse analysis response'
             })
@@ -115,7 +115,7 @@ export default async function handler(req, res) {
         for (const field of requiredFields) {
             if (!(field in analysis)) {
                 return res.status(500).json({
-                    error: `Analysis missing required field: ${field}`
+                    error: 'Analysis response was invalid. Please try again.'
                 })
             }
         }
