@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useTypewriter, useReducedMotion } from '../hooks'
 import { fadeUpVariants, transition } from '../constants/animationVariants'
+import { AVAILABLE } from '../data/config'
 
 const roles = [
   "Senior Software Engineer",
@@ -84,6 +85,24 @@ export function Hero() {
     <section className="hero" style={heroStyle} aria-label="Introduction">
       <div style={energyGlowStyle} />
       <motion.div style={{ textAlign: 'center', maxWidth: '900px', position: 'relative', zIndex: 1 }} variants={containerVariants} initial="hidden" animate="visible">
+        {AVAILABLE && (
+          <motion.div variants={itemVariants} style={{ marginBottom: '1.5rem' }}>
+            <span style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+              fontFamily: "'Share Tech Mono', monospace", fontSize: '0.72rem',
+              letterSpacing: '0.18em', textTransform: 'uppercase',
+              color: '#4ade80', border: '1px solid rgba(74, 222, 128, 0.3)',
+              padding: '0.3rem 0.85rem', backgroundColor: 'rgba(74, 222, 128, 0.07)'
+            }}>
+              <span style={{
+                width: '6px', height: '6px', borderRadius: '50%',
+                backgroundColor: '#4ade80', display: 'inline-block',
+                animation: 'pulse 2s ease-in-out infinite', flexShrink: 0
+              }} />
+              OPEN TO OPPORTUNITIES
+            </span>
+          </motion.div>
+        )}
         <motion.p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '0.85rem', color: 'var(--chat-muted)', marginBottom: '1.5rem', letterSpacing: '0.2em', textTransform: 'uppercase' }} variants={itemVariants}>// SYSTEM.INIT</motion.p>
         <motion.h1 style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(3rem, 10vw, 5.5rem)', fontWeight: 600, color: 'var(--ui-highlight)', letterSpacing: '0.08em', marginBottom: '1.5rem' }} variants={itemVariants}>ALEX RAUENZAHN</motion.h1>
         <motion.div style={{ fontFamily: "'Exo 2', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', fontWeight: 300, color: 'var(--text-secondary)', marginBottom: '2.5rem', minHeight: '2.5rem' }} variants={itemVariants}>

@@ -56,7 +56,7 @@ export default async function handler(req, res) {
         })
     }
 
-    const { messages, systemPrompt } = req.body
+    const { messages } = req.body
     if (!messages || !Array.isArray(messages)) {
         return res.status(400).json({
             error: 'Invalid request: messages array required'
@@ -91,7 +91,7 @@ export default async function handler(req, res) {
         const response = await client.messages.create({
             model: 'claude-haiku-4-5-20251001',
             max_tokens: 300,
-            system: systemPrompt || DEFAULT_SYSTEM_PROMPT,
+            system: DEFAULT_SYSTEM_PROMPT,
             messages: recentMessages,
         })
 

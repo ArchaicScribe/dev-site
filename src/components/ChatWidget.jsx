@@ -12,7 +12,7 @@ export default function ChatWidget({ injectedContext, onContextCleared }) {
     const [messages, setMessages] = useState([INITIAL_MESSAGE])
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const [activeSystemPrompt, setActiveSystemPrompt] = useState(null)
+    const [isContextMode, setIsContextMode] = useState(false)
     const messagesEndRef = useRef(null)
 
     useEffect(() => {
@@ -24,7 +24,7 @@ export default function ChatWidget({ injectedContext, onContextCleared }) {
     // Handle injected context from Resume Analyzer
     useEffect(() => {
         if (injectedContext) {
-            setActiveSystemPrompt(injectedContext.systemPrompt)
+            setIsContextMode(injectedContext.isContextMode || false)
             setMessages(injectedContext.messages || [INITIAL_MESSAGE])
             setIsOpen(true)
             setIsExpanded(true)
@@ -56,11 +56,6 @@ export default function ChatWidget({ injectedContext, onContextCleared }) {
                     .filter(m => !m.isTyping)
                     .filter(m => m.role === 'user' || (m.role === 'assistant' && m !== INITIAL_MESSAGE))
                     .map(m => ({ role: m.role, content: m.content }))
-            }
-
-            // Include custom system prompt if set by Resume Analyzer
-            if (activeSystemPrompt) {
-                requestBody.systemPrompt = activeSystemPrompt
             }
 
             const response = await fetch('/api/chat', {
@@ -115,7 +110,7 @@ export default function ChatWidget({ injectedContext, onContextCleared }) {
     }
 
     const handleReset = () => {
-        setActiveSystemPrompt(null)
+        setIsContextMode(false)
         setMessages([INITIAL_MESSAGE])
         if (onContextCleared) {
             onContextCleared()
@@ -127,6 +122,7 @@ export default function ChatWidget({ injectedContext, onContextCleared }) {
             <button
                 className="chat-widget-trigger"
                 onClick={() => setIsOpen(prev => !prev)}
+                aria-label={isOpen ? 'Close chat' : 'Open chat'}
             >
                 <svg
                     className="chat-widget-trigger-icon"
@@ -143,14 +139,14 @@ export default function ChatWidget({ injectedContext, onContextCleared }) {
                 <div className={`chat-widget-panel ${isExpanded ? 'chat-widget-panel-expanded' : ''}`}>
                     <div className="chat-widget-header">
                         <div className="chat-widget-header-title">
-                            {activeSystemPrompt ? 'ANALYSIS CONTEXT' : 'FORERUNNER INTERFACE'}
+                            {isContextMode ? 'ANALYSIS CONTEXT' : 'FORERUNNER INTERFACE'}
                         </div>
                         <div className="chat-widget-header-status">
-                            <div className={`chat-widget-status-dot ${activeSystemPrompt ? 'chat-widget-status-dot-context' : ''}`} />
-                            {activeSystemPrompt ? 'CONTEXT MODE' : 'ONLINE'}
+                            <div className={`chat-widget-status-dot ${isContextMode ? 'chat-widget-status-dot-context' : ''}`} />
+                            {isContextMode ? 'CONTEXT MODE' : 'ONLINE'}
                         </div>
                         <div className="chat-widget-header-controls">
-                            {activeSystemPrompt && (
+                            {isContextMode && (
                                 <button
                                     className="chat-widget-reset"
                                     onClick={handleReset}
