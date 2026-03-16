@@ -63,7 +63,7 @@ export const projects = [
   },
   {
     title: "Azure DevOps CI/CD Pipeline \u2014 Greenfield Build",
-    description: "Designed and delivered CI/CD pipelines from zero for two .NET applications. Established multi-environment promotion with test gates, approval workflows, and identified a Microsoft platform bug and escalated it directly to their engineering team for resolution.",
+    description: "Designed and delivered CI/CD pipelines from zero for two .NET applications. Led test automation integration across all pipeline stages, established multi-environment promotion with automated test gates and approval workflows, and identified a Microsoft platform bug escalated directly to their engineering team.",
     status: "ARCHIVED",
     tags: ["Azure DevOps", "CI/CD", ".NET/C#", "Unit Testing", "Integration Testing"],
     category: "Infrastructure",
@@ -72,8 +72,8 @@ export const projects = [
     liveUrl: "",
     fullCaseStudy: {
       problem: "Two .NET applications across separate business domains had no CI/CD pipelines in place. All deployments were performed manually, with no test automation or environment promotion logic.",
-      decision: "Built two independent pipeline tracks in Azure DevOps (one per application) with a consistent three-environment model: Dev (auto-deploy on merge, unit tests), Staging (integration tests, approval gate), and Production (manual approval). PR gates at the source control level enforced quality before any code reached the pipeline.",
-      outcome: "Delivered fully automated deployments with test gates at every stage. During the engagement, a Microsoft Azure DevOps platform bug was identified and escalated directly to their engineering team. The issue was resolved and the pipelines completed without further platform issues. Zero manual deployments remained after handoff.",
+      decision: "Built two independent pipeline tracks in Azure DevOps (one per application) with a consistent three-environment model: Dev (auto-deploy on merge, unit tests), Staging (integration tests, approval gate), and Production (manual approval). Led the integration of automated test suites into each stage — unit tests blocking Dev merges, integration tests as a Staging gate. PR gates at the source control level enforced quality before any code reached the pipeline.",
+      outcome: "Delivered fully automated deployments with test gates at every stage, eliminating all manual releases after handoff. The test automation integration gave the team confidence to ship faster without sacrificing quality. During the engagement, a Microsoft Azure DevOps platform bug was identified, reproduced, and escalated directly to their engineering team — resolved without delaying delivery.",
     },
     diagram: <CICDPipelineDiagram />,
   },

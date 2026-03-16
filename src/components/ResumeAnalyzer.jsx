@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks'
-import { fadeUpVariants, viewportConfig, transition } from '../constants/animationVariants'
+import { fadeUpVariants } from '../constants/animationVariants'
 import './ResumeAnalyzer.css'
 
 export function ResumeAnalyzer({ onChatHandoff }) {
@@ -63,41 +63,32 @@ export function ResumeAnalyzer({ onChatHandoff }) {
     const handleChatHandoff = () => {
         if (!analysis) return
 
-        const contextPrompt = `You are continuing a conversation about Alex Rauenzahn's fit for a specific role. Here is the job fit analysis that was just performed:
+        const contextContent = `Job fit analysis context:
 
 FIT SCORE: ${analysis.fitScore}/100
 SUMMARY: ${analysis.fitSummary}
 
 STRONG MATCHES:
-${analysis.strongMatches.map(m => `- ${m}`).join('\n')}
+${analysis.strongMatches?.map(m => `- ${m}`).join('\n')}
 
 RELEVANT PROJECTS:
-${analysis.relevantProjects.map(p => `- ${p}`).join('\n')}
+${analysis.relevantProjects?.map(p => `- ${p}`).join('\n')}
 
 GAPS:
-${analysis.gaps.map(g => `- ${g}`).join('\n')}
+${analysis.gaps?.map(g => `- ${g}`).join('\n')}
 
 INTERVIEW TALKING POINTS:
-${analysis.interviewTalkingPoints.map(t => `- ${t}`).join('\n')}
-
-The user may want to:
-- Ask follow-up questions about specific skills or experience
-- Get more detail on how projects relate to the job requirements
-- Discuss strategies for addressing gaps
-- Explore the talking points further
-
-Be helpful and specific. Reference the analysis when relevant. Keep responses concise and actionable.`
-
-        const initialMessages = [
-            {
-                role: 'assistant',
-                content: `I've reviewed the job fit analysis (Score: ${analysis.fitScore}/100). I can help you explore Alex's qualifications in more detail, discuss the identified gaps, or expand on the interview talking points. What would you like to know more about?`
-            }
-        ]
+${analysis.interviewTalkingPoints?.map(t => `- ${t}`).join('\n')}`
 
         onChatHandoff({
-            systemPrompt: contextPrompt,
-            messages: initialMessages
+            isContextMode: true,
+            messages: [
+                { role: 'user', content: contextContent },
+                {
+                    role: 'assistant',
+                    content: `I've reviewed the job fit analysis (Score: ${analysis.fitScore}/100). I can help you explore Alex's qualifications in more detail, discuss the identified gaps, or expand on the interview talking points. What would you like to know more about?`
+                }
+            ]
         })
     }
 
@@ -206,7 +197,7 @@ Be helpful and specific. Reference the analysis when relevant. Keep responses co
                                     Strong Matches
                                 </h3>
                                 <ul className="resume-analyzer-list">
-                                    {analysis.strongMatches.map((match, i) => (
+                                    {analysis.strongMatches?.map((match, i) => (
                                         <li key={i}>{match}</li>
                                     ))}
                                 </ul>
@@ -218,7 +209,7 @@ Be helpful and specific. Reference the analysis when relevant. Keep responses co
                                     Relevant Projects
                                 </h3>
                                 <ul className="resume-analyzer-list">
-                                    {analysis.relevantProjects.map((project, i) => (
+                                    {analysis.relevantProjects?.map((project, i) => (
                                         <li key={i}>{project}</li>
                                     ))}
                                 </ul>
@@ -230,7 +221,7 @@ Be helpful and specific. Reference the analysis when relevant. Keep responses co
                                     Gaps to Address
                                 </h3>
                                 <ul className="resume-analyzer-list resume-analyzer-list-gaps">
-                                    {analysis.gaps.length > 0 ? (
+                                    {analysis.gaps?.length > 0 ? (
                                         analysis.gaps.map((gap, i) => (
                                             <li key={i}>{gap}</li>
                                         ))
@@ -246,7 +237,7 @@ Be helpful and specific. Reference the analysis when relevant. Keep responses co
                                     Interview Talking Points
                                 </h3>
                                 <ul className="resume-analyzer-list resume-analyzer-list-talking-points">
-                                    {analysis.interviewTalkingPoints.map((point, i) => (
+                                    {analysis.interviewTalkingPoints?.map((point, i) => (
                                         <li key={i}>{point}</li>
                                     ))}
                                 </ul>
