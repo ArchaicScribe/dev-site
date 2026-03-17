@@ -95,7 +95,7 @@ COMMUNICATION CHANNELS
         content: `RETRIEVING PERSONNEL FILE...
 
 DOWNLOAD:`,
-        downloadLink: { text: 'AlexRauenzahn_Resume_Jan_2026.pdf', url: '/AlexRauenzahn_Resume_Jan_2026.pdf' }
+        downloadLink: { text: 'Alex_Rauenzahn_March_2026.pdf', url: '/Alex_Rauenzahn_March_2026.pdf' }
     }),
 
     clearance: () => ({
