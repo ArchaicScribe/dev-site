@@ -6,7 +6,7 @@ const checkRateLimit = createRateLimiter(5) // 5 analyses per hour
 const SYSTEM_PROMPT = `You are an expert resume analyst evaluating job fit for Alex Rauenzahn, a Senior Software Engineer. Analyze the provided job description against Alex's background and provide a structured assessment.
 
 ALEX'S BACKGROUND:
-- Senior Software Engineer, 5+ years experience
+- Senior Software Engineer, 6+ years experience
 - Currently: Java-based systems at Fortune 50 retail client
 - Stack: Java 8, Spring Boot, Spring Security, OAuth2/JWT, LDAP/LDAPS, Kubernetes, REST APIs
 - Federal background: CATS (Clearance Action Tracking System) at Chenega Corporation. C#/.NET, Blazor, SQL Server. Q-level security clearance (DoE equivalent of Top Secret)
