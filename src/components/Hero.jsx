@@ -116,6 +116,7 @@ export function Hero() {
         <motion.div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }} variants={itemVariants}>
           <a href="#projects" className="btn btn-primary" onClick={(e) => handleScrollTo(e, 'projects')} style={{ minWidth: '180px', backgroundColor: 'var(--ui-button-bg)', borderColor: 'var(--ui-button-bg)', color: 'var(--ui-button-text)' }}>VIEW PROJECTS</a>
           <a href="#skills" className="btn btn-ghost" onClick={(e) => handleScrollTo(e, 'skills')} style={{ minWidth: '180px', color: 'var(--ui-highlight)', borderColor: 'var(--ui-highlight)' }}>READ MY STACK</a>
+          <a href="/Alex_Rauenzahn_March_2026.pdf" download className="btn btn-ghost" style={{ minWidth: '180px', color: 'var(--text-secondary)', borderColor: 'var(--ui-highlight-dim)' }}>DOWNLOAD RESUME</a>
         </motion.div>
       </motion.div>
     </section>
