@@ -68,6 +68,7 @@ export function ProjectCard({ project, onOpenCaseStudy, useStagger = false }) {
 
   return (
     <motion.article
+      role="listitem"
       style={cardStyle}
       {...motionProps}
       whileHover={prefersReducedMotion ? {} : { borderColor: 'var(--ui-input-border-focus)' }}
