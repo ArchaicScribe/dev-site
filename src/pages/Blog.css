@@ -1,0 +1,173 @@
+.blog-page {
+  min-height: 100vh;
+  padding: 8rem 2rem 6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.blog-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.blog-header-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--chat-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.blog-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 600;
+  color: var(--ui-highlight);
+  letter-spacing: 0.08em;
+  margin-bottom: 1.25rem;
+}
+
+.blog-subtitle {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1.1rem;
+  color: var(--chat-muted);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+.blog-card {
+  border: 1px solid rgba(79, 195, 220, 0.15);
+  background: rgba(13, 33, 55, 0.4);
+  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.blog-card:hover {
+  border-color: rgba(79, 195, 220, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(79, 195, 220, 0.08);
+}
+
+.blog-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.blog-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.blog-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.blog-card:hover .blog-card-image img {
+  transform: scale(1.04);
+}
+
+.blog-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.blog-card-date {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--chat-muted);
+  letter-spacing: 0.08em;
+}
+
+.blog-card-reading-time {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent-primary);
+  letter-spacing: 0.08em;
+}
+
+.blog-card-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ui-highlight);
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+}
+
+.blog-card-description {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.9rem;
+  color: var(--chat-muted);
+  line-height: 1.7;
+}
+
+.blog-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.blog-card-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent-primary);
+  border: 1px solid rgba(79, 195, 220, 0.3);
+  padding: 0.2rem 0.6rem;
+  letter-spacing: 0.08em;
+}
+
+.blog-card-cta {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent-primary);
+  letter-spacing: 0.15em;
+  margin-top: 0.5rem;
+  transition: color 200ms ease;
+}
+
+.blog-card:hover .blog-card-cta {
+  color: var(--ui-highlight);
+}
+
+.blog-empty {
+  text-align: center;
+  color: var(--chat-muted);
+  font-family: 'Share Tech Mono', monospace;
+  padding: 4rem 0;
+}
+
+@media (max-width: 768px) {
+  .blog-page {
+    padding: 7rem 1.25rem 4rem;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}

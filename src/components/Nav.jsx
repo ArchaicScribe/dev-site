@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useReducedMotion } from '../hooks'
 import { useModal } from '../context/ModalContext'
 import './Nav.css'
@@ -19,6 +20,9 @@ export function Nav({ onTerminalOpen }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const prefersReducedMotion = useReducedMotion()
   const { closeAllModals } = useModal()
+  const location = useLocation()
+  const navigate = useNavigate()
+  const isHome = location.pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,10 +94,12 @@ export function Nav({ onTerminalOpen }) {
   // Handlers
   const handleNavClick = (e, href) => {
     e.preventDefault()
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })
-      setIsMobileMenuOpen(false)
+    setIsMobileMenuOpen(false)
+    if (isHome) {
+      const element = document.querySelector(href)
+      if (element) element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })
+    } else {
+      navigate('/' + href)
     }
   }
 
@@ -106,7 +112,11 @@ export function Nav({ onTerminalOpen }) {
   const handleLogoClick = (e) => {
     e.preventDefault()
     closeAllModals()
-    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' })
+    if (isHome) {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' })
+    } else {
+      navigate('/')
+    }
     setIsMobileMenuOpen(false)
   }
 
@@ -125,6 +135,14 @@ export function Nav({ onTerminalOpen }) {
                 </a>
               </li>
             ))}
+            <li>
+              <Link
+                to="/blog"
+                style={linkStyle(location.pathname.startsWith('/blog'))}
+              >
+                BLOG
+              </Link>
+            </li>
             <li>
               <a
                 href="#"
@@ -172,6 +190,15 @@ export function Nav({ onTerminalOpen }) {
                 </a>
               </li>
             ))}
+            <li>
+              <Link
+                to="/blog"
+                className={location.pathname.startsWith('/blog') ? 'active' : ''}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                BLOG
+              </Link>
+            </li>
             <li>
               <a
                 href="#"
