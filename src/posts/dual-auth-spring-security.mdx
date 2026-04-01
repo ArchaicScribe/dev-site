@@ -1,0 +1,142 @@
+---
+title: "Dual-Auth REST API with Spring Security"
+date: "2026-03-17"
+description: "How I implemented two parallel Spring Security filter chains — one for OAuth2/JWT and one for LDAP/LDAPS — sharing a single authorization layer with zero security exceptions in enterprise review."
+tags: ["Java", "Spring Boot", "Spring Security", "OAuth2", "LDAP", "REST API"]
+readingTime: 8
+---
+
+One of the more interesting problems I've solved was designing a REST API that needed to support two completely different authentication mechanisms simultaneously — OAuth2/JWT tokens for service-to-service calls, and LDAP/LDAPS credentials for internal tooling. The security requirement was clear: both paths had to share the same authorization rules, and neither could be a backdoor into the other.
+
+This is how it worked.
+
+## The Problem
+
+The system served two distinct client types:
+
+- **Automated services** authenticating with OAuth2 bearer tokens (JWT)
+- **Internal tools and scripts** using enterprise LDAP credentials
+
+The naive approach — handling both in a single filter chain — creates ordering problems and makes it difficult to reason about which path a request is taking. The cleaner design uses **two independent filter chains with shared authorization**.
+
+## Architecture
+
+<Diagram>
+sequenceDiagram
+    participant C1 as OAuth2 Client
+    participant C2 as LDAP Client
+    participant GW as API Gateway
+    participant FC1 as JWT Filter Chain
+    participant FC2 as LDAP Filter Chain
+    participant AZ as Authorization Layer
+    participant SVC as Service
+
+    C1->>GW: POST /api/resource (Bearer token)
+    GW->>FC1: matches /api/** (order=1)
+    FC1->>FC1: Validate JWT signature + claims
+    FC1->>AZ: Authenticated principal
+    AZ->>SVC: Authorized request
+    SVC-->>C1: 200 OK
+
+    C2->>GW: POST /api/resource (Basic auth)
+    GW->>FC2: matches /api/** (order=2)
+    FC2->>FC2: Bind to LDAPS, verify credentials
+    FC2->>AZ: Authenticated principal
+    AZ->>SVC: Authorized request
+    SVC-->>C2: 200 OK
+</Diagram>
+
+The key insight: both filter chains terminate at the same `AuthorizationManager`. The authentication mechanism is irrelevant to what a principal is allowed to do — that's a separation of concerns that makes the authorization layer clean and testable independently.
+
+## Implementation
+
+### JWT Filter Chain
+
+```java
+@Configuration
+@Order(1)
+public class JwtSecurityConfig {
+
+    @Bean
+    public SecurityFilterChain jwtFilterChain(HttpSecurity http) throws Exception {
+        http
+            .securityMatcher("/api/**")
+            .csrf(AbstractHttpConfigurer::disable)
+            .sessionManagement(s -> s.sessionCreationPolicy(STATELESS))
+            .oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtConverter()))
+            )
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/public/**").permitAll()
+                .anyRequest().authenticated()
+            );
+        return http.build();
+    }
+}
+```
+
+### LDAP Filter Chain
+
+```java
+@Configuration
+@Order(2)
+public class LdapSecurityConfig {
+
+    @Bean
+    public SecurityFilterChain ldapFilterChain(HttpSecurity http) throws Exception {
+        http
+            .securityMatcher("/api/**")
+            .csrf(AbstractHttpConfigurer::disable)
+            .sessionManagement(s -> s.sessionCreationPolicy(STATELESS))
+            .httpBasic(Customizer.withDefaults())
+            .authenticationProvider(ldapAuthProvider())
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/public/**").permitAll()
+                .anyRequest().authenticated()
+            );
+        return http.build();
+    }
+
+    @Bean
+    public LdapAuthenticationProvider ldapAuthProvider() {
+        BindAuthenticator authenticator = new BindAuthenticator(contextSource());
+        authenticator.setUserDnPatterns(new String[]{"uid={0},ou=users,dc=corp,dc=example,dc=com"});
+        return new LdapAuthenticationProvider(authenticator, ldapAuthoritiesPopulator());
+    }
+}
+```
+
+### Shared Authorization
+
+Both chains defer to the same `AuthorizationManager`, which grants or denies based on the principal's granted authorities — not on how they authenticated. This means you can write authorization tests without caring which auth path was used:
+
+```java
+@Bean
+public AuthorizationManager<RequestAuthorizationContext> authorizationManager() {
+    return (auth, context) -> {
+        Authentication authentication = auth.get();
+        if (!authentication.isAuthenticated()) {
+            return new AuthorizationDecision(false);
+        }
+        // Role-based decisions apply equally to JWT and LDAP principals
+        return new AuthorizationDecision(
+            authentication.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().startsWith("ROLE_"))
+        );
+    };
+}
+```
+
+## What Made This Pass Enterprise Review
+
+Three things the security team cared about:
+
+1. **No session state** — both chains enforce `STATELESS`. A compromised token cannot be replayed via a server-side session.
+2. **LDAPS only, never LDAP** — the context source was configured to require TLS. Any misconfiguration fails closed, not open.
+3. **Chain ordering is explicit** — `@Order(1)` and `@Order(2)` make the evaluation sequence deterministic and auditable. There's no ambiguity about which chain handles a given request.
+
+The result was zero security exceptions raised in the enterprise code review — which for a system handling access to sensitive data, was the only acceptable outcome.
+
+## Takeaway
+
+When you have multiple authentication mechanisms, resist the urge to handle them in a single filter chain. Two clean, independent chains with shared authorization is easier to test, easier to audit, and easier to extend — if a third auth mechanism is ever needed, it's another chain, not a modification to existing ones.

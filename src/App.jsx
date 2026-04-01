@@ -1,8 +1,12 @@
 import { lazy, Suspense, useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Nav, Hero, ForerunnerBackground, ChatWidget, Terminal, SectionLoader } from './components'
 import { useReducedMotion } from './hooks'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
 import { ModalProvider, useModal } from './context/ModalContext'
+
+const Blog = lazy(() => import('./pages/Blog'))
+const BlogPost = lazy(() => import('./pages/BlogPost'))
 
 // Lazy load below-the-fold sections for better performance
 const About = lazy(() => import('./components/About'))
@@ -90,10 +94,26 @@ function AppContent() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <ModalProvider>
-        <AppContent />
-      </ModalProvider>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
+        <ModalProvider>
+          <Routes>
+            <Route path="/" element={<AppContent />} />
+            <Route path="/blog" element={
+              <Suspense fallback={<SectionLoader />}>
+                <Nav />
+                <Blog />
+              </Suspense>
+            } />
+            <Route path="/blog/:slug" element={
+              <Suspense fallback={<SectionLoader />}>
+                <Nav />
+                <BlogPost />
+              </Suspense>
+            } />
+          </Routes>
+        </ModalProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   )
 }
