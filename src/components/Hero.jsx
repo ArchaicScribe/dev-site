@@ -4,11 +4,11 @@ import { fadeUpVariants, transition } from '../constants/animationVariants'
 import { AVAILABLE } from '../data/config'
 
 const roles = [
-  "Senior Software Engineer",
-  "Java Modernization Specialist",
-  "Spring Boot Architect",
-  "Cloud Infrastructure Engineer",
-  "Enterprise API Designer",
+  "Solutions Architect",
+  "Enterprise Modernization Specialist",
+  "Cloud-Native Systems Designer",
+  "Technical Architect",
+  "Customer Engineer",
 ]
 
 export function Hero() {
@@ -111,7 +111,7 @@ export function Hero() {
           </span>
         </motion.div>
         <motion.p style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '1rem', fontWeight: 300, color: 'var(--chat-muted)', lineHeight: 1.8, marginBottom: '4rem', maxWidth: '600px', margin: '0 auto 4rem' }} variants={itemVariants}>
-          Building enterprise-grade systems and secure APIs that scale. Targeting Seattle, the greater Boston area, and remote-first teams. Direct hire only.
+          Designing cloud-native systems and leading enterprise modernization at scale. Targeting Seattle, the greater Boston area, and remote-first teams. Direct hire only.
         </motion.p>
         <motion.div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }} variants={itemVariants}>
           <a href="#projects" className="btn btn-primary" onClick={(e) => handleScrollTo(e, 'projects')} style={{ minWidth: '180px', backgroundColor: 'var(--ui-button-bg)', borderColor: 'var(--ui-button-bg)', color: 'var(--ui-button-text)' }}>VIEW PROJECTS</a>
