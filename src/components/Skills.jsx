@@ -23,10 +23,10 @@ const skillDescriptions = {
   'Redis': 'In-memory caching, session management, pub/sub messaging, and distributed locks for high-throughput systems.',
 
   // Infrastructure
-  'Docker': 'Containerization of applications with multi-stage builds, compose orchestration, and optimized image layers.',
-  'Kubernetes': 'Container orchestration with deployments, services, ingress controllers, and Helm chart management.',
-  'AWS': 'Cloud architecture with EC2, Lambda, S3, RDS, and infrastructure-as-code using CloudFormation and CDK.',
-  'Azure': 'Microsoft cloud services including App Services, Functions, AKS, and Azure DevOps pipeline orchestration.',
+  'Docker': 'Containerization strategy including multi-stage builds, compose orchestration, and production-optimized image design.',
+  'Kubernetes': 'Container orchestration architecture with deployments, services, ingress, and Helm chart management in Rancher-managed clusters.',
+  'AWS': 'Cloud workload design and migration architecture across compute, storage, and managed services. SAA-C03 in progress.',
+  'Azure': 'Primary cloud platform. Production experience with AKS, App Services, Functions, and Azure DevOps. Pursuing AZ-104 and AZ-305.',
   'Linux': 'Server administration, shell scripting, systemd services, and performance monitoring in production environments.',
 
   // Auth & Security
@@ -43,11 +43,11 @@ const skillDescriptions = {
 }
 
 const skillCategories = [
+  { title: 'Cloud & Infrastructure', skills: ['Azure', 'AWS', 'Docker', 'Kubernetes', 'Linux'] },
   { title: 'Languages', skills: ['Java', 'C#', 'SQL', 'TypeScript', 'Python'] },
   { title: 'Frameworks', skills: ['Spring Boot', '.NET'] },
-  { title: 'Databases', skills: ['Oracle', 'SQL Server', 'MongoDB', 'Redis'] },
-  { title: 'Infrastructure', skills: ['Docker', 'Kubernetes', 'AWS', 'Azure', 'Linux'] },
   { title: 'Auth & Security', skills: ['OAuth2/JWT', 'LDAP/LDAPS', 'Spring Security', 'SSO'] },
+  { title: 'Databases', skills: ['Oracle', 'SQL Server', 'MongoDB', 'Redis'] },
   { title: 'Tools & Practices', skills: ['Git', 'GitHub Actions', 'Azure DevOps', 'CI/CD', 'Agile'] },
 ]
 

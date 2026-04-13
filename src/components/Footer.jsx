@@ -26,9 +26,9 @@ export function Footer() {
           textTransform: 'uppercase',
         }}
       >
-        ALEX RAUENZAHN — ENGINEERED WITH{' '}
+        ALEX RAUENZAHN - ENGINEERED WITH{' '}
         <span style={{ color: '#4fc3dc' }}>REACT</span> +{' '}
-        <span style={{ color: '#c8a96e' }}>VITE</span> — {year}
+        <span style={{ color: '#c8a96e' }}>VITE</span> - {year}
       </p>
       <p
         style={{
