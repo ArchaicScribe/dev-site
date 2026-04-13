@@ -12,6 +12,7 @@ const posts = Object.entries(modules)
     slug: path.replace('../posts/', '').replace('.mdx', ''),
     ...mod.meta,
   }))
+  .filter((post) => !post.draft)
   .sort((a, b) => new Date(b.date) - new Date(a.date))
 
 function estimateReadingTime(content) {
