@@ -195,8 +195,13 @@ export function Skills() {
           ))}
         </motion.div>
 
-        <motion.div style={{ marginTop: '4rem', padding: '1rem 1.5rem', fontSize: '0.85rem', fontFamily: "'Share Tech Mono', monospace", color: 'var(--text-muted)', borderLeft: '2px solid var(--ui-highlight-dim)' }} variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={viewportConfig} transition={prefersReducedMotion ? { duration: 0 } : { ...transition, delay: 0.5 }}>
-          <span style={{ color: 'var(--accent-gold)', marginRight: '0.5rem' }}>*</span>Always learning. Currently exploring: Advanced Spring patterns, cloud-native architectures, distributed systems, and AI/ML integration.
+        <motion.div style={{ marginTop: '4rem', padding: '1.25rem 1.5rem', fontSize: '0.85rem', fontFamily: "'Share Tech Mono', monospace", color: 'var(--text-muted)', borderLeft: '2px solid var(--ui-highlight-dim)' }} variants={fadeUpVariants} initial="hidden" whileInView="visible" viewport={viewportConfig} transition={prefersReducedMotion ? { duration: 0 } : { ...transition, delay: 0.5 }}>
+          <div style={{ color: 'var(--accent-gold)', marginBottom: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', fontSize: '0.75rem' }}>// CURRENTLY STUDYING</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+            <span><span style={{ color: 'var(--ui-highlight)' }}>[IN PROGRESS]</span> AZ-104 — Microsoft Azure Administrator</span>
+            <span><span style={{ color: 'var(--ui-highlight)' }}>[IN PROGRESS]</span> AZ-305 — Designing Microsoft Azure Infrastructure Solutions</span>
+            <span><span style={{ color: 'var(--text-muted)' }}>[PIPELINE]</span>&nbsp;&nbsp; AWS SAA-C03 — AWS Solutions Architect Associate</span>
+          </div>
         </motion.div>
       </div>
 
