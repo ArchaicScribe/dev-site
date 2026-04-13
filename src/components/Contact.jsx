@@ -70,7 +70,7 @@ export function Contact() {
           <div style={{ width: '60px', height: '1px', background: 'linear-gradient(90deg, var(--ui-highlight-dim), transparent)' }}></div>
         </motion.div>
         <motion.p style={{ fontFamily: "'Orbitron', sans-serif", fontSize: 'clamp(1.25rem, 3vw, 2rem)', fontWeight: 500, color: 'var(--text-secondary)', marginBottom: '1rem', letterSpacing: '0.05em' }} variants={fadeUpVariants}>Let's build something.</motion.p>
-        <motion.p style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '1rem', fontWeight: 300, color: 'var(--text-muted)', marginBottom: '4rem', lineHeight: 1.8 }} variants={fadeUpVariants}>Open to discussing distributed systems, performance optimization, and new opportunities.</motion.p>
+        <motion.p style={{ fontFamily: "'Exo 2', sans-serif", fontSize: '1rem', fontWeight: 300, color: 'var(--text-muted)', marginBottom: '4rem', lineHeight: 1.8 }} variants={fadeUpVariants}>Open to discussing cloud architecture, enterprise modernization, and new opportunities in the Greater Seattle Area.</motion.p>
         <motion.div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '3rem' }} variants={fadeUpVariants}>
           {socialLinks.map((link) => <a key={link.name} href={link.href} target={link.href.startsWith('mailto') ? undefined : '_blank'} rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'} style={socialStyle} aria-label={link.name} title={link.tooltip}><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">{link.icon}</svg></a>)}
         </motion.div>
@@ -110,7 +110,7 @@ export function Contact() {
             letterSpacing: '0.04em',
             textAlign: 'center'
           }}>
-            Building enterprise-grade systems and secure APIs that scale. Targeting Seattle, the greater Boston area, and remote-first teams. Direct hire only.
+            Designing cloud-native systems and leading enterprise modernization at scale. Targeting the Greater Seattle Area and remote-first teams. Direct hire only.
           </div>
         </motion.div>
         <motion.form style={{ textAlign: 'left', backgroundColor: 'var(--ui-panel-bg)', border: '1px solid var(--ui-input-border)', padding: '2rem' }} onSubmit={handleSubmit} variants={fadeUpVariants}>
