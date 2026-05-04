@@ -25,14 +25,20 @@ const skillDescriptions = {
   // Infrastructure
   'Docker': 'Containerization strategy including multi-stage builds, compose orchestration, and production-optimized image design.',
   'Kubernetes': 'Container orchestration architecture with deployments, services, ingress, and Helm chart management in Rancher-managed clusters.',
-  'AWS': 'Cloud workload design and migration architecture across compute, storage, and managed services. SAA-C03 in progress.',
-  'Azure': 'Primary cloud platform. Production experience with AKS, App Services, Functions, and Azure DevOps. Pursuing AZ-104 and AZ-305.',
+  'AWS': 'Cloud workload design and migration architecture across compute, storage, and managed services. Evaluating for multi-cloud strategies. SAA-C03 in progress.',
+  'Azure': 'Primary cloud platform. Production workloads on AKS (Kubernetes), App Services, and Functions. CI/CD and work tracking via Azure DevOps. Pursuing AZ-104 (Administrator) and AZ-305 (Solutions Architect).',
   'Linux': 'Server administration, shell scripting, systemd services, and performance monitoring in production environments.',
 
   // Auth & Security
   'OAuth2/JWT': 'Token-based authentication flows including authorization code, client credentials, and secure token validation.',
   'LDAP/LDAPS': 'Directory service integration for enterprise single sign-on, user synchronization, and group-based access control.',
   'SSO': 'Single sign-on implementation with SAML, OpenID Connect, and federated identity across enterprise applications.',
+
+  // AI & Automation
+  'Claude API': 'Anthropic Claude integration for intelligent text analysis, resume parsing, and conversational AI features in production applications.',
+  'Semantic Kernel': 'Microsoft orchestration framework for building multi-agent AI systems with C#. Used for agent coordination in legacy code modernization tooling.',
+  'Multi-Agent Architecture': 'Designing specialized AI agent systems where multiple agents collaborate: anti-pattern detection, security auditing, design pattern advisory, and code review.',
+  'Prompt Engineering': 'Structured prompt design for reliable AI outputs, including system prompts, few-shot patterns, and chain-of-thought reasoning for developer tooling.',
 
   // Tools & Practices
   'Git': 'Version control with branching strategies, rebasing workflows, and collaborative code review processes.',
@@ -48,6 +54,7 @@ const skillCategories = [
   { title: 'Frameworks', skills: ['Spring Boot', '.NET'] },
   { title: 'Auth & Security', skills: ['OAuth2/JWT', 'LDAP/LDAPS', 'Spring Security', 'SSO'] },
   { title: 'Databases', skills: ['Oracle', 'SQL Server', 'MongoDB', 'Redis'] },
+  { title: 'AI & Automation', skills: ['Claude API', 'Semantic Kernel', 'Multi-Agent Architecture', 'Prompt Engineering'] },
   { title: 'Tools & Practices', skills: ['Git', 'GitHub Actions', 'Azure DevOps', 'CI/CD', 'Agile'] },
 ]
 
